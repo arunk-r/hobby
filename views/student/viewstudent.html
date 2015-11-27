@@ -1,0 +1,95 @@
+<div>
+    <div class="well well-lg">
+        <h1 >{{viewStudentData.name}}</h1>
+        <p >{{viewStudentData.mobile}}</p> 
+        <p >{{viewStudentData.address}}</p> 
+        <p>Promised 1st Year Fee : <label >{{viewStudentData.puc1fee}}</label></p> 
+        <p>Promised 2nd Year Fee : <label >{{viewStudentData.puc2fee}}</label></p>
+
+    </div>
+    <div class="pull-right"><button type="button" class="btn btn-primary" id="myBtn"> <span class="glyphicon glyphicon-transfer"></span> Pay Fee</button></div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in viewFeeData">
+                    <td>{{row.paiddate| date:'MMM dd, yyyy'}}</td>
+                    <td>{{row.amount}}</td>
+                    <td>{{row.description}}</td>
+                    <td>
+                        <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData.id, row.studentfeeid)"><span class="glyphicon glyphicon-print"></span> Print</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div class="text-primary lead colors pull-left">Balance : <label class="col-bn"> {{(viewStudentData.puc1fee + viewStudentData.puc2fee) - viewBalanceData.paidamount}} </label> </div>
+    <div class="text-primary lead colors pull-right">Total Paid Amount : <label class="col-bn"> {{viewBalanceData.paidamount}} </label> </div>
+</div>
+<style>
+    .modal-header, h4, .close {
+        background-color: #5cb85c;
+        color:white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+    .modal-footer {
+        background-color: #f9f9f9;
+    }
+</style>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form class="form-horizontal" role="form" name="feeData" ng-controller="addFeePaymentCtrl">
+                <div class="modal-header" style="padding:35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><span class="glyphicon glyphicon-lock"></span> Fee Payment</h4>
+                </div>
+
+                <div class="modal-body" style="padding:40px 50px;">
+                    <div class="form-group">
+                        <label for="amount" class="control-label col-sm-4"><span class="glyphicon glyphicon-user"> </span> Amount :</label>
+                        <div class="col-md-4" ng-class="{'has-error': feeData.amount.$invalid, 'has-success': !feeData.amount.$dirty, 'has-feedback':feeData.amount.$invalid || !feeData.amount.$invalid}">
+                            <input id="amount" name="amount" type="number" class="form-control input-sm" placeholder="Enter Initial Fee" ng-model="feePayment.amount" required ng-pattern="/^([0-9]{3,6})?$/">
+                            <span class="glyphicon form-control-feedback" ng-class="{
+                            'glyphicon-ok': !feeData.amount.$invalid, 'glyphicon-remove': feeData.amount.$invalid}" ng-show="feeData.amount.$invalid || !feeData.amount.$invalid"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="description"><span class="glyphicon glyphicon-eye-open"> </span> Description :</label>
+                        <div class="col-md-8" ng-class="{
+                        'has-error': feeData.description.$invalid && feeData.description.$dirty, 'has-success': !feeData.description.$invalid, 'has-feedback': (feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid}">
+                            <input id="description" name="description" type="text" class="form-control input-sm" placeholder="Enter Name" ng-model="feePayment.description" required ng-maxlength="100" ng-minlength="5">
+                            <span class="glyphicon form-control-feedback" ng-class="{
+                            'glyphicon-ok':!feeData.description.$invalid, 'glyphicon-remove': feeData.description.$invalid&& feeData.description.$dirty}" ng-show="(feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-default" data-dismiss="modal" ng-disabled="feeData.$invalid" ng-click="addFeePayment(viewStudentData.id)"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    <button type="submit" class="btn btn-danger btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+    $("#myBtn").click(function () {
+    $("#myModal").modal();
+    });
+    });</script>

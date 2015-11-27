@@ -1,0 +1,9 @@
+/node_modules
+.nodemonignore
+.sass-cache
+.tmp
+# IDE specific
+*.iml
+.idea
+/nbproject
+/public/bower_components

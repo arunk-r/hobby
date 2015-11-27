@@ -1,0 +1,89 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Add New Student</div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" name="studentData">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Name:</label>
+                <div class="col-md-6" ng-class="{'has-error': studentData.name.$invalid && studentData.name.$dirty, 'has-success': !studentData.name.$invalid, 'has-feedback': (studentData.name.$invalid && studentData.name.$dirty) || !studentData.name.$invalid}">
+                    <input id="name" name="name" type="text" class="form-control input-sm" placeholder="Enter Name" ng-model="formData.name" required ng-maxlength="100" ng-minlength="3">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !studentData.name.$invalid, 'glyphicon-remove': studentData.name.$invalid && studentData.name.$dirty}" ng-show="(studentData.name.$invalid && studentData.name.$dirty) || !studentData.name.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.name">{{errfor.name}}</span>
+                    <span class="glyphicon form-control-feedback" ng-if="errfor.name" ng-class="glyphicon-remove"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dob" class="control-label col-sm-2">Date of Birth :</label>
+                <div class=" col-sm-2" data-provider="datepicker">
+                    <input id="dob" name="dob" type="date" class="form-control input-sm" placeholder="Enter DOB" ng-model="formData.dob" required >
+                    <span class="text-danger" ng-if="errfor.dob">{{errfor.dob}}</span>
+                </div>
+                <label for="rollnumber" class="control-label col-sm-2">Roll Number :</label>
+                <div class="col-md-2">
+                    <input id="rollnumber" name="rollnumber" type="text" class="form-control input-sm" placeholder="Enter Roll Number" ng-model="formData.rollnumber" ng-maxlength="20" ng-minlength="3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="class" class="control-label col-sm-2">Class :</label>
+                <div class="col-sm-2">
+                    <select class="form-control input-sm" id="class" placeholder="Enter Class" ng-model="formData.class" required>
+                        <option value="">Choose a Class</option>
+                        <option value="PUC1">1st PUC</option>
+                        <option value="PUC2">2nd PUC</option>
+                    </select>
+                    <span class="text-danger" ng-if="errfor.class">{{errfor.class}}</span>
+                </div>
+                <label for="initialfee" class="control-label col-sm-2">Fee :</label>
+                <div class="col-md-2" ng-class="{'has-error': studentData.initialfee.$invalid, 'has-success': !studentData.initialfee.$dirty, 'has-feedback':studentData.initialfee.$invalid || !studentData.initialfee.$invalid}">
+                    <input id="initialfee" name="initialfee" type="number" class="form-control input-sm" placeholder="Enter Initial Fee" ng-model="formData.initialfee" required ng-pattern="/^([0-9]{4,6})?$/">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !studentData.initialfee.$invalid, 'glyphicon-remove': studentData.initialfee.$invalid}" ng-show="studentData.initialfee.$invalid || !studentData.initialfee.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.initialfee">{{errfor.initialfee}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobile" class="control-label col-sm-2">Mobile :</label>
+                <div class="col-md-2" ng-class="{'has-error': studentData.mobile.$invalid, 'has-success': !studentData.mobile.$dirty, 'has-feedback':studentData.mobile.$invalid || !studentData.mobile.$invalid}">
+                    <input id="mobile" name="mobile" type="number" class="form-control input-sm" placeholder="Enter Mobile" ng-model="formData.mobile" required ng-maxlength="10" ng-minlength="10" ng-pattern="/^([0-9]{10,10})?$/">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !studentData.mobile.$invalid, 'glyphicon-remove': studentData.mobile.$invalid}" ng-show="studentData.mobile.$invalid || !studentData.mobile.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.mobile">{{errfor.mobile}}</span>
+                </div>
+                <label for="sslcpercentage" class="control-label col-sm-2">SSLC % :</label>
+                <div class="col-md-2" ng-class="{'has-error': studentData.sslcpercentage.$invalid, 'has-success': !studentData.sslcpercentage.$dirty, 'has-feedback':studentData.sslcpercentage.$invalid || !studentData.sslcpercentage.$invalid}">
+                    <input id="sslcpercentage" name="sslcpercentage" type="number" class="form-control input-sm" placeholder="99" tooltip="round to next number" ng-model="formData.sslcpercentage" required ng-pattern="/^([0-9]{2,2})?$/">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !studentData.sslcpercentage.$invalid, 'glyphicon-remove': studentData.sslcpercentage.$invalid}" ng-show="studentData.sslcpercentage.$invalid || !studentData.sslcpercentage.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.sslcpercentage">{{errfor.sslcpercentage}}</span>
+                    <span class="glyphicon form-control-feedback" ng-if="errfor.sslcpercentage" ng-class="glyphicon-remove"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="combination" class="control-label col-sm-2">Combination :</label>
+                <div class="col-sm-6">
+                    <select class="form-control input-sm" id="combination" placeholder="Enter Class" ng-model="formData.combination" required>
+                        <option value="">Choose Combination</option>
+                        <option value="PCMB">Physics Chemistry Mathematics Biology (PCMB)</option>
+                        <option value="HEBA">History Economics BusinessStudies Accountancy (HEBA)</option>
+                    </select>
+                    <span class="text-danger" ng-if="errfor.combination">{{errfor.combination}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address" class="control-label col-sm-2">Address :</label>
+                <div class="col-md-2" ng-class="{'has-error': studentData.address.$invalid && studentData.address.$dirty, 'has-success': !studentData.address.$invalid, 'has-feedback': (studentData.address.$invalid && studentData.address.$dirty) || !studentData.address.$invalid}">
+                    <textarea name="address" id="address" rows="6" class="col-sm-12" placeholder="Permanent Address" required ng-model="formData.address" ng-maxlength="200" ng-minlength="4"></textarea>
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !studentData.address.$invalid, 'glyphicon-remove': studentData.address.$invalid && studentData.address.$dirty}" ng-show="(studentData.address.$invalid && studentData.address.$dirty) || !studentData.address.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.address">{{errfor.address}}</span>
+                </div>
+                <label for="sslcschooladdress" class="control-label col-sm-2">SSLC School Address :</label>
+                <div class="col-md-2" ng-class="{'has-error': studentData.sslcschooladdress.$invalid && studentData.sslcschooladdress.$dirty, 'has-success': !studentData.sslcschooladdress.$invalid, 'has-feedback': (studentData.sslcschooladdress.$invalid && studentData.sslcschooladdress.$dirty) || !studentData.sslcschooladdress.$invalid}">
+                    <textarea name="sslcschooladdress" id="sslcschooladdress" rows="6" class="col-sm-12" placeholder="Permanent Address" required ng-model="formData.sslcschooladdress" ng-maxlength="200" ng-minlength="4"></textarea>
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !studentData.sslcschooladdress.$invalid, 'glyphicon-remove': studentData.sslcschooladdress.$invalid && studentData.sslcschooladdress.$dirty}" ng-show="(studentData.sslcschooladdress.$invalid && studentData.sslcschooladdress.$dirty) || !studentData.sslcschooladdress.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.sslcschooladdress">{{errfor.sslcschooladdress}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-lg btn-success center-block" ng-disabled="studentData.$invalid" ng-click="createStudent()">Add Student</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

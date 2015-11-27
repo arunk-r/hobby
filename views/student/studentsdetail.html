@@ -1,0 +1,49 @@
+<div>
+    <ul class="pager" >
+        <li class="next"><a href="#/addstudent"><span class="glyphicon glyphicon-plus-sign"></span> Add Student →</a></li>
+    </ul>
+    <div ng-show="!errorMsg">
+        <div >
+            <input id="globalfilter" type="text" class="form-control" placeholder="Global Search...">
+        </div>
+        <table class="table table-striped table-hover muffin margin-bottom0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Roll Number</th>
+                    <th>Class</th>
+                    <th>Combination</th>
+                    <th>1st PUC Fee</th>
+                    <th>2nd PUC Fee</th>
+                </tr>
+            </thead>
+            <tbody class="searchable clickable">
+                <tr class="text-left" ng-repeat="row in studentData" ng-click="go(row._id)">
+                    <td>{{row.name}}</td>
+                    <td>{{row.mobile}}</td>
+                    <td>{{row.rollnumber}}</td>
+                    <td>{{row.class}}</td>
+                    <td>{{row.combination}}</td>
+                    <td>{{row.puc1fee}}</td>
+                    <td>{{row.puc2fee}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+            $(document).ready(function () {
+                (function ($) {
+                    $('#globalfilter').keyup(function () {
+                        var rex = new RegExp($(this).val(), 'i');
+                        $('.searchable tr').hide();
+                        $('.searchable tr').filter(function () {
+                            return rex.test($(this).text());
+                        }).show();
+                    });
+                }(jQuery));
+            });
+</script>

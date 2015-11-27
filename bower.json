@@ -1,0 +1,17 @@
+{
+    "name": "sbpuc",
+    "version": "1.0.0",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {
+        "angularjs":"~1.4.7",
+        "angular-route":"*",
+        "jquery":"~2.1.4",
+        "jquery.validate":"*",
+        "bootstrap":"*"
+    },
+    "devDependencies": {
+    }
+}
