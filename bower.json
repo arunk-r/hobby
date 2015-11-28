@@ -10,7 +10,8 @@
         "angular-route":"*",
         "jquery":"~2.1.4",
         "jquery.validate":"*",
-        "bootstrap":"*"
+        "bootstrap":"*",
+        "jquery-easing":"*"
     },
     "devDependencies": {
     }
