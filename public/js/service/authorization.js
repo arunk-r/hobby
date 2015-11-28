@@ -3,17 +3,15 @@ angular.module('security.authorization', [])
             var service = {
                 //setter
                 setAuthenticatedUser: function (value) {
-                    service.currentUser = value;
+                    sessionStorage.currentUser = value;
                 },
                 //getter
                 getAuthenticatedUser: function () {
-                    return service.currentUser;
+                    return sessionStorage.currentUser;
                 },
-                // Information about the current user
-                currentUser: null,
                 // Is the current user authenticated?
                 isAuthenticated: function () {
-                    return !!service.currentUser;
+                    return !!sessionStorage.currentUser;
                 }
             };
             return service;

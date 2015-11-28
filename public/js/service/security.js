@@ -8,7 +8,7 @@ angular.module('security.service', [])
                             router.trigger('/user/login', 'post', {username: username, password: password}).then(
                                     function (response) {
                                         if (response.success) {
-                                            securityAuthorization.currentUser = response.data[0];
+                                            securityAuthorization.setAuthenticatedUser(response.data[0]);
                                         }
                                         deferred.resolve(response);
                                     });
@@ -20,7 +20,7 @@ angular.module('security.service', [])
                             router.trigger('/user/signup', 'post', {username: username, password: password}).then(
                                     function (response) {
                                         if (response.success) {
-                                            securityAuthorization.currentUser = response.data[0];
+                                            securityAuthorization.setAuthenticatedUser(response.data[0]);
                                         }
                                         deferred.resolve(response);
                                     });
