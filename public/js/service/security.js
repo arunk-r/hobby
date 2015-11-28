@@ -17,7 +17,7 @@ angular.module('security.service', [])
                         // Attempt to Sign up the new user by the given username and password
                         signup: function (username, password) {
                             var deferred = $q.defer();
-                            router.trigger('/user/signup', {username: username, password: password}).then(
+                            router.trigger('/user/signup', 'post', {username: username, password: password}).then(
                                     function (response) {
                                         if (response.success) {
                                             securityAuthorization.currentUser = response.data[0];

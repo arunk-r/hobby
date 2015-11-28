@@ -24,6 +24,6 @@
         "passport-http": "*",
         "method-override":"*",
         "express-session": "*",
-        "bcrypt": "^0.8.x"
+        "bcrypt": "*"
     }
 }

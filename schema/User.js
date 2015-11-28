@@ -3,8 +3,7 @@
 exports = module.exports = function (app, mongoose) {
     var userSchema = new mongoose.Schema({
         username: {type: String, unique: true},
-        hash: String,
-        salt: String,
+        password: String,
         timeCreated: {type: Date, default: Date.now}
     });
 
@@ -20,42 +19,23 @@ exports = module.exports = function (app, mongoose) {
         return false;
     };
 
-    userSchema.statics.encryptPassword = function (password, callback) {
-        var hash = require('./pass').hash;
-        hash(password, function (err, salt, hash) {
-            if (err)
-                throw err;
-            callback(null, salt, hash);
-        });
+    userSchema.statics.encryptPassword = function (password, done) {
+        var bcrypt = require('bcrypt');
+        bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+                return done(err);
+            }
 
-//        var bcrypt = require('bcrypt');
-//        bcrypt.genSalt(10, function (err, salt) {
-//            if (err) {
-//                return done(err);
-//            }
-//
-//            bcrypt.hash(password, salt, function (err, hash) {
-//                done(err, hash);
-//            });
-//        });
-    };
-    userSchema.statics.validatePassword = function (user, password, callback) {
-        var hash = require('./pass').hash;
-        
-        hash(password, user.salt, function (err, hash) {
-            console.log('hash')
-        console.log(hash)    
-        console.log(user.hash)    
-            if (err)
-                throw err;
-            if (hash === user.hash)
-                callback(null, true);
-            callback(new Error('invalid password'));
+            bcrypt.hash(password, salt, function (err, hash) {
+                done(err, hash);
+            });
         });
-//        var bcrypt = require('bcrypt');
-//        bcrypt.compare(password, hash, function (err, res) {
-//            done(err, res);
-//        });
+    };
+    userSchema.statics.validatePassword = function (password, hash, done) {
+        var bcrypt = require('bcrypt');
+        bcrypt.compare(password, hash, function (err, res) {
+            done(err, res);
+        });
     };
 
     userSchema.index({username: 1}, {unique: true});
@@ -64,5 +44,3 @@ exports = module.exports = function (app, mongoose) {
 
     app.db.model('User', userSchema);
 };
-
-
