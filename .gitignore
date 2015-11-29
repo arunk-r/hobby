@@ -6,4 +6,4 @@
 *.iml
 .idea
 /nbproject
-/public/bower_components
+/public/vendor
