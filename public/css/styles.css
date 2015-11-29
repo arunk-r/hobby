@@ -1,30 +1,219 @@
-/* Remove the navbar's default margin-bottom and rounded borders */ 
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
+body { 
+    background: url(../img/header-blue-bgr.jpg) center 0 no-repeat #FFF; 
+}
+ol,ul { list-style:none; }
+/* MASTHEAD: GLOBAL HEADER ELEMENTS */
+#masthead {
+    width: 70%;
+    margin: 0 auto 0;
+    padding-top: 17px;
+    position: relative;
+    height: 163px;
+    z-index: 10;
+}
+#masthead .title {
+    position: absolute;
+    top: 126px;
+    color: #FFF;
+    font-size: 38px;
+    font-weight: bold;
+    line-height: 52px;
+    margin: 0 auto;
+    padding: 0;
+    left: 0px;
+    margin-left:10px;
+}
+.logo {
+    margin-left:10px;
 }
 
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 900px}
+/* Primary Navigation */
 
-/* Set gray background color and 100% height */
-.sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    height: 100%;
+#primary-nav { position: absolute; top: 150px;}
+#nav {
+    margin: 0;
+    float: left;
+    margin-left:20px;
+}
+#nav li {
+    float: left;
+    margin: 0 24px 0 0;
+    text-transform: uppercase;
+}
+#nav li a {
+    color: #666;
+}
+#nav li a:hover,
+#nav li a:focus {
+    text-decoration: none; 
+}
+#nav li.nav-solutions a.active {
+    font-weight:bold; 
+}
+#nav li.nav-solutions a:hover {
+    color: #FFF;
 }
 
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
-    .sidenav {
-        height: auto;
-        padding: 15px;
-    }
-    .row.content {height:auto;} 
+/* SELF-CLEARING FLOATS */
+#content:after,
+#primary-nav:after,
+.mod:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
-.common-font{
-    font-size: 14px;
+/* END SELF CLEANING FLOATS */
+
+/* Utility Navigation */
+
+#util-nav {
+    position: absolute;
+    top: 150px;
+    right: 0;
 }
-control-label{
-    font-size: 14px;
+#util-nav li {
+    margin: 0 12px 0 0;
+    text-transform: uppercase;
+    float: right;
 }
+#util-nav li.last {
+    margin: 0;
+}
+#util-nav li span {
+    text-transform: uppercase;
+}
+#util-nav li a {
+    color: #666;
+    text-transform: uppercase;
+}
+#util-nav li a:hover,
+#util-nav li a:focus {
+    text-decoration: none; 
+}
+#util-nav li.util-nav-global a.active {
+    font-weight:bold; 
+}
+#util-nav li.util-nav-global a:hover {
+    color: #FFF; 
+}
+
+#util-nav li.util-nav-global {
+    margin-right: 0;
+    position: relative;
+    width: 110px;
+}
+#util-nav li.util-nav-global a {
+    width: 110px;
+}
+#util-nav li.util-nav-global ul {
+    background: #95CD6A;
+    border: 1px solid #000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 2px 2px 5px #888;
+    -webkit-box-shadow: 2px 2px 5px #888;
+    left: -1000em;
+    margin: 0;
+    padding: 2px 0 4px;
+    position: absolute;
+    top: -2px;
+    z-index: 20;
+    white-space:nowrap;
+}
+#util-nav li.util-nav-global:hover ul,
+#util-nav li.ie-hover ul {
+    left: 0;
+}
+#util-nav li.util-nav-global ul li.last {
+    border-bottom: none;
+}
+#util-nav li.util-nav-global ul li a {
+    text-indent: 0;
+    height: auto;
+    text-transform: none;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+/* Image align*/
+.imageright {
+    position: relative;
+    display: inline;
+    float: right;
+    margin-top: -5px;
+}
+
+/* LAYOUT ELEMENTS */
+#footer {
+    width: 70%;
+    margin: 0 auto;
+}
+/* FOOTER: GLOBAL FOOTER ELEMENTS */
+#footer {
+    border-top: 1px solid #abadad;
+    padding: 20px 0 50px 10px;
+}
+#foot-nav {
+    width: 705px;
+    float: left;
+    margin: 3px 0 7px;
+}
+#foot-nav li {
+    font-size: .625em; /* 10/16 = .625 */
+}
+#social-nav {
+    width: 255px;
+    padding: 0;
+    float: right;
+    text-align:right;
+}
+#social-nav h2 {
+    font-size: 9px;
+    text-transform: uppercase;
+    margin: 5px 0 0 0;
+}
+#social-nav li {
+    float: right;
+    height: 16px;
+    width: 16px;
+    margin: 3px 0 0 10px;
+}
+p.copyright {
+    font-size: 8px; /* 10/16 = .625 */
+    color: #999;
+    width: 705px;
+    float: left;
+    text-transform: uppercase;
+    zoom: 1; 
+}
+#foot-nav li {
+    float: left;
+    margin-right: 20px;
+}
+#foot-nav li a {
+    color: #666;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+/* END GLOBAL FOOTER ELEMENTS */
+/* LAYOUT ELEMENTS */
+#content{
+    width: 70%;
+    margin: 26px auto;
+    padding: 35px 0 40px 10px;
+}
+
+.modal-header {
+    background-color: #0E94D3;
+    color: white !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-dialog{
+    width: 600px;
+    margin: 250px auto;
+}
+/* END LAYOUT ELEMENTS */
+

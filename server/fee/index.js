@@ -1,4 +1,5 @@
 exports.addstudentfee = function (req, res) {
+    var uuid = require('node-uuid');
     var workflow = req.app.utility.workflow(req, res);
 
     workflow.on('validate', function () {
@@ -20,18 +21,23 @@ exports.addstudentfee = function (req, res) {
     workflow.on('associateFeeToStudent', function () {
 
         var id = req.params.id;
+        var feeid = uuid.v1();
         var data = {
+            id: feeid,
             description: req.body.description,
             amount: req.body.amount,
-            paiddate: Date.now,
+            paiddate: new Date(),
             createduser: req.user.username
         };
-        req.app.db.models.Fee.update({_id:id},{$push:{fee:data}}, function (err, results) {
+        req.app.db.models.Student.update({_id: id}, {$push: {'fee': data}}, {safe: true, upsert: true}, function (err, results) {
             if (err) {
                 return workflow.emit('exception', err);
             }
-            console.log(results);
-            workflow.outcome.data.push(id);
+            var data = {
+                id: id,
+                feeid: feeid
+            };
+            workflow.outcome.data.push(data);
             workflow.emit('response');
         });
     });

@@ -37,22 +37,7 @@ exports = module.exports = function (app, mongoose) {
             type: String
         },
         fee: [
-            {
-                description: {
-                    type: String,
-                    unique: true
-                },
-                amount: {
-                    type: Number
-                },
-                paiddate: {
-                    type: Date,
-                    default: Date.now
-                },
-                createduser: {
-                    type: String
-                }
-            }
+            
         ],
         active: {
             type: Boolean,

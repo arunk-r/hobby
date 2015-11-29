@@ -18,10 +18,18 @@ angular.module('student.service', [])
                             });
                             return deferred.promise;
                         },
-                        // Attempt to get student detail
+                        // Attempt to get student detail by id
                         studentdetailsbyid: function (id) {
                             var deferred = $q.defer();
-                            router.trigger('/api/student/'+id, 'get').then(function (response) {
+                            router.trigger('/api/student/' + id, 'get').then(function (response) {
+                                deferred.resolve(response);
+                            });
+                            return deferred.promise;
+                        },
+                        // Attempt to pay student fee
+                        payfee: function (id, data) {
+                            var deferred = $q.defer();
+                            router.trigger('/api/student/' + id + '/fee/add', 'post', data).then(function (response) {
                                 deferred.resolve(response);
                             });
                             return deferred.promise;
