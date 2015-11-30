@@ -217,3 +217,18 @@ p.copyright {
 }
 /* END LAYOUT ELEMENTS */
 
+.img-responsive{
+    display: block;
+    max-width: 70%;
+    height: auto;
+}
+
+.table { 
+    border: 1px solid #DDDDDD; 
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-collapse:separate;
+    border-radius:10px;
+    -moz-border-radius:10px;
+}

@@ -1,14 +1,20 @@
 angular.module('printsbpuc', ['ngRoute']).controller('printreceiptCtrl', function ($scope, $http, $routeParams, $window, $timeout) {
-    console.log(getParameterByName('id'));
-    console.log(getParameterByName('feeid'));
+    $scope.errMsg = null;
     $scope.printData = {};
+    $scope.paidAmount = {};
     // Get all todos
-    $http.get('/print/' + getParameterByName('id') + '/' + getParameterByName('feeid'))
+    $http.get('/api/student/' + getParameterByName('id') + '/fee/' + getParameterByName('feeid') + '/print')
             .success(function (data) {
-                $scope.printData = data[0];
-                $timeout(function () {
-                    $scope.callPrintAfterLoadingDat();
-                }, 1000);
+                $scope.errMsg = null;
+                if (data.errors.length === 0 && !!data.errfor) {
+                    $scope.paidAmount = data.data[0];
+                    $scope.printData = data.data[1];
+                    $timeout(function () {
+                        $scope.callPrintAfterLoadingDat();
+                    }, 1000);
+                } else {
+                    $scope.errMsg = 'Login Issue, please close this window and try again with main application.';
+                }
             })
             .error(function (error) {
                 console.log('Error: ' + error);

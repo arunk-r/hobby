@@ -6,7 +6,6 @@
                     <h3 class="panel-title">Please Sign in</h3>
                 </div>
                 <div class="panel-body" >
-                    <p class="form-control-static alert-danger" ng-if="errorMsg">{{errorMsg}}</p>
                     <span class="text-danger" ng-if="errorMsg">{{errorMsg}}</span>
                     <form name="userForm" novalidate>
                         <div class="form-group" ng-class="{'has-error': hasError(userForm.username)}">

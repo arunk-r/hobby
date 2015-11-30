@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="printsbpuc">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/lib/w3.css" rel="stylesheet" media="screen">
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/angular-route/angular-route.min.js"></script>
+    <script src="js/controllers/print/printreceipt.js"></script>
+    <body ng-controller="printreceiptCtrl">
+        <div ng-show="errMsg"><span>{{errMsg}}</span></div>
+        <div ng-show="!errMsg">
+            <div class="w3-container">
+                <h3>Shree Bhuvaneshwari Charitable and Educational Trust, H-Cross </h3>      
+                <h4>Shree Bhuvaneshwari PU College</h4>    
+            </div>
+            <div class="w3-row-padding">
+                <div class="w3-third">
+                    <h2>Fee Receipt</h2>
+                    <p>Student Copy</p>
+                    <p>Student Name : {{printData.name}}</p> 
+                    <p>Class : {{printData.class}}</p> 
+                    <p>Fee Paid Date : {{printData.fee[0].paiddate| date:'MMM dd, yyyy'}}</p>
+                    <p>Paid Amount : {{printData.fee[0].amount}}</p> 
+                    <p>Balance Amount to College: {{ (printData.puc1fee + printData.puc2fee) - paidAmount.totalPaidAmount}}</p> 
+                </div>
+                <hr style="border-style: thin dotted;">
+                <div class="w3-third">
+                    <h2>Fee Receipt</h2>
+                    <p>College Copy</p>
+                    <p>Student Name : {{printData.name}}</p> 
+                    <p>Class : {{printData.class}}</p> 
+                    <p>Fee Paid Date : {{printData.fee[0].paiddate| date:'MMM dd, yyyy'}}</p>
+                    <p>Paid Amount : {{printData.fee[0].amount}}</p> 
+                    <p>Promised  Amount to the College: {{printData.class === "PUC1" ? printData.puc1fee : printData.puc2fee}}</p> 
+                    <p>Balance Amount to College: {{ (printData.puc1fee + printData.puc2fee) - paidAmount.totalPaidAmount}}</p> 
+                </div>
+            </div>
+            <script>
+                        $(document).keydown(function (e) {
+                            // ESCAPE key pressed
+                            if (e.keyCode === 27) {
+                                window.close();
+                            }
+                        });
+            </script>
+        </div>
+    </body>
+</html>
+

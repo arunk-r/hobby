@@ -19,12 +19,15 @@ function ensureAdmin(req, res, next) {
     res.redirect('/');
 }
 
+var base = require('./server/index');
 var users = require('./server/user/index');
 var student = require('./server/student/index');
 var fee = require('./server/fee/index');
+var print = require('./server/print/index');
 
 exports = module.exports = function (app, passport) {
-    app.use('/', require('./server/index'));
+    //app.use('/', base.init);
+    app.use('/feereceipt', base.feereceipt);
     app.post('/user/signup', users.signup);
     app.post('/user/login', users.login);
     
@@ -33,5 +36,6 @@ exports = module.exports = function (app, passport) {
     app.get('/api/student/:id', student.studentdetails);
     app.post('/api/student/add', student.addstudent);
     app.post('/api/student/:id/fee/add', fee.addstudentfee);
+    app.get('/api/student/:id/fee/:feeid/print', print.feeprintbyfeeid);
     
 };

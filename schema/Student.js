@@ -37,7 +37,6 @@ exports = module.exports = function (app, mongoose) {
             type: String
         },
         fee: [
-            
         ],
         active: {
             type: Boolean,
@@ -57,7 +56,6 @@ exports = module.exports = function (app, mongoose) {
             type: String
         }
     });
-
     studentSchema.index({name: 1});
     studentSchema.index({dob: 1});
     studentSchema.index({rollnumber: 1});
