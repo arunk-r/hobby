@@ -1,3 +1,4 @@
+'use strict';
 exports.init = function (req, res) {
     var path = require('path');
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));

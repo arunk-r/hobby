@@ -1,3 +1,4 @@
+'use strict';
 exports.signup = function (req, res) {
     var workflow = req.app.utility.workflow(req, res);
     console.log('Inside workflow');

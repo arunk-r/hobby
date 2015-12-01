@@ -201,7 +201,7 @@ p.copyright {
 /* LAYOUT ELEMENTS */
 #content{
     width: 70%;
-    margin: 26px auto;
+    margin: -50px auto;
     padding: 35px 0 40px 10px;
 }
 
@@ -231,4 +231,7 @@ p.copyright {
     border-collapse:separate;
     border-radius:10px;
     -moz-border-radius:10px;
+}
+.default-body{
+    min-height: 60vh;
 }

@@ -1,4 +1,4 @@
-
+'use strict';
 exports.students = function (req, res) {
     var workflow = req.app.utility.workflow(req, res);
 
@@ -101,8 +101,10 @@ exports.addstudent = function (req, res) {
             updateduser: req.user.username,
             updateddate: Date.now()
         };
+        console.log(data);
         req.app.db.models.Student.create(data, function (err, student) {
             if (err) {
+                console.log(err)
                 return workflow.emit('exception', err);
             }
             workflow.outcome.data.push(student._id);

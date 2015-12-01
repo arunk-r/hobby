@@ -2,12 +2,30 @@
 <html ng-app="printsbpuc">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/lib/w3.css" rel="stylesheet" media="screen">
+    <link href="css/flash/angular-flash.css" rel="stylesheet">
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/jquery/dist/jquery.min.js"></script>
     <script src="vendor/angular-route/angular-route.min.js"></script>
+    <script src="js/flash/angular-flash.js"></script> 
     <script src="js/controllers/print/printreceipt.js"></script>
+    <style>
+        .flash-div-area{
+            height: 1px; 
+            display: block;
+            align-content: center;
+        }
+    </style>
     <body ng-controller="printreceiptCtrl">
-        <div ng-show="errMsg"><span>{{errMsg}}</span></div>
+        <!--
+            5000 milli-secs is the display duration.
+            Flash alert will be automatically dismissed after 5000 milli-secs.
+            Flash alert types
+                success
+                info
+                warning
+                danger
+        -->
+        <div class="flash-div-area" flash-message="5000"></div>
         <div ng-show="!errMsg">
             <div class="w3-container">
                 <h3>Shree Bhuvaneshwari Charitable and Educational Trust, H-Cross </h3>      

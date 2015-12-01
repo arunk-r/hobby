@@ -1,4 +1,4 @@
-angular.module('printsbpuc', ['ngRoute']).controller('printreceiptCtrl', function ($scope, $http, $routeParams, $window, $timeout) {
+angular.module('printsbpuc', ['ngRoute', 'flash']).controller('printreceiptCtrl', function ($scope, $http, $window, $timeout, Flash) {
     $scope.errMsg = null;
     $scope.printData = {};
     $scope.paidAmount = {};
@@ -13,7 +13,10 @@ angular.module('printsbpuc', ['ngRoute']).controller('printreceiptCtrl', functio
                         $scope.callPrintAfterLoadingDat();
                     }, 1000);
                 } else {
-                    $scope.errMsg = 'Login Issue, please close this window and try again with main application.';
+                    var message = '<strong> Login Issue!...</strong>  Please close this window and try again with main application.';
+                    Flash.create('danger', message, 'custom-class');
+                    Flash.pause();
+                    $scope.errMsg = 'Login Issue!..., Please close this window and try again with main application.';
                 }
             })
             .error(function (error) {

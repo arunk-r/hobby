@@ -9,8 +9,7 @@ exports = module.exports = function (app, mongoose) {
             type: Date
         },
         rollnumber: {
-            type: String,
-            unique: true
+            type: String
         },
         class: {
             type: String
@@ -56,12 +55,7 @@ exports = module.exports = function (app, mongoose) {
             type: String
         }
     });
-    studentSchema.index({name: 1});
-    studentSchema.index({dob: 1});
-    studentSchema.index({rollnumber: 1});
-    studentSchema.index({combination: 1});
-    studentSchema.index({mobile: 1});
-    studentSchema.index({fee: 1});
+    studentSchema.index({name: 1,dob: 1, rollnumber: 1,combination: 1, mobile: 1, fee: 1});
     studentSchema.set('autoIndex', (app.get('env') === 'development'));
     app.db.model('Student', studentSchema);
 };

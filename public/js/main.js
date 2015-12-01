@@ -1,4 +1,5 @@
 var routerApp = angular.module('sbpuc', [
+    'flash',
     'ngRoute',
     'appRoutes',
     'router.service',
