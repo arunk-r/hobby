@@ -4,7 +4,11 @@
         <title>SBECT</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Bootstrap -->
         <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <!-- Bootstrap Material Design -->
+<!--        <link href="vendor/bootstrap-material-design/dist/css/bootstrap-material-design.css" rel="stylesheet">
+        <link href="vendor/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">-->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="../vendor/html5shiv/dist/html5shiv.js"></script>
@@ -28,7 +32,7 @@
                             <li class="nav-solutions"> &nbsp;</li>
                             <li class="nav-solutions"> &nbsp;</li>
                             <li class="nav-solutions" ng-show="isAuthenticated"><a title="Students" href="#/viewstudentsdetail"><span class="glyphicon glyphicon-link"></span> Students</a></li>
-                            <li class="nav-solutions" ng-show="isAuthenticated"><a title="Reports" href="#"><span class="glyphicon glyphicon-stats"></span> Reports</a></li>
+                            <li class="nav-solutions" ng-show="isAuthenticated"><a title="Reports" href="#/reports"><span class="glyphicon glyphicon-stats"></span> Reports</a></li>
                             <li class="nav-solutions"><a title="About" href="#"><span class="glyphicon glyphicon-eye-open"></span> About</a></li>
                         </ul>
                     </div>
@@ -100,6 +104,8 @@
         <script src="vendor/angular/angular.min.js"></script>
         <script src="vendor/angular-route/angular-route.min.js"></script>
         <script src="vendor/jquery.validate/dist/jquery.validate.min.js"></script>
+        <script src="vendor/bootstrap-material-design/dist/js/material.min.js"></script>
+        <script src="vendor/bootstrap-material-design/dist/js/ripples.min.js"></script>
         <!--         work-flow scripts -->
         <script src="js/main.js"></script>
         <script src="js/appRouters.js"></script>
@@ -109,11 +115,14 @@
         <script src="js/service/security.js"></script>
         <script src="js/service/student.js"></script>
         <script src="js/service/utility.js"></script>
+        <script src="js/service/report.js"></script>
         <script src="js/controllers/base.js"></script>
         <script src="js/controllers/login.js"></script>
         <script src="js/controllers/signup.js"></script>
         <script src="js/controllers/student/viewstudentsdetail.js"></script>
         <script src="js/controllers/student/addstudent.js"></script>
         <script src="js/controllers/student/studentdetails.js"></script>
+        <script src="js/controllers/reports/reports.js"></script>
+        <script src="js/controllers/reports/anualfee.js"></script>
     </body>
 </html>

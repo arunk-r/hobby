@@ -3,6 +3,7 @@
     margin-bottom: 20px;
     border: 1px solid transparent;
     border-radius: 4px;
+    text-align: left;
 }
 .alert h4 {
     margin-top: 0;
@@ -133,6 +134,6 @@ button.close {
 .flash-div{
     height: 1px; 
     display: block;
-    padding: 27px 300px 45px 500px;
+    padding: 27px 300px 70px 500px;
     align-content: center;
 }

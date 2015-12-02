@@ -24,18 +24,20 @@ var users = require('./server/user/index');
 var student = require('./server/student/index');
 var fee = require('./server/fee/index');
 var print = require('./server/print/index');
+var feereport = require('./server/reports/fee/index');
 
 exports = module.exports = function (app, passport) {
     //app.use('/', base.init);
     app.use('/feereceipt', base.feereceipt);
     app.post('/user/signup', users.signup);
     app.post('/user/login', users.login);
-    
+
     //app.all('/api/*', ensureAuthenticated);
     app.get('/api/students', student.students);
     app.get('/api/student/:id', student.studentdetails);
     app.post('/api/student/add', student.addstudent);
     app.post('/api/student/:id/fee/add', fee.addstudentfee);
     app.get('/api/student/:id/fee/:feeid/print', print.feeprintbyfeeid);
-    
+    app.get('/api/report/anual/:years/fee', feereport.anualreport);
+
 };

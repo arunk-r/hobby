@@ -7,13 +7,17 @@ var routerApp = angular.module('sbpuc', [
     'sbpuc.passwordcheck',
     'security.service',
     'student.service',
+    'report.service',
     'services.utility',
     'BaseCtrl',
     'SignupCtrl',
     'LoginCtrl',
     'ViewStudentsDetailCtrl',
     'AddStudentCtrl',
-    'StudentsDetailCtrl'
+    'StudentsDetailCtrl',
+    'ReportsCtrl',
+    'AnualFeeCtrl',
+    'CurrentYearFeeCtrl'
 ]);
 
 routerApp.run(['$rootScope', '$location', 'securityAuthorization', function ($rootScope, $location, securityAuthorization) {

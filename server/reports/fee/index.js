@@ -1,57 +1,50 @@
 'use strict';
-exports.addstudentfee = function (req, res) {
-    var uuid = require('node-uuid');
+exports.anualreport = function (req, res) {
     var workflow = req.app.utility.workflow(req, res);
+    workflow.on('anualReport', function () {
 
-    workflow.on('validate', function () {
-
-        // TODO: Needs complete validation
-        if (!req.body.amount) {
-            workflow.outcome.errfor.amount = 'required';
-        }
-        if (!req.body.description) {
-            workflow.outcome.errfor.description = 'required';
-        }
-        if (workflow.hasErrors()) {
-            console.log('error')
-            return workflow.emit('response');
-        }
-        workflow.emit('associateFeeToStudent');
-    });
-
-    workflow.on('associateFeeToStudent', function () {
-
-        var id = req.params.id;
-        var feeid = uuid.v1();
-        var data = {
-            id: feeid,
-            description: req.body.description,
-            amount: req.body.amount,
-            paiddate: new Date(),
-            createduser: req.user.username
-        };
-        req.app.db.models.Student.update(
-                {_id: id},
-                {
-                    $push: {
-                        'fee': {
-                            $each: [data],
-                            $sort: {paiddate: -1}
-                        }
+        var years = req.params.years;
+        var year = years.split('-');
+        req.app.db.models.Student.aggregate(
+                [
+                    {$match:
+                                {'fee.paiddate':
+                                            {
+                                                $gte: new Date(year[0] + "-03-31T23:59:00Z"),
+                                                $lt: new Date(year[1] + "-04-01T00:00:00Z")
+                                            }
+                                }
+                    },
+                    {$unwind: '$fee'},
+                    {$group:
+                                {
+                                    _id: {
+                                        name: '$name',
+                                        class: '$class',
+                                        combination: '$combination',
+                                        rollnumber: '$rollnumber',
+                                        puc1fee: '$puc1fee',
+                                        puc2fee: '$puc2fee'},
+                                    totalFeePaid: {$sum: '$fee.amount'}}
+                    },
+                    {$sort:
+                                {
+                                    '_id.name': 1,
+                                    '_id.class': 1,
+                                    '_id.combination': 1
+                                }
                     }
-                },
-                {safe: true, upsert: true},
-                function (err, results) {
+                ],
+                function (err, data) {
                     if (err) {
                         return workflow.emit('exception', err);
                     }
-                    var data = {
-                        id: id,
-                        feeid: feeid
-                    };
-                    workflow.outcome.data.push(data);
+                    if (!data) {
+                        return workflow.emit('exception', err);
+                    }
+                    workflow.outcome.data = data;
                     workflow.emit('response');
                 });
     });
-    workflow.emit('validate');
+    workflow.emit('anualReport');
 };

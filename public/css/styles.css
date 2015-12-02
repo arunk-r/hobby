@@ -235,3 +235,12 @@ p.copyright {
 .default-body{
     min-height: 60vh;
 }
+.breadcrumb {
+    padding: 0px 0px;
+    background-color: #fff;
+    width: 20%;
+}
+.inline-block-row .col-xs-6 {
+    float:none;
+    display:inline-table;
+}

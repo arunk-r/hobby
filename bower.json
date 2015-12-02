@@ -6,14 +6,15 @@
         "**/*.txt"
     ],
     "dependencies": {
-        "angularjs":"~1.4.7",
-        "angular-route":"*",
-        "jquery":"~2.1.4",
-        "jquery.validate":"*",
-        "bootstrap":"*",
-        "jquery-easing":"*",
-        "html5shiv":"*",
-        "respond":"*"
+        "angularjs": "~1.4.7",
+        "angular-route": "*",
+        "jquery": "~2.1.4",
+        "jquery.validate": "*",
+        "bootstrap": "*",
+        "jquery-easing": "*",
+        "html5shiv": "*",
+        "respond": "*",
+        "bootstrap-material-design": "*"
     },
     "devDependencies": {
     }

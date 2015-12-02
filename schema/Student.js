@@ -35,6 +35,10 @@ exports = module.exports = function (app, mongoose) {
         sslcpercentage: {
             type: String
         },
+        otherfee: [
+        ],
+        examfee: [
+        ],
         fee: [
         ],
         active: {

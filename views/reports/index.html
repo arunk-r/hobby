@@ -1,0 +1,28 @@
+<div class="row placeholders inline-block-row">
+    <div class="col-xs-6 col-sm-3 placeholder text-center img-responsive">
+        <img src="img/annual_report1.jpg" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail">
+        <h4>Anual Fee</h4>
+        <span class="text-muted">
+            <select style="min-height: 30px; border-radius: 5px" ng-init="selectedItem = anualreportData[0]" ng-options="years.name for years in anualreportData" ng-model="selectedItem" ng-change="showAnualFeeReport()"></select>
+        </span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder text-center img-responsive">
+        <img src="img/financial_year_report2.jpg" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail">
+        <h4>Current Year Fee Report</h4>
+        <span class="text-muted">
+            <p>
+                <a class="btn" href="#/report/currentyear/fee">View details »</a>
+            </p>
+        </span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder text-center img-responsive">
+        <img src="img/annual-report3.png" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail">
+        <h4>Label</h4>
+        <span class="text-muted">
+            <p>
+                <a class="btn" href="#/reports">View details »</a>
+            </p>
+        </span>
+    </div>
+</div>
+<br>
