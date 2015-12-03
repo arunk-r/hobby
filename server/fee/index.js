@@ -3,7 +3,7 @@ exports.addstudentfee = function (req, res) {
     var uuid = require('node-uuid');
     var workflow = req.app.utility.workflow(req, res);
     workflow.on('validate', function () {
-
+        console.log(req.body)
         // TODO: Needs complete validation
         if (!req.body.type) {
             workflow.outcome.errfor.type = 'required';
@@ -15,7 +15,7 @@ exports.addstudentfee = function (req, res) {
             workflow.outcome.errfor.description = 'required';
         }
         if (workflow.hasErrors()) {
-            console.log('error')
+            console.log('workflow error')
             return workflow.emit('response');
         }
         workflow.emit('associateFeeToStudent');
@@ -33,6 +33,7 @@ exports.addstudentfee = function (req, res) {
             createduser: req.user.username
         };
         if (type === 'ACADEMICFEE') {
+            console.log('Inside ACADEMICFEE');
             req.app.db.models.Student.update(
                     {_id: id},
                     {
@@ -50,6 +51,7 @@ exports.addstudentfee = function (req, res) {
                         }
                     });
         } else if (type === 'EXAMFEE') {
+            console.log('Inside EXAMFEE');
             req.app.db.models.Student.update(
                     {_id: id},
                     {
@@ -67,6 +69,7 @@ exports.addstudentfee = function (req, res) {
                         }
                     });
         } else if (type === 'OTHERFEE') {
+            console.log('Inside OTHERFEE');
             req.app.db.models.Student.update(
                     {_id: id},
                     {

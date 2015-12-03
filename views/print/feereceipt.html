@@ -32,7 +32,7 @@
                 <h4>Shree Bhuvaneshwari PU College</h4>    
             </div>
             <div class="w3-row-padding">
-                <div class="w3-third">
+                <div class="w3-third" ng-if="type === 'academicfee'">
                     <h2>Fee Receipt</h2>
                     <p>Student Copy</p>
                     <p>Student Name : {{printData.name}}</p> 
@@ -41,8 +41,26 @@
                     <p>Paid Amount : {{printData.fee[0].amount}}</p> 
                     <p>Balance Amount to College: {{ (printData.puc1fee + printData.puc2fee) - paidAmount.totalPaidAmount}}</p> 
                 </div>
+                <div class="w3-third" ng-if="type === 'examfee'">
+                    <h2>Fee Receipt</h2>
+                    <p>Student Copy</p>
+                    <p>Student Name : {{printData.name}}</p> 
+                    <p>Class : {{printData.class}}</p> 
+                    <p>Fee Paid Date : {{printData.examfee[0].paiddate| date:'MMM dd, yyyy'}}</p>
+                    <p>Paid Amount : {{printData.examfee[0].amount}}</p>
+                    <p>Description : {{printData.examfee[0].description}}</p> 
+                </div>
+                <div class="w3-third" ng-if="type === 'otherfee'">
+                    <h2>Fee Receipt</h2>
+                    <p>Student Copy</p>
+                    <p>Student Name : {{printData.name}}</p> 
+                    <p>Class : {{printData.class}}</p> 
+                    <p>Fee Paid Date : {{printData.otherfee[0].paiddate| date:'MMM dd, yyyy'}}</p>
+                    <p>Paid Amount : {{printData.otherfee[0].amount}}</p> 
+                    <p>Description : {{printData.otherfee[0].description}}</p> 
+                </div>
                 <hr style="border-style: thin dotted;">
-                <div class="w3-third">
+                <div class="w3-third" ng-if="type === 'academicfee'">
                     <h2>Fee Receipt</h2>
                     <p>College Copy</p>
                     <p>Student Name : {{printData.name}}</p> 
@@ -51,6 +69,24 @@
                     <p>Paid Amount : {{printData.fee[0].amount}}</p> 
                     <p>Promised  Amount to the College: {{printData.class === "PUC1" ? printData.puc1fee : printData.puc2fee}}</p> 
                     <p>Balance Amount to College: {{ (printData.puc1fee + printData.puc2fee) - paidAmount.totalPaidAmount}}</p> 
+                </div>
+                <div class="w3-third" ng-if="type === 'examfee'">
+                    <h2>Fee Receipt</h2>
+                    <p>College Copy</p>
+                    <p>Student Name : {{printData.name}}</p> 
+                    <p>Class : {{printData.class}}</p> 
+                    <p>Fee Paid Date : {{printData.examfee[0].paiddate| date:'MMM dd, yyyy'}}</p>
+                    <p>Paid Amount : {{printData.examfee[0].amount}}</p>
+                    <p>Description : {{printData.examfee[0].description}}</p> 
+                </div>
+                <div class="w3-third" ng-if="type === 'otherfee'">
+                    <h2>Fee Receipt</h2>
+                    <p>College Copy</p>
+                    <p>Student Name : {{printData.name}}</p> 
+                    <p>Class : {{printData.class}}</p> 
+                    <p>Fee Paid Date : {{printData.otherfee[0].paiddate| date:'MMM dd, yyyy'}}</p>
+                    <p>Paid Amount : {{printData.otherfee[0].amount}}</p> 
+                    <p>Description : {{printData.otherfee[0].description}}</p> 
                 </div>
             </div>
             <script>

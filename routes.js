@@ -37,7 +37,7 @@ exports = module.exports = function (app, passport) {
     app.get('/api/student/:id', student.studentdetails);
     app.post('/api/student/add', student.addstudent);
     app.post('/api/student/:id/fee/add', fee.addstudentfee);
-    app.get('/api/student/:id/fee/:feeid/print', print.feeprintbyfeeid);
+    app.get('/api/student/:id/:type/fee/:feeid/print', print.feeprintbyfeeid);
     app.get('/api/report/anual/:years/fee', feereport.anualreport);
 
 };

@@ -2,9 +2,12 @@ angular.module('printsbpuc', ['ngRoute', 'flash']).controller('printreceiptCtrl'
     $scope.errMsg = null;
     $scope.printData = {};
     $scope.paidAmount = {};
+    $scope.type = getParameterByName('type');
+    //console.log(getParameterByName('type'))
     // Get all todos
-    $http.get('/api/student/' + getParameterByName('id') + '/fee/' + getParameterByName('feeid') + '/print')
+    $http.get('/api/student/' + getParameterByName('id') + '/' + $scope.type + '/fee/' + getParameterByName('feeid') + '/print')
             .success(function (data) {
+                //console.log(data)
                 $scope.errMsg = null;
                 if (data.errors.length === 0 && !!data.errfor) {
                     $scope.paidAmount = data.data[0];

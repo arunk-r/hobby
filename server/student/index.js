@@ -121,7 +121,7 @@ exports.studentdetails = function (req, res) {
         var id = req.params.id;
         req.app.db.models.Student.findOne(
                 {_id: id},
-                {name: 1, dob: 1, rollnumber: 1, class: 1, puc1fee: 1, puc2fee: 1, mobile: 1, combination: 1, fee: 1},
+                {name: 1, dob: 1, rollnumber: 1, class: 1, puc1fee: 1, puc2fee: 1, mobile: 1, combination: 1, fee: 1, examfee:1, otherfee:1},
                 function (err, student) {
                     if (err) {
                         return workflow.emit('exception', err);

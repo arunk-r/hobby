@@ -11,6 +11,7 @@ angular.module('StudentsDetailCtrl', [])
                     student.studentdetailsbyid($routeParams.id).then(function (data) {
                         if (data.success) {
                             $scope.viewStudentData = data.data[0];
+                            //console.log(data.data)
                         } else {
                             if (data.errors) {
                                 $scope.errorMsg = data.errors[0];
@@ -20,30 +21,31 @@ angular.module('StudentsDetailCtrl', [])
                     $scope.addFeePayment = function (id) {
                         $('#myModal').modal('hide');
                         //console.log($scope.feePayment);
-                        $scope.feePayment = {};
                         student.payfee(id, $scope.feePayment).then(function (data) {
                             $timeout(function () {
-                                //$scope.callReLoadingData(data.data);
+                                $scope.callReLoadingData(data.data, $scope.feePayment.type);
                             }, 1000);
+                            $scope.feePayment = {};
                         });
                     };
-                    $scope.callReLoadingData = function (data) {
+                    $scope.callReLoadingData = function (data, type) {
                         //console.log(data)
                         $location.path($location.path());
                         $route.reload();
                         $timeout(function () {
-                            $scope.callOpenprintDialogData(data[0]);
+                            $scope.callOpenprintDialogData(data[0], type);
                         }, 1000);
                     };
-                    $scope.callOpenprintDialogData = function (data) {
+                    $scope.callOpenprintDialogData = function (data, type) {
                         //console.log(data);
-                        $scope.print(data.id, data.feeid);
+                        $scope.print(data.id, data.feeid, type);
                     };
-                    $scope.print = function (id, feeid) {
-                        //console.log(id);
-                        //console.log(feeid);
+                    $scope.print = function (id, feeid, type) {
+                        console.log(id);
+                        console.log(feeid);
+                        console.log(type);
                         var left = screen.width / 2 - 200, top = screen.height / 2 - 250;
-                        $window.open('feereceipt?id=' + id + '&feeid=' + feeid, '', "top=" + top + ",left=" + left + ",width=800,height=500");
+                        $window.open('feereceipt?id=' + id + '&feeid=' + feeid + '&type=' + type, '', "top=" + top + ",left=" + left + ",width=800,height=500");
                     };
                 }
         );

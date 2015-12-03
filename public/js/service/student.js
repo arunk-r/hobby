@@ -5,6 +5,7 @@ angular.module('student.service', [])
                         // Attempt to add new student
                         addstudent: function (data) {
                             var deferred = $q.defer();
+                            //console.log(data)
                             router.trigger('/api/student/add', 'post', data).then(function (response) {
                                 deferred.resolve(response);
                             });
@@ -29,6 +30,7 @@ angular.module('student.service', [])
                         // Attempt to pay student fee
                         payfee: function (id, data) {
                             var deferred = $q.defer();
+                            //console.log(data);
                             router.trigger('/api/student/' + id + '/fee/add', 'post', data).then(function (response) {
                                 deferred.resolve(response);
                             });
