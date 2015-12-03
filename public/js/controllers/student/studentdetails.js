@@ -19,9 +19,11 @@ angular.module('StudentsDetailCtrl', [])
                     });
                     $scope.addFeePayment = function (id) {
                         $('#myModal').modal('hide');
+                        //console.log($scope.feePayment);
+                        $scope.feePayment = {};
                         student.payfee(id, $scope.feePayment).then(function (data) {
                             $timeout(function () {
-                                $scope.callReLoadingData(data.data);
+                                //$scope.callReLoadingData(data.data);
                             }, 1000);
                         });
                     };

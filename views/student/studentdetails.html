@@ -1,43 +1,120 @@
-<div>
-    <div>
-        <div class="col-xs-8 col-sm-4 placeholder text-right imageright">
-            <img src="img/001.jpg" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail">
-        </div>
-        <span class="text-primary"><h1>{{viewStudentData.name}}</h1></span>
-        <p class="text-muted">{{viewStudentData.mobile}}</p> 
-        <p class="text-muted">Promised 1st Year Fee : <label >{{viewStudentData.puc1fee}}</label></p> 
-        <p class="text-muted">Promised 2nd Year Fee : <label >{{viewStudentData.puc2fee}}</label></p>
-    </div>
-    <br><br>
-    <div class="pull-left"><button type="button" class="btn btn-primary" id="myBtn"> <span class="glyphicon glyphicon-transfer"></span> Pay Fee</button></div>
-    <br>
-    <hr>
-    <div class="text-primary lead colors pull-left">Balance : <label class="col-bn"> {{(viewStudentData.puc1fee + viewStudentData.puc2fee) - viewBalanceData.paidamount}} </label> </div>
-    <div class="text-primary lead colors pull-right">Total Paid Amount : <label class="col-bn"> {{viewBalanceData.paidamount}} </label> </div>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Description</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in viewStudentData.fee">
-                    <td>{{row.paiddate| date:'MMM dd, yyyy'}}</td>
-                    <td>{{row.amount}}</td>
-                    <td>{{row.description}}</td>
-                    <td>
-                        <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id)"><span class="glyphicon glyphicon-print"></span> Print</button>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="col-md-12" style="margin-left: -15px;">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#/viewstudentsdetail">View All Students</a> <span class="divider"></span>
+        </li>
+        <li class="active">
+            {{viewStudentData.name}}
+        </li>
+    </ul>
 </div>
+<div class="row viewstudentrow">
+    <div class="col-xs-8 col-sm-4 placeholder text-right imageright">
+        <img src="img/001.jpg" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail">
+    </div>
+    <span class="text-primary"><h1>{{viewStudentData.name}}</h1></span>
+    <p class="text-muted">{{viewStudentData.mobile}}</p> 
+    <p class="text-muted">Promised 1st Year Fee : <label >{{viewStudentData.puc1fee}}</label></p> 
+    <p class="text-muted">Promised 2nd Year Fee : <label >{{viewStudentData.puc2fee}}</label></p>
+</div>
+<div class="row viewstudentrow">
+    <div class="pull-left"><button type="button" class="btn btn-primary" id="myBtn"> <span class="glyphicon glyphicon-transfer"></span> Pay Fee</button></div>
+</div>
+<hr>
+<div class="row">
+    <div class="text-primary lead colors  col-lg-6 pull-left">Balance : <label class="col-bn"> {{(viewStudentData.puc1fee + viewStudentData.puc2fee) - viewBalanceData.paidamount}} </label></div>
+    <div class="text-primary lead colors  col-lg-6 pull-right text-right">Total Paid Amount : <label class="col-bn"> {{viewBalanceData.paidamount}} </label></div>
+</div>
+<label class="text-primary lead colors">Payment History</label>
+<uib-accordion close-others="oneAtATime" ng-init="status.first = true">
+    <uib-accordion-group is-open="status.first">
+        <uib-accordion-heading >
+            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.first, 'glyphicon-chevron-right': !status.first}"></i>
+            Fee
+        </uib-accordion-heading>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in viewStudentData.fee">
+                        <td>{{row.paiddate| date:'MMM dd, yyyy HH:MM a'}}</td>
+                        <td>{{row.amount}}</td>
+                        <td>{{row.description}}</td>
+                        <td>
+                            <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id)"><span class="glyphicon glyphicon-print"></span> Print</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group is-open="status.second" is-disabled="status.isOpenDisabled">
+        <uib-accordion-heading >
+            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.second, 'glyphicon-chevron-right': !status.second}"></i>
+            Exam
+        </uib-accordion-heading>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in viewStudentData.examfee">
+                        <td>{{row.paiddate| date:'MMM dd, yyyy'}}</td>
+                        <td>{{row.amount}}</td>
+                        <td>{{row.description}}</td>
+                        <td>
+                            <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id)"><span class="glyphicon glyphicon-print"></span> Print</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </uib-accordion-group>
+    <uib-accordion-group is-open="status.third" is-disabled="status.isOpenDisabled">
+        <uib-accordion-heading >
+            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.third, 'glyphicon-chevron-right': !status.third}"></i>
+            Miscellaneous
+        </uib-accordion-heading>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in viewStudentData.otherfee">
+                        <td>{{row.paiddate| date:'MMM dd, yyyy'}}</td>
+                        <td>{{row.amount}}</td>
+                        <td>{{row.description}}</td>
+                        <td>
+                            <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id)"><span class="glyphicon glyphicon-print"></span> Print</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </uib-accordion-group>
+</uib-accordion>
 <style>
     .modal-header, h4, .close {
         background-color: #5cb85c;

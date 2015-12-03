@@ -219,12 +219,17 @@ p.copyright {
 
 .img-responsive{
     display: block;
-    max-width: 70%;
+    max-width: 50%;
     height: auto;
 }
 
 .table { 
     border: 1px solid #DDDDDD; 
+    border-collapse:separate;
+    border-radius:10px;
+    -moz-border-radius:10px;
+}
+.tablenoborder { 
     border-collapse:separate;
     border-radius:10px;
     -moz-border-radius:10px;
@@ -240,4 +245,25 @@ p.copyright {
 .inline-block-row .col-xs-6 {
     float:none;
     display:inline-table;
+}
+.panel-default>.panel-heading{
+    background-color: #F3F3F3;
+    height: 30px;
+}
+.panel-heading h4{
+    background-color: #F3F3F3;
+    text-align: left;
+}
+.panel-title>.small>a, .panel-title>a, .panel-title>small>a {
+    color: #000;
+    outline-style: none;
+    outline: none;
+    text-decoration: none;
+}
+.panel-title {
+    margin-top: -3px;
+}
+.viewstudentrow{
+    margin-right: 0px;
+    margin-left: 0px; 
 }

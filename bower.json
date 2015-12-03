@@ -11,10 +11,9 @@
         "jquery": "~2.1.4",
         "jquery.validate": "*",
         "bootstrap": "*",
-        "jquery-easing": "*",
         "html5shiv": "*",
         "respond": "*",
-        "bootstrap-material-design": "*"
+        "angular-bootstrap":"0.14.3"
     },
     "devDependencies": {
     }
