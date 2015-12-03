@@ -63,6 +63,17 @@
 
                 <div class="modal-body" style="padding:40px 50px;">
                     <div class="form-group">
+                        <label for="type" class="control-label col-sm-4"><span class="glyphicon glyphicon-user"> </span> Fee Type :</label>
+                        <div class="col-md-4">
+                            <select name="type" id="type" ng-model="feePayment.type" required>
+                                <option value="">Select Fee Type</option>
+                                <option value="academicfee" selected>Academic Fee</option>
+                                <option value="examfee">Exam Fee</option>
+                                <option value="otherfee">Miscellaneous Fee</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="amount" class="control-label col-sm-4"><span class="glyphicon glyphicon-user"> </span> Amount :</label>
                         <div class="col-md-4" ng-class="{'has-error': feeData.amount.$invalid, 'has-success': !feeData.amount.$dirty, 'has-feedback':feeData.amount.$invalid || !feeData.amount.$invalid}">
                             <input id="amount" name="amount" type="number" class="form-control input-sm" placeholder="Enter Initial Fee" ng-model="feePayment.amount" required ng-pattern="/^([0-9]{3,6})?$/">

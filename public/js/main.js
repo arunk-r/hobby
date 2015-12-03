@@ -20,7 +20,7 @@ var routerApp = angular.module('sbpuc', [
     'CurrentYearFeeCtrl'
 ]);
 
-routerApp.run(['$rootScope', '$location', 'securityAuthorization', function ($rootScope, $location, securityAuthorization) {
+routerApp.run(['$rootScope', '$location', 'securityAuthorization', function ($rootScope, $location, securityAuthorization, Flash) {
         $rootScope.$on('$routeChangeStart', function (event, next) {
             //console.log(securityAuthorization.getAuthenticatedUser());
 //            if (!security.currentUser) {

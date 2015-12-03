@@ -32,7 +32,7 @@ exports = module.exports = function (app, passport) {
     app.post('/user/signup', users.signup);
     app.post('/user/login', users.login);
 
-    //app.all('/api/*', ensureAuthenticated);
+    app.all('/api/*', ensureAuthenticated);
     app.get('/api/students', student.students);
     app.get('/api/student/:id', student.studentdetails);
     app.post('/api/student/add', student.addstudent);

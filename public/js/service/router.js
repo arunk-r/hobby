@@ -1,6 +1,6 @@
 angular.module('router.service', [])
         .factory('router',
-                function ($http, $location, $q, securityAuthorization) {
+                function ($http, $location, $q, securityAuthorization, Flash) {
 
                     var router = {
                         // Attempt to invoke all routes with one port of entry
@@ -26,6 +26,13 @@ angular.module('router.service', [])
                             }
                             request.then(function (response) {
                                 if (response.data && response.data.authError) {
+                                    securityAuthorization.setAuthenticatedUser('');
+                                    var message = '<strong> Error!..</strong>  Authentication Error, Please login to System. ';
+                                    Flash.create('danger', message, 'custom-class');
+                                    return $location.path('/login');
+                                } else if (response.data && !(!!response.data.errors || !!response.data.errfor)) {
+                                    var message = '<strong> Warning!..</strong>  Problem in processing your current request. ';
+                                    Flash.create('warning', message, 'custom-class');
                                     return $location.path('/login');
                                 }
                                 deferred.resolve(response.data);

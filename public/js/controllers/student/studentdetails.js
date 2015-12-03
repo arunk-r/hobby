@@ -1,3 +1,7 @@
+//Viewing student details 
+//Paying accadamic fee
+//Paying Exam Fee
+//Paying Other Miscellaneous Fee
 angular.module('StudentsDetailCtrl', [])
         .controller('StudentsDetailController',
                 function ($scope, $location, student, $routeParams, $timeout, $route, $window) {
@@ -22,7 +26,7 @@ angular.module('StudentsDetailCtrl', [])
                         });
                     };
                     $scope.callReLoadingData = function (data) {
-                        console.log(data)
+                        //console.log(data)
                         $location.path($location.path());
                         $route.reload();
                         $timeout(function () {
@@ -30,16 +34,28 @@ angular.module('StudentsDetailCtrl', [])
                         }, 1000);
                     };
                     $scope.callOpenprintDialogData = function (data) {
-                        console.log(data);
-                        //var left = screen.width / 2 - 200, top = screen.height / 2 - 250
-                        //$window.open('feereceipt?id=' + data.id + '&feeid=' + data.feeid, '', "top=" + top + ",left=" + left + ",width=800,height=500");
+                        //console.log(data);
                         $scope.print(data.id, data.feeid);
                     };
                     $scope.print = function (id, feeid) {
-                        console.log(id);
-                        console.log(feeid);
-                        var left = screen.width / 2 - 200, top = screen.height / 2 - 250
+                        //console.log(id);
+                        //console.log(feeid);
+                        var left = screen.width / 2 - 200, top = screen.height / 2 - 250;
                         $window.open('feereceipt?id=' + id + '&feeid=' + feeid, '', "top=" + top + ",left=" + left + ",width=800,height=500");
-                    }
+                    };
+                }
+        );
+//Adding New student
+angular.module('AddStudentCtrl', [])
+        .controller('AddStudentController',
+                function ($scope, $location, student, Flash) {
+                    $scope.formData = {};
+                    // Create a new student
+                    $scope.createStudent = function () {
+                        student.addstudent($scope.formData).then(function (data) {
+                            //console.log(data.data[0]);
+                            $location.path('/student/' + data.data[0]);
+                        });
+                    };
                 }
         );
