@@ -10,13 +10,25 @@
 </div>
 <div class="row viewstudentrow">
     <div class="col-xs-8 col-sm-4 placeholder text-right imageright">
-        <img src="img/001.jpg" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail">
+        <img src="{{(viewStudentData.image)? viewStudentData.image : (viewStudentData.gender == 'male') ? 'img/male-avatar.jpg': 'img/female-avatar.jpg'}}" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail">
     </div>
     <span class="text-primary"><h1>{{viewStudentData.name}}</h1></span>
     <p class="text-muted">{{viewStudentData.mobile}}</p> 
     <p class="text-muted">Promised 1st Year Fee : <label >{{viewStudentData.puc1fee}}</label></p> 
     <p class="text-muted">Promised 2nd Year Fee : <label >{{viewStudentData.puc2fee}}</label></p>
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div id="collapseTwo" class="accordion-body collapse">
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quasi reiciendis harum quibusdam tempore commodi! Voluptatem recusandae incidunt accusamus expedita.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, repudiandae, asperiores atque quas deleniti odit minima fugiat obcaecati dolorum ad amet ipsum similique ea consequuntur quos dolore error veniam sed.</p>
+            </div>
+
+            <button class="SeeMore2 btn btn-link" data-toggle="collapse" href="#collapseTwo">See More</button>
+        </div>
+    </div>
 </div>
+<br>
 <div class="row viewstudentrow">
     <div class="pull-left"><button type="button" class="btn btn-primary" id="myBtn"> <span class="glyphicon glyphicon-transfer"></span> Pay Fee</button></div>
 </div>
@@ -164,7 +176,8 @@
                         'has-error': feeData.description.$invalid && feeData.description.$dirty, 'has-success': !feeData.description.$invalid, 'has-feedback': (feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid}">
                             <input id="description" name="description" type="text" class="form-control input-sm" placeholder="Enter Name" ng-model="feePayment.description" required ng-maxlength="100" ng-minlength="5">
                             <span class="glyphicon form-control-feedback" ng-class="{
-                            'glyphicon-ok':!feeData.description.$invalid, 'glyphicon-remove': feeData.description.$invalid&& feeData.description.$dirty}" ng-show="(feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid"></span>
+                            'glyphicon-ok':!feeData.description.$invalid, 'glyphicon-remove'
+                                    : feeData.description.$invalid&& feeData.description.$dirty}" ng-show="(feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid"></span>
                         </div>
                     </div>
                 </div>
@@ -178,8 +191,19 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-    $("#myBtn").click(function () {
-    $("#myModal").modal();
-    });
-    });</script>
+        $(document).ready(function () {
+            $("#myBtn").click(function () {
+                $("#myModal").modal();
+            });
+            $('.SeeMore2').click(function () {
+                var $this = $(this);
+                $this.toggleClass('SeeMore2');
+                if ($this.hasClass('SeeMore2')) {
+                    $this.text('See More');
+                } else {
+                    $this.text('See Less');
+                }
+            });
+
+        });
+</script>

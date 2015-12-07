@@ -1,3 +1,6 @@
+html {
+  overflow-y: scroll;
+}
 body { 
     background: url(../img/header-blue-bgr.jpg) center 0 no-repeat #FFF; 
 }
@@ -267,3 +270,55 @@ p.copyright {
     margin-right: 0px;
     margin-left: 0px; 
 }
+
+.breadcrumb {
+    width: 100%;
+}
+.btn, .btn-primary, .btn-lg, .btn-success {
+        border-radius: 24px;
+}
+/**
+File Upload 
+*/
+.fileupload {
+    border: 3px dashed #ccc;
+    width: 206px;
+    height: 206px;
+    margin: 10px auto;
+}
+
+.btnUpload {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    color: #333333;
+    cursor: pointer;
+    font-weight: 400;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+}
+.btnDefault:focus, .btnDefault:hover, .btnUpload:focus, .btnUpload:hover {
+    background-color: #E6E6E6;
+}
+.btnM {
+    border-radius: 18px;
+    font-size: 14px;
+    padding: 6px 12px;
+}
+.customUpload {
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+.customUpload input.upload {
+    cursor: pointer;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+/**
+*/

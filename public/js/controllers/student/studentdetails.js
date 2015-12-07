@@ -56,6 +56,8 @@ angular.module('AddStudentCtrl', [])
                     $scope.formData = {};
                     // Create a new student
                     $scope.createStudent = function () {
+                        $scope.formData.image = $('#tumbimage').val();
+                        console.log($scope.formData)
                         student.addstudent($scope.formData).then(function (data) {
                             //console.log(data.data[0]);
                             $location.path('/student/' + data.data[0]);

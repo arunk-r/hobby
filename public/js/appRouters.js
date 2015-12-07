@@ -66,6 +66,12 @@ angular.module('appRoutes', [])
                                         requireLogin: true,
                                         adminPrev: true
                                     }
+                                }).when('/report/studentsextract', {
+                                    templateUrl: '/reports/studentsextract.html',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
                                 });
                     }
                 ]);

@@ -57,6 +57,12 @@ exports.addstudent = function (req, res) {
         if (!req.body.initialfee) {
             workflow.outcome.errfor.initialfee = 'required';
         }
+        if (!req.body.caste) {
+            workflow.outcome.errfor.caste = 'required';
+        }
+        if (!req.body.gender) {
+            workflow.outcome.errfor.gender = 'required';
+        }
         if (!req.body.mobile) {
             workflow.outcome.errfor.mobile = 'required';
         }
@@ -70,7 +76,7 @@ exports.addstudent = function (req, res) {
             workflow.outcome.errfor.sslcpercentage = 'required';
         }
         if (workflow.hasErrors()) {
-            console.log('error')
+            console.log('error');
             return workflow.emit('response');
         }
         workflow.emit('createStudent');
@@ -89,6 +95,8 @@ exports.addstudent = function (req, res) {
             dob: new Date(req.body.dob),
             rollnumber: req.body.rollnumber,
             class: req.body.class,
+            caste: req.body.caste,
+            gender: req.body.gender,
             puc1fee: puc1fee,
             puc2fee: puc2fee,
             mobile: req.body.mobile,
@@ -99,12 +107,13 @@ exports.addstudent = function (req, res) {
             sslcpercentage: req.body.sslcpercentage,
             createduser: req.user.username,
             updateduser: req.user.username,
+            image: req.body.image,
             updateddate: Date.now()
         };
         console.log(data);
         req.app.db.models.Student.create(data, function (err, student) {
             if (err) {
-                console.log(err)
+                console.log(err);
                 return workflow.emit('exception', err);
             }
             workflow.outcome.data.push(student._id);
@@ -121,7 +130,7 @@ exports.studentdetails = function (req, res) {
         var id = req.params.id;
         req.app.db.models.Student.findOne(
                 {_id: id},
-                {name: 1, dob: 1, rollnumber: 1, class: 1, puc1fee: 1, puc2fee: 1, mobile: 1, combination: 1, fee: 1, examfee:1, otherfee:1},
+                {name: 1, dob: 1, rollnumber: 1, class: 1, caste: 1, gender: 1, puc1fee: 1, puc2fee: 1, mobile: 1, combination: 1, fee: 1, examfee:1, otherfee:1, image:1},
                 function (err, student) {
                     if (err) {
                         return workflow.emit('exception', err);

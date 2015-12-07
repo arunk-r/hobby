@@ -6,6 +6,7 @@ var routerApp = angular.module('sbpuc', [
     'router.service',
     'security.authorization',
     'sbpuc.passwordcheck',
+    'sbpuc.copyval',
     'security.service',
     'student.service',
     'report.service',

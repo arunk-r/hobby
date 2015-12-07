@@ -23,6 +23,12 @@ exports = module.exports = function (app, mongoose) {
         puc2fee: {
             type: Number
         },
+        caste: {
+            type: String
+        },
+        gender: {
+            type: String
+        },
         mobile: {
             type: Number
         },
@@ -33,6 +39,9 @@ exports = module.exports = function (app, mongoose) {
             type: String
         },
         sslcpercentage: {
+            type: String
+        },
+        image: {
             type: String
         },
         otherfee: [
@@ -59,7 +68,7 @@ exports = module.exports = function (app, mongoose) {
             type: String
         }
     });
-    studentSchema.index({name: 1,dob: 1, rollnumber: 1,combination: 1, mobile: 1, fee: 1});
+    studentSchema.index({name: 1, dob: 1, rollnumber: 1, combination: 1, caste: 1, gender: 1, mobile: 1, fee: 1});
     studentSchema.set('autoIndex', (app.get('env') === 'development'));
     app.db.model('Student', studentSchema);
 };

@@ -13,13 +13,14 @@
     <div class="panel-heading">Add New Student</div>
     <div class="panel-body">
         <form class="form-horizontal" role="form" name="studentData">
+            <input type="hidden" id="tumbimage" name="image" ng-model="formData.image" copy-value>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">Name:</label>
                 <div class="col-md-6" ng-class="{'has-error': studentData.name.$invalid && studentData.name.$dirty, 'has-success': !studentData.name.$invalid, 'has-feedback': (studentData.name.$invalid && studentData.name.$dirty) || !studentData.name.$invalid}">
                     <input id="name" name="name" type="text" class="form-control input-sm" placeholder="Enter Name" ng-model="formData.name" required ng-maxlength="100" ng-minlength="3">
                     <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !studentData.name.$invalid, 'glyphicon-remove': studentData.name.$invalid && studentData.name.$dirty}" ng-show="(studentData.name.$invalid && studentData.name.$dirty) || !studentData.name.$invalid"></span>
                     <span class="text-danger" ng-if="errfor.name">{{errfor.name}}</span>
-                    <span class="glyphicon form-control-feedback" ng-if="errfor.name" ng-class="glyphicon-remove"></span>
+                    <span class="glyphicon form-control-feedback" ng-if="errfor.name" ng-class="glyphicon - remove"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -31,6 +32,32 @@
                 <label for="rollnumber" class="control-label col-sm-2">Roll Number :</label>
                 <div class="col-md-2">
                     <input id="rollnumber" name="rollnumber" type="text" class="form-control input-sm" placeholder="Enter Roll Number" ng-model="formData.rollnumber" ng-maxlength="20" ng-minlength="3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="male" class="control-label col-sm-2">Gender :</label>
+                <div class="col-md-2" >
+                    <label class="radio-inline">
+                        <input type="radio" id="male" name="gender" value="male" ng-model="formData.gender" required/> Male 
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="female" name="gender" value="female" ng-model="formData.gender" required/> Female
+                    </label>
+                </div>
+                <label for="st" class="control-label col-sm-2">Category :</label>
+                <div class="col-md-4" >
+                    <label class="radio-inline">
+                        <input type="radio" id="st" name="caste" value="st" ng-model="formData.caste" required/> ST 
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="sc" name="caste" value="sc" ng-model="formData.caste" required/> SC 
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="obc" name="caste" value="obc" ng-model="formData.caste" required/> OBC 
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="general" name="caste" value="general" ng-model="formData.caste" required/> General
+                    </label>
                 </div>
             </div>
             <div class="form-group">
@@ -62,7 +89,7 @@
                     <input id="sslcpercentage" name="sslcpercentage" type="number" class="form-control input-sm" placeholder="99" tooltip="round to next number" ng-model="formData.sslcpercentage" required ng-pattern="/^([0-9]{2,2})?$/">
                     <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !studentData.sslcpercentage.$invalid, 'glyphicon-remove': studentData.sslcpercentage.$invalid}" ng-show="studentData.sslcpercentage.$invalid || !studentData.sslcpercentage.$invalid"></span>
                     <span class="text-danger" ng-if="errfor.sslcpercentage">{{errfor.sslcpercentage}}</span>
-                    <span class="glyphicon form-control-feedback" ng-if="errfor.sslcpercentage" ng-class="glyphicon-remove"></span>
+                    <span class="glyphicon form-control-feedback" ng-if="errfor.sslcpercentage" ng-class="glyphicon - remove"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -91,6 +118,19 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="address" class="control-label col-sm-2">Photo :</label>
+                <div class="col-md-2">
+                    <div class="fileupload" id="imageContainer"></div>
+                    <div class="center-block">
+                        <label class="customUpload btnUpload btnM">
+                            <span>Upload</span>
+                            <input class="upload" type='file' name='image' onchange='thumb(this.files)'>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
                 <div class="col-sm-9">
                     <button type="submit" class="btn btn-lg btn-success center-block" ng-disabled="studentData.$invalid" ng-click="createStudent()">Add Student</button>
                 </div>
@@ -98,3 +138,5 @@
         </form>
     </div>
 </div>
+
+<script src="js/tumbImage.js"></script>
