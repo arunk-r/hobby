@@ -19,7 +19,8 @@ var routerApp = angular.module('sbpuc', [
     'StudentsDetailCtrl',
     'ReportsCtrl',
     'AnualFeeCtrl',
-    'CurrentYearFeeCtrl'
+    'CurrentYearFeeCtrl',
+    'StudentExtractCtrl'
 ]);
 
 routerApp.run(['$rootScope', '$location', 'securityAuthorization', function ($rootScope, $location, securityAuthorization, Flash) {

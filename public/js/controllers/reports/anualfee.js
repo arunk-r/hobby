@@ -45,15 +45,7 @@ angular.module('AnualFeeCtrl', [])
 angular.module('CurrentYearFeeCtrl', [])
         .controller('CurrentYearFeeController',
                 function ($scope, report, Flash) {
-                    $scope.year = '';
-                    var todayDate = new Date();
-                    var year = todayDate.getFullYear();
-                    var yearEndDate = new Date(year, 2, 31, 23, 59);
-                    if (todayDate <= yearEndDate) {
-                        $scope.year = (+year - +1) + '-' + year;
-                    } else {
-                        $scope.year = year + '-' + (+year + +1);
-                    }
+                    $scope.year = currentFinancialYear();
                     $scope.anualfeeData = {};
                     report.anualfee($scope.year).then(function (data) {
                         if (data.length > 0)
@@ -84,6 +76,79 @@ angular.module('CurrentYearFeeCtrl', [])
                         }
                         if (total > 0)
                             return total;
+                    };
+                }
+        );
+
+var currentFinancialYear = function () {
+    var todayDate = new Date();
+    var year = todayDate.getFullYear();
+    var yearEndDate = new Date(year, 2, 31, 23, 59);
+    if (todayDate <= yearEndDate) {
+        return (+year - +1) + '-' + year;
+    } else {
+        return year + '-' + (+year + +1);
+    }
+};
+
+angular.module('StudentExtractCtrl', [])
+        .controller('StudentExtractController',
+                function ($scope, report, Flash) {
+                    $scope.studentExtractData = {};
+                    $scope.year = currentFinancialYear();
+
+                    report.studentsextract().then(function (data) {
+                        if (data.length > 0) {
+                            $scope.studentExtractData = data;
+                        } else {
+                            $scope.studentExtractData = '';
+                            var message = '<strong> Information!</strong>  No data found for the financial year ' + $scope.year + '. ';
+                            Flash.create('info', message, 'custom-class');
+                        }
+                    }, function (e) {
+                        var message = '<strong> Error!</strong>  Something went wrong, Please relogin to system. ' + e;
+                        Flash.create('danger', message, 'custom-class');
+                    });
+                    $scope.getCount = function (cls) {
+                        var log = 0;
+                        angular.forEach($scope.studentExtractData, function (value, key) {
+                            if (value._id.class === cls || cls === undefined)
+                                log += value.count;
+                        }, log);
+                        return log;
+                    };
+                    $scope.getCasteClassGenderCount = function (caste, cls, gender) {
+                        var log = 0;
+                        angular.forEach($scope.studentExtractData, function (value, key) {
+                            if (value._id.caste === caste && value._id.class === cls && value._id.gender === gender)
+                                log = value.count;
+                        }, log);
+                        return log;
+                    };
+                    $scope.getCasteGenderCount = function (caste, gender) {
+                        var log = 0;
+                        angular.forEach($scope.studentExtractData, function (value, key) {
+                            if (value._id.caste === caste && value._id.gender === gender)
+                                log += value.count;
+                        }, log);
+                        return log;
+                    };
+                    $scope.getCasteCount = function (caste, cls) {
+                        var log = 0;
+                        angular.forEach($scope.studentExtractData, function (value, key) {
+                            if (value._id.caste === caste && (value._id.class === cls || cls === undefined))
+                                log += value.count;
+                        }, log);
+                        return log;
+                    };
+                    $scope.getGenderCount = function (gender, cls) {
+
+                        var log = 0;
+                        angular.forEach($scope.studentExtractData, function (value, key) {
+                            if (value._id.gender === gender && (value._id.class === cls || cls === undefined))
+                                log += value.count;
+                        }, log);
+                        return log;
                     };
                 }
         );

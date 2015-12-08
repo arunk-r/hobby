@@ -68,6 +68,7 @@ angular.module('appRoutes', [])
                                     }
                                 }).when('/report/studentsextract', {
                                     templateUrl: '/reports/studentsextract.html',
+                                    controller: 'StudentExtractController',
                                     data: {
                                         requireLogin: true,
                                         adminPrev: true
