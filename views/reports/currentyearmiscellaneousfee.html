@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#/reports">Reports</a> <span class="divider"></span>
+                </li>
+                <li class="active">
+                    Miscellaneous Fee
+                </li>
+            </ul>
+            <h3>
+                Miscellaneous Fee Report for the Financial year {{year}}.
+            </h3>
+            <table class="table table-condensed" ng-show="miscellaneousfeeData">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Gender
+                        </th>
+                        <th>
+                            Class
+                        </th>
+                        <th>
+                            Combination
+                        </th>
+                         <th>
+                            Roll Number
+                        </th>
+                        <th>
+                            Caste
+                        </th>
+                        <th>
+                            Total Paid Amount
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in miscellaneousfeeData">
+                        <td>
+                            {{$index + 1}}
+                        </td>
+                        <td>
+                            {{row._id.name}}
+                        </td>
+                        <td>
+                            {{row._id.gender}}
+                        </td>
+                         <td>
+                            {{row._id.class}}
+                        </td>
+                        <td>
+                            {{row._id.combination}}
+                        </td>
+                        <td>
+                            {{row._id.rollnumber}}
+                        </td>
+                        <td>
+                            {{row._id.caste}}
+                        </td>
+                        <td>
+                            {{row.totalFeePaid}}
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <label>Total</label>
+                        </td>
+                        <td>
+                            <label>{{getTotalPaidAmount()}}</label>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <h2>
+            </h2>
+            <p>
+                This report has been designed to provide a clear an concise summary of every student fee collected for the financial year {{year}}. The layout is also designed to provide comparative information between the financial year {{year}} of the academic.
+            </p>
+        </div>
+    </div>
+</div>

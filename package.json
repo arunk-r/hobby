@@ -25,6 +25,8 @@
         "method-override":"*",
         "express-session": "*",
         "bcrypt": "*",
-        "node-uuid": "1.4.2"
+        "node-uuid": "1.4.2",
+        "compression": "*",
+        "helmet": "*"
     }
 }

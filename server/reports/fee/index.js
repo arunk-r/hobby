@@ -24,7 +24,8 @@ exports.anualreport = function (req, res) {
                                         combination: '$combination',
                                         rollnumber: '$rollnumber',
                                         puc1fee: '$puc1fee',
-                                        puc2fee: '$puc2fee'},
+                                        puc2fee: '$puc2fee'
+                                    },
                                     totalFeePaid: {$sum: '$fee.amount'}}
                     },
                     {$sort:
@@ -47,4 +48,110 @@ exports.anualreport = function (req, res) {
                 });
     });
     workflow.emit('anualReport');
+};
+
+exports.examreport = function (req, res) {
+    var workflow = req.app.utility.workflow(req, res);
+    workflow.on('examReport', function () {
+
+        var years = req.params.years;
+        var year = years.split('-');
+        req.app.db.models.Student.aggregate(
+                [
+                    {$match:
+                                {'examfee.paiddate':
+                                            {
+                                                $gte: new Date(year[0] + "-03-31T23:59:00Z"),
+                                                $lt: new Date(year[1] + "-04-01T00:00:00Z")
+                                            }
+                                }
+                    },
+                    {$unwind: '$examfee'},
+                    {$group:
+                                {
+                                    _id: {
+                                        name: '$name',
+                                        class: '$class',
+                                        combination: '$combination',
+                                        rollnumber: '$rollnumber',
+                                        caste: '$caste',
+                                        gender: '$gender'
+                                    },
+                                    totalFeePaid: {$sum: '$examfee.amount'}}
+                    },
+                    {$sort:
+                                {
+                                    '_id.name': 1,
+                                    '_id.class': 1,
+                                    '_id.combination': 1,
+                                    '_id.gender': 1,
+                                    '_id.caste': 1
+                                }
+                    }
+                ],
+                function (err, data) {
+                    if (err) {
+                        return workflow.emit('exception', err);
+                    }
+                    if (!data) {
+                        return workflow.emit('exception', err);
+                    }
+                    workflow.outcome.data = data;
+                    workflow.emit('response');
+                });
+    });
+    workflow.emit('examReport');
+};
+
+exports.miscellaneousreport = function (req, res) {
+    var workflow = req.app.utility.workflow(req, res);
+    workflow.on('miscellaneousReport', function () {
+
+        var years = req.params.years;
+        var year = years.split('-');
+        req.app.db.models.Student.aggregate(
+                [
+                    {$match:
+                                {'otherfee.paiddate':
+                                            {
+                                                $gte: new Date(year[0] + "-03-31T23:59:00Z"),
+                                                $lt: new Date(year[1] + "-04-01T00:00:00Z")
+                                            }
+                                }
+                    },
+                    {$unwind: '$otherfee'},
+                    {$group:
+                                {
+                                    _id: {
+                                        name: '$name',
+                                        class: '$class',
+                                        combination: '$combination',
+                                        rollnumber: '$rollnumber',
+                                        caste: '$caste',
+                                        gender: '$gender'
+                                    },
+                                    totalFeePaid: {$sum: '$otherfee.amount'}}
+                    },
+                    {$sort:
+                                {
+                                    '_id.name': 1,
+                                    '_id.class': 1,
+                                    '_id.combination': 1,
+                                    '_id.gender': 1,
+                                    '_id.caste': 1
+                                }
+                    }
+                ],
+                function (err, data) {
+                    if (err) {
+                        return workflow.emit('exception', err);
+                    }
+                    if (!data) {
+                        return workflow.emit('exception', err);
+                    }
+                    workflow.outcome.data = data;
+                    workflow.emit('response');
+                });
+    });
+    workflow.emit('miscellaneousReport');
 };

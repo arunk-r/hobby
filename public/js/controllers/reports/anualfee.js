@@ -1,3 +1,4 @@
+//Attempt to get requested year anual fee report
 angular.module('AnualFeeCtrl', [])
         .controller('AnualFeeController',
                 function ($scope, $routeParams, report, Flash) {
@@ -42,6 +43,7 @@ angular.module('AnualFeeCtrl', [])
                 }
         );
 
+//Attempt to get current financial year anual fee report
 angular.module('CurrentYearFeeCtrl', [])
         .controller('CurrentYearFeeController',
                 function ($scope, report, Flash) {
@@ -91,6 +93,7 @@ var currentFinancialYear = function () {
     }
 };
 
+//Attempt to get current academic year student extrace report
 angular.module('StudentExtractCtrl', [])
         .controller('StudentExtractController',
                 function ($scope, report, Flash) {
@@ -149,6 +152,64 @@ angular.module('StudentExtractCtrl', [])
                                 log += value.count;
                         }, log);
                         return log;
+                    };
+                }
+        );
+
+//Attempt to get current financial year exam fee report
+angular.module('CurrentYearExamFeeCtrl', [])
+        .controller('CurrentYearExamFeeController',
+                function ($scope, report, Flash) {
+                    $scope.year = currentFinancialYear();
+                    $scope.examfeeData = {};
+                    report.examfee($scope.year).then(function (data) {
+                        if (data.length > 0)
+                            $scope.examfeeData = data;
+                        else {
+                            $scope.examfeeData = '';
+                            var message = '<strong> Information!</strong>  No data found for the financial year ' + $scope.year + '. ';
+                            Flash.create('info', message, 'custom-class');
+                        }
+                    }, function (e) {
+                        var message = '<strong> Error!</strong>  Something went wrong, Please relogin to system. ' + e;
+                        Flash.create('danger', message, 'custom-class');
+                    });
+                    $scope.getTotalPaidAmount = function () {
+                        var total = 0;
+                        for (i = 0; i < $scope.examfeeData.length; i++) {
+                            total += $scope.examfeeData[i].totalFeePaid;
+                        }
+                        if (total > 0)
+                            return total;
+                    };
+                }
+        );
+
+//Attempt to get current financial year miscellaneous fee report
+angular.module('CurrentYearMiscellaneousFeeCtrl', [])
+        .controller('CurrentYearMiscellaneousFeeController',
+                function ($scope, report, Flash) {
+                    $scope.year = currentFinancialYear();
+                    $scope.miscellaneousfeeData = {};
+                    report.miscellaneousfee($scope.year).then(function (data) {
+                        if (data.length > 0)
+                            $scope.miscellaneousfeeData = data;
+                        else {
+                            $scope.anualfeeData = '';
+                            var message = '<strong> Information!</strong>  No data found for the financial year ' + $scope.year + '. ';
+                            Flash.create('info', message, 'custom-class');
+                        }
+                    }, function (e) {
+                        var message = '<strong> Error!</strong>  Something went wrong, Please relogin to system. ' + e;
+                        Flash.create('danger', message, 'custom-class');
+                    });
+                    $scope.getTotalPaidAmount = function () {
+                        var total = 0;
+                        for (i = 0; i < $scope.miscellaneousfeeData.length; i++) {
+                            total += $scope.miscellaneousfeeData[i].totalFeePaid;
+                        }
+                        if (total > 0)
+                            return total;
                     };
                 }
         );

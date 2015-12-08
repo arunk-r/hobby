@@ -40,5 +40,7 @@ exports = module.exports = function (app, passport) {
     app.post('/api/student/:id/fee/add', fee.addstudentfee);
     app.get('/api/student/:id/:type/fee/:feeid/print', print.feeprintbyfeeid);
     app.get('/api/report/anual/:years/fee', feereport.anualreport);
+    app.get('/api/report/anual/:years/exam/fee', feereport.examreport);
+    app.get('/api/report/anual/:years/miscellaneous/fee', feereport.miscellaneousreport);
     app.get('/api/report/studentsextract', extracts.studentsextract);
 };

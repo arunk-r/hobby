@@ -66,6 +66,20 @@ angular.module('appRoutes', [])
                                         requireLogin: true,
                                         adminPrev: true
                                     }
+                                }).when('/report/currentyear/exam/fee', {
+                                    templateUrl: '/reports/currentyearexamfee.html',
+                                    controller: 'CurrentYearExamFeeController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                }).when('/report/currentyear/miscellaneous/fee', {
+                                    templateUrl: '/reports/currentyearmiscellaneousfee.html',
+                                    controller: 'CurrentYearMiscellaneousFeeController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
                                 }).when('/report/studentsextract', {
                                     templateUrl: '/reports/studentsextract.html',
                                     controller: 'StudentExtractController',

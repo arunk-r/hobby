@@ -20,6 +20,8 @@ var routerApp = angular.module('sbpuc', [
     'ReportsCtrl',
     'AnualFeeCtrl',
     'CurrentYearFeeCtrl',
+    'CurrentYearExamFeeCtrl',
+    'CurrentYearMiscellaneousFeeCtrl',
     'StudentExtractCtrl'
 ]);
 

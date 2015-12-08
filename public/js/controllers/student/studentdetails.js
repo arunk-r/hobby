@@ -23,9 +23,10 @@ angular.module('StudentsDetailCtrl', [])
                         //console.log($scope.feePayment);
                         student.payfee(id, $scope.feePayment).then(function (data) {
                             $timeout(function () {
-                                $scope.callReLoadingData(data.data, $scope.feePayment.type);
+                                var type = $scope.feePayment.type;
+                                $scope.callReLoadingData(data.data, type);
+                                $scope.feePayment = {};
                             }, 1000);
-                            $scope.feePayment = {};
                         });
                     };
                     $scope.callReLoadingData = function (data, type) {
@@ -41,10 +42,11 @@ angular.module('StudentsDetailCtrl', [])
                         $scope.print(data.id, data.feeid, type);
                     };
                     $scope.print = function (id, feeid, type) {
-                        console.log(id);
-                        console.log(feeid);
-                        console.log(type);
+                        //console.log(id);
+                        //console.log(feeid);
+                        //console.log(type);
                         var left = screen.width / 2 - 200, top = screen.height / 2 - 250;
+                        //console.log('feereceipt?id=' + id + '&feeid=' + feeid + '&type=' + type);
                         $window.open('feereceipt?id=' + id + '&feeid=' + feeid + '&type=' + type, '', "top=" + top + ",left=" + left + ",width=800,height=500");
                     };
                 }

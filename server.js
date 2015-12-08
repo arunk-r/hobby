@@ -9,6 +9,7 @@ var http = require('http');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
+var helmet = require('helmet');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.set('view engine', 'jade');
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(require('compression')());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 
@@ -47,6 +49,9 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+//Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
+helmet(app);
+
 //setup passport
 require('./passport')(app, passport);
 
