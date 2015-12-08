@@ -32,6 +32,7 @@ exports = module.exports = function (app, passport) {
     app.use('/feereceipt', base.feereceipt);
     app.post('/user/signup', users.signup);
     app.post('/user/login', users.login);
+    app.get('/user/logout', users.logout);
 
     //app.all('/api/*', ensureAuthenticated);
     app.get('/api/students', student.students);

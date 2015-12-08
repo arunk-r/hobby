@@ -6,7 +6,7 @@ angular.module('LoginCtrl', [])
             $scope.canSave = utility.canSave;
             // Login Staff
             $scope.loginUser = function () {
-                security.login($scope.loginData.username, $scope.loginData.password).then(function (data) {
+                security.signin($scope.loginData.username, $scope.loginData.password).then(function (data) {
                     if (data.success) {
                         return $location.path('/');
                     } else {
@@ -17,5 +17,16 @@ angular.module('LoginCtrl', [])
                     }
                 });
             };
+        }
+        );
+
+angular.module('LogoutCtrl', [])
+        .controller('LogoutController', function ($scope, $location, security, Flash) {
+            console.log('logout invoked')
+            security.signout().then(function (data) {
+                var message = '<strong> Logout Successful!...</strong>.';
+                Flash.create('success', message, 'custom-class');
+                return $location.path('/login');
+            });
         }
         );

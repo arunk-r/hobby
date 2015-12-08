@@ -170,3 +170,14 @@ exports.login = function (req, res) {
 
     workflow.emit('validate');
 };
+
+exports.logout = function (req, res) {
+    var workflow = req.app.utility.workflow(req, res);
+
+    workflow.on('attemptLogout', function () {
+        req.logout();
+        workflow.emit('response');
+    });
+
+    workflow.emit('attemptLogout');
+};

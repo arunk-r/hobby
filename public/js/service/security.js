@@ -3,7 +3,7 @@ angular.module('security.service', [])
                 function (router, $q, securityAuthorization) {
                     var service = {
                         // Attempt to authenticate a user by the given username and password
-                        login: function (username, password) {
+                        signin: function (username, password) {
                             var deferred = $q.defer();
                             router.trigger('/user/login', 'post', {username: username, password: password}).then(
                                     function (response) {
@@ -22,6 +22,16 @@ angular.module('security.service', [])
                                         if (response.success) {
                                             securityAuthorization.setAuthenticatedUser(response.data[0]);
                                         }
+                                        deferred.resolve(response);
+                                    });
+                            return deferred.promise;
+                        },
+                        // Attempt to lOGOUT THE USER
+                        signout: function () {
+                            var deferred = $q.defer();
+                            router.trigger('/user/logout', 'get').then(
+                                    function (response) {
+                                        securityAuthorization.setAuthenticatedUser('');
                                         deferred.resolve(response);
                                     });
                             return deferred.promise;

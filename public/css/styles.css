@@ -322,3 +322,12 @@ File Upload
 }
 /**
 */
+
+.settingstabdiv{
+    border: 1px solid #DDD;
+    border-top: none; 
+    min-height: 50vh;
+}
+.settingstabinnerdiv{
+    margin: 0px 0px 0px 10px;
+}

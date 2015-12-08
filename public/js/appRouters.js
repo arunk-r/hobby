@@ -15,6 +15,13 @@ angular.module('appRoutes', [])
                                         adminPrev: false
                                     }
                                 })
+                                .when('/logout', {
+                                    templateUrl: '/user/login.html',
+                                    controller: 'LogoutController'
+                                })
+                                .when('/settings', {
+                                    templateUrl: '/user/settings/settings.html'
+                                })
                                 .when('/signup', {
                                     templateUrl: '/user/signup.html',
                                     controller: 'SignupController',
