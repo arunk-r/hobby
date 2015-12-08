@@ -25,7 +25,7 @@ angular.module('router.service', [])
                                 throw new Error('Invalid Request');
                             }
                             request.then(function (response) {
-                                //console.log(response.data)
+                                console.log(response.data)
                                 //console.log(!!response.data.errors)
                                 //console.log(!!response.data.errfor)
                                 if (response.data && response.data.authError) {

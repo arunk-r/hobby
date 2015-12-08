@@ -46,54 +46,56 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 }).when('/student/:id', {
-                                    templateUrl: '/student/studentdetails.html',
-                                    controller: 'StudentsDetailController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                }).when('/reports', {
-                                    templateUrl: '/reports/index.html',
-                                    controller: 'ReportsController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                }).when('/report/anual/:years/fee', {
-                                    templateUrl: '/reports/anualfee.html',
-                                    controller: 'AnualFeeController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                }).when('/report/currentyear/fee', {
-                                    templateUrl: '/reports/currentyearfee.html',
-                                    controller: 'CurrentYearFeeController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                }).when('/report/currentyear/exam/fee', {
-                                    templateUrl: '/reports/currentyearexamfee.html',
-                                    controller: 'CurrentYearExamFeeController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                }).when('/report/currentyear/miscellaneous/fee', {
-                                    templateUrl: '/reports/currentyearmiscellaneousfee.html',
-                                    controller: 'CurrentYearMiscellaneousFeeController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                }).when('/report/studentsextract', {
-                                    templateUrl: '/reports/studentsextract.html',
-                                    controller: 'StudentExtractController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                });
+                            templateUrl: '/student/studentdetails.html',
+                            controller: 'StudentsDetailController',
+                            data: {
+                                requireLogin: true,
+                                adminPrev: true
+                            }
+                        }).when('/reports', {
+                            templateUrl: '/reports/index.html',
+                            controller: 'ReportsController',
+                            data: {
+                                requireLogin: true,
+                                adminPrev: true
+                            }
+                        }).when('/report/anual/:years/fee', {
+                            templateUrl: '/reports/anualfee.html',
+                            controller: 'AnualFeeController',
+                            data: {
+                                requireLogin: true,
+                                adminPrev: true
+                            }
+                        }).when('/report/currentyear/fee', {
+                            templateUrl: '/reports/currentyearfee.html',
+                            controller: 'CurrentYearFeeController',
+                            data: {
+                                requireLogin: true,
+                                adminPrev: true
+                            }
+                        }).when('/report/currentyear/exam/fee', {
+                            templateUrl: '/reports/currentyearexamfee.html',
+                            controller: 'CurrentYearExamFeeController',
+                            data: {
+                                requireLogin: true,
+                                adminPrev: true
+                            }
+                        }).when('/report/currentyear/miscellaneous/fee', {
+                            templateUrl: '/reports/currentyearmiscellaneousfee.html',
+                            controller: 'CurrentYearMiscellaneousFeeController',
+                            data: {
+                                requireLogin: true,
+                                adminPrev: true
+                            }
+                        }).when('/report/studentsextract', {
+                            templateUrl: '/reports/studentsextract.html',
+                            controller: 'StudentExtractController',
+                            data: {
+                                requireLogin: true,
+                                adminPrev: true
+                            }
+                        }).otherwise({
+                            redirectTo: '/login'
+                        });
                     }
                 ]);

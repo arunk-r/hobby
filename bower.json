@@ -6,14 +6,15 @@
         "**/*.txt"
     ],
     "dependencies": {
-        "angularjs": "~1.4.7",
+        "angularjs": "*",
         "angular-route": "*",
-        "jquery": "~2.1.4",
+        "ui-router": "*",
+        "jquery": "*",
         "jquery.validate": "*",
         "bootstrap": "*",
         "html5shiv": "*",
         "respond": "*",
-        "angular-bootstrap":"0.14.3"
+        "angular-bootstrap":"*"
     },
     "devDependencies": {
     }
