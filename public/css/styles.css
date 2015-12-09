@@ -249,23 +249,7 @@ p.copyright {
     float:none;
     display:inline-table;
 }
-.panel-default>.panel-heading{
-    background-color: #F3F3F3;
-    height: 30px;
-}
-.panel-heading h4{
-    background-color: #F3F3F3;
-    text-align: left;
-}
-.panel-title>.small>a, .panel-title>a, .panel-title>small>a {
-    color: #000;
-    outline-style: none;
-    outline: none;
-    text-decoration: none;
-}
-.panel-title {
-    margin-top: -3px;
-}
+
 .viewstudentrow{
     margin-right: 0px;
     margin-left: 0px; 
@@ -330,4 +314,16 @@ File Upload
 }
 .settingstabinnerdiv{
     margin: 0px 0px 0px 10px;
+}
+
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 }

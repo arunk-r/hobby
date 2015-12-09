@@ -2,10 +2,14 @@ angular.module('appRoutes', [])
         .config(
                 ['$stateProvider', '$urlRouterProvider',
                     function ($stateProvider, $urlRouterProvider) {
-                        $urlRouterProvider.otherwise('home');
+                        //$urlRouterProvider.otherwise('home');
                         $stateProvider
                                 .state('home', {
                                     url: '/home',
+                                    templateUrl: 'welcome.html'
+                                })
+                                .state('default', {
+                                    url: '/',
                                     templateUrl: 'welcome.html'
                                 })
                                 .state('login', {
@@ -123,6 +127,65 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
-                                ;
+                                .state('admin.staff', {
+                                    url: '/staff',
+                                    views: {
+                                        'adminview@admin': {
+                                            templateUrl: '/admin/staff.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.appusers', {
+                                    url: '/appusers',
+                                    views: {
+                                        'adminview@admin': {
+                                            templateUrl: '/admin/appusers.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.currentstudents', {
+                                    url: '/currentstudents',
+                                    views: {
+                                        'adminview@admin': {
+                                            templateUrl: '/admin/currentstudents.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.oldstudents', {
+                                    url: '/oldstudents',
+                                    views: {
+                                        'adminview@admin': {
+                                            templateUrl: '/admin/oldstudents.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.transcations', {
+                                    url: '/transcations',
+                                    views: {
+                                        'adminview@admin': {
+                                            templateUrl: '/admin/transcations.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                });
                     }
                 ]);

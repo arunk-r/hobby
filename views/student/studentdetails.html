@@ -38,97 +38,114 @@
     <div class="text-primary lead colors  col-lg-6 pull-right text-right">Total Paid Amount : <label class="col-bn"> {{viewBalanceData.paidamount}} </label></div>
 </div>
 <label class="text-primary lead colors">Payment History</label>
-<uib-accordion close-others="oneAtATime" ng-init="status.first = true">
-    <uib-accordion-group is-open="status.first">
-        <uib-accordion-heading >
-            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.first, 'glyphicon-chevron-right': !status.first}"></i>
-            Fee
-        </uib-accordion-heading>
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="row in viewStudentData.fee">
-                        <td>{{row.paiddate| date:'MMM dd, yyyy HH:MM a'}}</td>
-                        <td>{{row.amount}}</td>
-                        <td>{{row.description}}</td>
-                        <td>
-                            <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'academicfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default" style="border-color: #A5B9D2;">
+        <div class="panel-heading" style="background-color: #A5B9D2;border-color: #A5B9D2;">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="text-decoration:none;">
+                    Academic Fee
+                </a>
+            </h4>
         </div>
-    </uib-accordion-group>
-    <uib-accordion-group is-open="status.second" is-disabled="status.isOpenDisabled">
-        <uib-accordion-heading >
-            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.second, 'glyphicon-chevron-right': !status.second}"></i>
-            Exam
-        </uib-accordion-heading>
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="row in viewStudentData.examfee">
-                        <td>{{row.paiddate| date:'MMM dd, yyyy'}}</td>
-                        <td>{{row.amount}}</td>
-                        <td>{{row.description}}</td>
-                        <td>
-                            <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'examfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
+        <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in viewStudentData.fee">
+                            <td>{{row.paiddate| date:'MMM dd, yyyy HH:MM a'}}</td>
+                            <td>{{row.amount}}</td>
+                            <td>{{row.description}}</td>
+                            <td>
+                                <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'academicfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </uib-accordion-group>
-    <uib-accordion-group is-open="status.third" is-disabled="status.isOpenDisabled">
-        <uib-accordion-heading >
-            <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.third, 'glyphicon-chevron-right': !status.third}"></i>
-            Miscellaneous
-        </uib-accordion-heading>
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="row in viewStudentData.otherfee">
-                        <td>{{row.paiddate| date:'MMM dd, yyyy'}}</td>
-                        <td>{{row.amount}}</td>
-                        <td>{{row.description}}</td>
-                        <td>
-                            <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'otherfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
+    </div>
+    <div class="panel panel-default" style="border-color: #A5B9D2;">
+        <div class="panel-heading" style="background-color: #A5B9D2;border-color: #A5B9D2;">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2" style="text-decoration:none;">
+                    Exam Fee
+                </a>
+            </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in viewStudentData.examfee">
+                            <td>{{row.paiddate| date:'MMM dd, yyyy'}}</td>
+                            <td>{{row.amount}}</td>
+                            <td>{{row.description}}</td>
+                            <td>
+                                <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'examfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </uib-accordion-group>
-</uib-accordion>
+    </div>
+    <div class="panel panel-default" style="border-color: #A5B9D2;">
+        <div class="panel-heading" style="background-color: #A5B9D2;border-color: #A5B9D2;">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3" style="text-decoration:none;">
+                    Miscellaneous Fee
+                </a>
+            </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in viewStudentData.otherfee">
+                            <td>{{row.paiddate| date:'MMM dd, yyyy'}}</td>
+                            <td>{{row.amount}}</td>
+                            <td>{{row.description}}</td>
+                            <td>
+                                <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'otherfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
 <style>
-    .modal-header, h4, .close {
+    .modal-header, .close {
         background-color: #5cb85c;
         color:white !important;
         text-align: center;
@@ -164,20 +181,24 @@
                     </div>
                     <div class="form-group">
                         <label for="amount" class="control-label col-sm-4"><span class="glyphicon glyphicon-user"> </span> Amount :</label>
-                        <div class="col-md-4" ng-class="{'has-error': feeData.amount.$invalid, 'has-success': !feeData.amount.$dirty, 'has-feedback':feeData.amount.$invalid || !feeData.amount.$invalid}">
+                        <div class="col-md-4" ng-class="{
+                                'has-error'
+                                        : feeData.amount.$invalid, 'has-success': !feeData.amount.$dirty, 'has-feedback':feeData.amount.$invalid || !feeData.amount.$invalid}">
                             <input id="amount" name="amount" type="number" class="form-control input-sm" placeholder="Enter Initial Fee" ng-model="feePayment.amount" required ng-pattern="/^([0-9]{3,6})?$/">
                             <span class="glyphicon form-control-feedback" ng-class="{
-                            'glyphicon-ok': !feeData.amount.$invalid, 'glyphicon-remove': feeData.amount.$invalid}" ng-show="feeData.amount.$invalid || !feeData.amount.$invalid"></span>
+                                    'glyphicon-ok'
+                                            : !feeData.amount.$invalid, 'glyphicon-remove': feeData.amount.$invalid}" ng-show="feeData.amount.$invalid || !feeData.amount.$invalid"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="description"><span class="glyphicon glyphicon-eye-open"> </span> Description :</label>
                         <div class="col-md-8" ng-class="{
-                        'has-error': feeData.description.$invalid && feeData.description.$dirty, 'has-success': !feeData.description.$invalid, 'has-feedback': (feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid}">
+                                'has-error'
+                                        : feeData.description.$invalid && feeData.description.$dirty, 'has-success': !feeData.description.$invalid, 'has-feedback': (feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid}">
                             <input id="description" name="description" type="text" class="form-control input-sm" placeholder="Enter Name" ng-model="feePayment.description" required ng-maxlength="100" ng-minlength="5">
                             <span class="glyphicon form-control-feedback" ng-class="{
-                            'glyphicon-ok':!feeData.description.$invalid, 'glyphicon-remove'
-                                    : feeData.description.$invalid&& feeData.description.$dirty}" ng-show="(feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid"></span>
+                                    'glyphicon-ok':!feeData.description.$invalid, 'glyphicon-remove'
+                                            : feeData.description.$invalid && feeData.description.$dirty}" ng-show="(feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid"></span>
                         </div>
                     </div>
                 </div>
@@ -191,19 +212,17 @@
 </div>
 
 <script>
-        $(document).ready(function () {
-            $("#myBtn").click(function () {
-                $("#myModal").modal();
-            });
-            $('.SeeMore2').click(function () {
-                var $this = $(this);
-                $this.toggleClass('SeeMore2');
-                if ($this.hasClass('SeeMore2')) {
-                    $this.text('See More');
-                } else {
-                    $this.text('See Less');
-                }
-            });
-
-        });
-</script>
+    $(document).ready(function () {
+    $("#myBtn").click(function () {
+    $("#myModal").modal();
+    });
+    $('.SeeMore2').click(function () {
+    var $this = $(this);
+    $this.toggleClass('SeeMore2');
+    if ($this.hasClass('SeeMore2')) {
+    $this.text('See More');
+    } else {
+    $this.text('See Less');
+    }
+    });
+    });</script>

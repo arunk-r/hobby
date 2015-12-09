@@ -3,7 +3,6 @@ var routerApp = angular.module('sbpuc', [
     'ngRoute',
     'appRoutes',
     'flash',
-    'ui.bootstrap',
     'router.service',
     'security.authorization',
     'sbpuc.passwordcheck',
