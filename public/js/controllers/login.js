@@ -1,5 +1,5 @@
 angular.module('LoginCtrl', [])
-        .controller('LoginController', function ($scope, $location, security, utility) {
+        .controller('LoginController', function ($scope, $state, $location, security, utility) {
             $scope.loginData = {};
             $scope.loginData.username = 'arun';
             $scope.loginData.password = 'a';
@@ -8,12 +8,15 @@ angular.module('LoginCtrl', [])
             $scope.loginUser = function () {
                 security.signin($scope.loginData.username, $scope.loginData.password).then(function (data) {
                     if (data.success) {
-                        return $location.path('/');
+                        //console.log('Logged In');
+                        $location.path('/home');
+                        $state.go('home');
                     } else {
                         //error due to server side validation
                         $scope.errfor = data.errfor;
                         $scope.errorMsg = data.errors[0];
-                        return $location.path('/login');
+                        $location.path('/login');
+                        $state.go('login');
                     }
                 });
             };
@@ -21,12 +24,13 @@ angular.module('LoginCtrl', [])
         );
 
 angular.module('LogoutCtrl', [])
-        .controller('LogoutController', function ($scope, $location, security, Flash) {
-            console.log('logout invoked')
+        .controller('LogoutController', function ($scope, $state, $location, security, Flash) {
+            //console.log('logout invoked');
             security.signout().then(function (data) {
                 var message = '<strong> Logout Successful!...</strong>.';
                 Flash.create('success', message, 'custom-class');
-                return $location.path('/login');
+                $location.path('/login');
+                $state.go('login');
             });
         }
         );

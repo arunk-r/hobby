@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  ng-app="sbpuc">
+<html ng-app="sbpuc">
     <head id="ctl00_Head1">
         <title>SBECT</title>
         <meta charset="utf-8">
@@ -17,11 +17,14 @@
         <link href="css/styles.css" rel="stylesheet">
         <link href="css/flash/angular-flash.css" rel="stylesheet">
     </head>
+
+    <!-- apply our angular app to our site -->
     <body class="col-standard" ng-controller="BaseController">
+
         <header>
             <div id="masthead">
                 <p class="logo">
-                    <a title="SBECT(R)" href="#/" style="display:inline-block;border-width:0px;">
+                    <a title="SBECT(R)" href="#" style="display:inline-block;border-width:0px;">
                         <img src="img/logo5.png" alt="Cerner" style="border-width:0px;">
                     </a>
                 </p>
@@ -31,20 +34,21 @@
                             <li class="nav-solutions"> &nbsp;</li>
                             <li class="nav-solutions"> &nbsp;</li>
                             <li class="nav-solutions"> &nbsp;</li>
-                            <li class="nav-solutions" ng-show="isAuthenticated"><a title="Students" href="#/viewstudentsdetail"><span class="glyphicon glyphicon-link"></span> Students</a></li>
-                            <li class="nav-solutions" ng-show="isAuthenticated"><a title="Reports" href="#/reports"><span class="glyphicon glyphicon-stats"></span> Reports</a></li>
-                            <li class="nav-solutions"><a title="About" href="#"><span class="glyphicon glyphicon-eye-open"></span> About</a></li>
+                            <li class="nav-solutions" ng-show="isAuthenticated"><a title="Students" ui-sref="studentsdetails" ><span class="glyphicon glyphicon-link"></span> Students</a></li>
+                            <li class="nav-solutions" ng-show="isAuthenticated"><a title="Reports" ui-sref="reports"><span class="glyphicon glyphicon-stats"></span> Reports</a></li>
+                            <li class="nav-solutions" ng-show="isAuthenticated"><a title="Admin" ui-sref="admin"><span class="glyphicon glyphicon-user"></span> Admin</a></li>
+                            <li class="nav-solutions"><a title="About" ui-sref="home"><span class="glyphicon glyphicon-eye-open"></span> About</a></li>
                         </ul>
                     </div>
                 </div>
                 <div>
                     <ul id="util-nav" class="mod">
 
-                        <li class="util-nav-global"><a title="Reports" href="#" ng-show="isAuthenticated"><span class="glyphicon glyphicon-asterisk"></span> Setting</a></li>
-                        <li class="util-nav-global"><a title="Login" href="#/login" ng-show="!isAuthenticated"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <li class="util-nav-global last"><a title="Profile" href="#" ng-show="isAuthenticated" > <span class="glyphicon glyphicon-user"></span> Profile</a> <ul>
-                                <li><a title="Profile" href="#/settings"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                                <li class="last"><a title="Logout" href="#/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        <li class="util-nav-global"><a title="Reports" ui-sref="settings" ng-show="isAuthenticated"><span class="glyphicon glyphicon-asterisk"></span> Setting</a></li>
+                        <li class="util-nav-global"><a title="Login" ui-sref="login" ng-show="!isAuthenticated"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li class="util-nav-global last"><a title="Profile" ui-sref="#" ng-show="isAuthenticated" > <span class="glyphicon glyphicon-user"></span> Profile</a> <ul>
+                                <li><a title="Profile" ui-sref="settings"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li class="last"><a title="Logout" ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -54,6 +58,9 @@
 
             </div>
         </header>
+
+        <!-- MAIN CONTENT -->
+        <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
         <main>
             <!--
             5000 milli-secs is the display duration.
@@ -67,10 +74,9 @@
             <div class="flash-div" flash-message="5000"></div> 
             <div id="content">
                 <div id="primary" class="default-body">
-                    <ng-view></ng-view>
+                    <ui-view></ui-view>
                 </div>
                 <div id="secondary">
-
                 </div>
             </div>
         </main>
@@ -78,48 +84,48 @@
             <div>
                 <div id="footer" class="mod">
                     <ul id="foot-nav">
-                        <li class="foot-nav-terms"><a href="#">Terms of Use</a></li>
-                        <li class="foot-nav-privacy"><a href="#">Privacy Policy</a></li>
-                        <li class="foot-nav-support"><a href="#">Support</a></li>
-                        <li class="foot-nav-contact"><a href="#">Contact Us</a></li>
+                        <li class="foot-nav-terms"><a ui-sref="home">Terms of Use</a></li>
+                        <li class="foot-nav-privacy"><a ui-sref="home">Privacy Policy</a></li>
+                        <li class="foot-nav-support"><a ui-sref="home">Support</a></li>
+                        <li class="foot-nav-contact"><a ui-sref="home">Contact Us</a></li>
                     </ul>
                     <!-- /end #foot-nav --><div id="social-nav"><h2>Connect with SBECT(R)</h2>
                         <ul>
-                            <li><a href="#"><img title="icon_Youtube" border="0" alt="icon_Youtube" src="img/youtubelogo_small.jpg"></a></li>
-                            <li><a href="#"><img alt="Facebook" src="img/ico-facebook.gif"></a></li>
-                            <li><a href="#"><img alt="Twitter" src="img/ico-twitter.gif"></a></li>
-                            <li><a href="#"><img title="LinkedIn" style="BORDER-TOP: 0px solid; HEIGHT: 18px; BORDER-RIGHT: 0px solid; WIDTH: 18px; BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid" border="0" alt="LinkedIn" src="img/download.jpg" width="18" height="18"></a></li>
+                            <li><a ui-sref="home"><img title="icon_Youtube" border="0" alt="icon_Youtube" src="img/youtubelogo_small.jpg"></a></li>
+                            <li><a ui-sref="home"><img alt="Facebook" src="img/ico-facebook.gif"></a></li>
+                            <li><a ui-sref="home"><img alt="Twitter" src="img/ico-twitter.gif"></a></li>
+                            <li><a ui-sref="home"><img title="LinkedIn" style="BORDER-TOP: 0px solid; HEIGHT: 18px; BORDER-RIGHT: 0px solid; WIDTH: 18px; BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid" border="0" alt="LinkedIn" src="img/download.jpg" width="18" height="18"></a></li>
                         </ul>
                     </div>
                     <!-- /end #social-nav --><p class="copyright">Copyright © 2015 SBECT(R) H Cross. All rights reserved.</p>
                 </div>
             </div>
         </footer>
-        <!--         script references 
-        
-                 frame work scripts -->
+
+        <!-- JS (load angular, ui-router, and our custom js file) -->
+        <!-- Framework JS files-->
         <script src="vendor/jquery/dist/jquery.min.js"></script>
         <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="vendor/angular/angular.min.js"></script>
-        <script src="vendor/angular-route/angular-route.min.js"></script>
+        <script src="vendor/angularjs/angular.min.js"></script>
         <script src="vendor/ui-router/release/angular-ui-router.min.js"></script>
+        <script src="vendor/angular-route/angular-route.min.js"></script>
         <script src="vendor/jquery.validate/dist/jquery.validate.min.js"></script>
         <script src="js/flash/angular-flash.js"></script> 
         <script src="js/ui-bootstrap.js"></script> 
-        <!--         work-flow scripts -->
+
+        <!-- Workflow JS files-->
         <script src="js/main.js"></script>
         <script src="js/appRouters.js"></script>
+        <script src="js/service/router.js"></script>
+        <script src="js/service/authorization.js"></script>
         <script src="js/directives/passwordcheck.js"></script>
         <script src="js/directives/copyvalue.js"></script>
-        <script src="js/service/authorization.js"></script>
-        <script src="js/service/router.js"></script>
         <script src="js/service/security.js"></script>
-        <script src="js/service/student.js"></script>
         <script src="js/service/utility.js"></script>
+        <script src="js/service/student.js"></script>
         <script src="js/service/report.js"></script>
         <script src="js/controllers/base.js"></script>
         <script src="js/controllers/login.js"></script>
-        <script src="js/controllers/signup.js"></script>
         <script src="js/controllers/student/viewstudentsdetail.js"></script>
         <script src="js/controllers/student/studentdetails.js"></script>
         <script src="js/controllers/reports/reports.js"></script>

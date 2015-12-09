@@ -1,5 +1,5 @@
 html {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
 body { 
     background: url(../img/header-blue-bgr.jpg) center 0 no-repeat #FFF; 
@@ -275,7 +275,7 @@ p.copyright {
     width: 100%;
 }
 .btn, .btn-primary, .btn-lg, .btn-success {
-        border-radius: 24px;
+    border-radius: 24px;
 }
 /**
 File Upload 

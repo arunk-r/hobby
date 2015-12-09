@@ -1,13 +1,18 @@
 angular.module('ViewStudentsDetailCtrl', [])
         .controller('ViewStudentsDetailController',
-                function ($scope, $location, student) {
+                function ($scope, $state, $stateParams, $location, student) {
                     $scope.studentData = [];
                     $scope.errorMsg = '';
                     $scope.go = function (id) {
+                        //console.log('/student/' + id)
                         $location.path('/student/' + id);
+                        $stateParams.id = id;
+                        $state.go('student', $stateParams);
                     };
                     student.viewstudents().then(function (data) {
-                        if (data.success) {
+                        //console.log(data)
+                        //console.log(data.data.length)
+                        if (data.success && data.data.length > 0) {
                             $scope.studentData = data.data;
                         } else {
                             if (data.errors) {

@@ -1,0 +1,80 @@
+<!-- Main -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- Left column -->
+            <a href=""><strong><i class="glyphicon glyphicon-wrench"></i></strong></a>
+
+            <hr>
+
+            <ul class="nav nav-stacked">
+                <li class="nav-header"> <a href="" data-toggle="collapse" data-target="#userMenu" id='adminidsnav'>Tools <i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <li><a href=""><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
+                        <li><a href=""><i class="glyphicon glyphicon-user"></i> App Users List</a></li>
+                        <li><a href=""><i class="glyphicon glyphicon-user"></i> Current Students</a></li>
+                        <li><a href=""><i class="glyphicon glyphicon-user"></i> Old Students</a></li>
+                        <li><a href=""><i class="glyphicon glyphicon-cog"></i> Options</a></li>
+                        <li><a href=""><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
+                        <li><a href=""><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
+                        <li><a href=""><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                    </ul>
+                </li>
+                <li class="nav-header"> <a href="" data-toggle="collapse" data-target="#menu2" id='adminreportsnav'> Reports <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+                    <ul class="nav nav-stacked collapse" id="menu2">
+                        <li><a href="">Information &amp; Stats</a>
+                        </li>
+                        <li><a href="">Views</a>
+                        </li>
+                        <li><a href="">Requests</a>
+                        </li>
+                        <li><a href="">Timetable</a>
+                        </li>
+                        <li><a href="">Alerts</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <hr>
+
+            <a href=""><strong><i class="glyphicon glyphicon-link"></i> Resources</strong></a>
+
+            <hr>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li class="nav-header"></li>
+                <li><a href=""><i class="glyphicon glyphicon-list"></i> Layouts &amp; Templates</a></li>
+                <li><a href=""><i class="glyphicon glyphicon-briefcase"></i> Toolbox</a></li>
+                <li><a href=""><i class="glyphicon glyphicon-link"></i> Widgets</a></li>
+                <li><a href=""><i class="glyphicon glyphicon-list-alt"></i> Reports</a></li>
+                <li><a href=""><i class="glyphicon glyphicon-book"></i> Pages</a></li>
+                <li><a href=""><i class="glyphicon glyphicon-star"></i> Social Media</a></li>
+            </ul>
+        </div>
+        <!-- /col-3 -->
+        <div class="col-sm-9">
+            <a href=""><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+            <hr>
+
+            <div class="row">
+
+            </div>
+        </div>
+        <!--/col-span-9-->
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#adminreportsnav').click(function () {
+                $(this).find('i').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
+            });
+             $('#adminidsnav').click(function () {
+                $(this).find('i').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
+            });
+        });
+    </script>
+
+</div>
+<!-- /Main -->

@@ -1,12 +1,14 @@
 angular.module('ReportsCtrl', [])
         .controller('ReportsController',
-                function ($scope, $location) {
+                function ($scope, $state, $stateParams, $location) {
                     $scope.reportsData = {};
                     $scope.anualreportData = getFinancialYears();//[{years: '2015-2016', name: '2015-2016'}, {code: '2016-2017', name: '2016-2017'}, {code: '2017-2018', name: '2017-2018'}];
                     $scope.showAnualFeeReport = function () {
                         var years = $scope.selectedItem.name;
                         //console.log(years);
+                        $stateParams.years = years;
                         $location.path('/report/anual/' + years + '/fee');
+                         $state.go('selectedyearfee', $stateParams);
                     };
                 }
         );

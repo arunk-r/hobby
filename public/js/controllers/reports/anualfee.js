@@ -1,8 +1,8 @@
 //Attempt to get requested year anual fee report
 angular.module('AnualFeeCtrl', [])
         .controller('AnualFeeController',
-                function ($scope, $routeParams, report, Flash) {
-                    $scope.year = $routeParams.years;
+                function ($scope, $stateParams, report, Flash) {
+                    $scope.year = $stateParams.years;
                     $scope.anualfeeData = {};
                     report.anualfee($scope.year).then(function (data) {
                         if (data.length > 0)

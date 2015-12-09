@@ -1,13 +1,15 @@
 angular.module('appRoutes', [])
         .config(
-                ['$routeProvider', '$locationProvider',
-                    function ($routeProvider) {
-
-                        $routeProvider
-                                .when('/', {
+                ['$stateProvider', '$urlRouterProvider',
+                    function ($stateProvider, $urlRouterProvider) {
+                        $urlRouterProvider.otherwise('home');
+                        $stateProvider
+                                .state('home', {
+                                    url: '/home',
                                     templateUrl: 'welcome.html'
                                 })
-                                .when('/login', {
+                                .state('login', {
+                                    url: '/login',
                                     templateUrl: '/user/login.html',
                                     controller: 'LoginController',
                                     data: {
@@ -15,14 +17,15 @@ angular.module('appRoutes', [])
                                         adminPrev: false
                                     }
                                 })
-                                .when('/logout', {
+                                .state('logout', {
                                     templateUrl: '/user/login.html',
                                     controller: 'LogoutController'
                                 })
-                                .when('/settings', {
+                                .state('settings', {
+                                    url: '/settings',
                                     templateUrl: '/user/settings/settings.html'
                                 })
-                                .when('/signup', {
+                                .state('signup', {
                                     templateUrl: '/user/signup.html',
                                     controller: 'SignupController',
                                     data: {
@@ -30,7 +33,8 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
-                                .when('/viewstudentsdetail', {
+                                .state('studentsdetails', {
+                                    url: '/studentsdetails',
                                     templateUrl: '/student/viewstudentsdetail.html',
                                     controller: 'ViewStudentsDetailController',
                                     data: {
@@ -38,64 +42,87 @@ angular.module('appRoutes', [])
                                         adminPrev: false
                                     }
                                 })
-                                .when('/addstudent', {
+                                .state('addstudent', {
+                                    url: '/addstudent',
                                     templateUrl: '/student/addstudent.html',
                                     controller: 'AddStudentController',
                                     data: {
                                         requireLogin: true,
                                         adminPrev: true
                                     }
-                                }).when('/student/:id', {
-                            templateUrl: '/student/studentdetails.html',
-                            controller: 'StudentsDetailController',
-                            data: {
-                                requireLogin: true,
-                                adminPrev: true
-                            }
-                        }).when('/reports', {
-                            templateUrl: '/reports/index.html',
-                            controller: 'ReportsController',
-                            data: {
-                                requireLogin: true,
-                                adminPrev: true
-                            }
-                        }).when('/report/anual/:years/fee', {
-                            templateUrl: '/reports/anualfee.html',
-                            controller: 'AnualFeeController',
-                            data: {
-                                requireLogin: true,
-                                adminPrev: true
-                            }
-                        }).when('/report/currentyear/fee', {
-                            templateUrl: '/reports/currentyearfee.html',
-                            controller: 'CurrentYearFeeController',
-                            data: {
-                                requireLogin: true,
-                                adminPrev: true
-                            }
-                        }).when('/report/currentyear/exam/fee', {
-                            templateUrl: '/reports/currentyearexamfee.html',
-                            controller: 'CurrentYearExamFeeController',
-                            data: {
-                                requireLogin: true,
-                                adminPrev: true
-                            }
-                        }).when('/report/currentyear/miscellaneous/fee', {
-                            templateUrl: '/reports/currentyearmiscellaneousfee.html',
-                            controller: 'CurrentYearMiscellaneousFeeController',
-                            data: {
-                                requireLogin: true,
-                                adminPrev: true
-                            }
-                        }).when('/report/studentsextract', {
-                            templateUrl: '/reports/studentsextract.html',
-                            controller: 'StudentExtractController',
-                            data: {
-                                requireLogin: true,
-                                adminPrev: true
-                            }
-                        }).otherwise({
-                            redirectTo: '/login'
-                        });
+                                })
+                                .state('student', {
+                                    url: '/student/:id',
+                                    templateUrl: '/student/studentdetails.html',
+                                    controller: 'StudentsDetailController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('reports', {
+                                    url: '/reports',
+                                    templateUrl: '/reports/index.html',
+                                    controller: 'ReportsController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('selectedyearfee', {
+                                    url: '/reports/anual/:years/fee',
+                                    templateUrl: '/reports/anualfee.html',
+                                    controller: 'AnualFeeController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('academicyearfee', {
+                                    url: '/reports/academicfee',
+                                    templateUrl: '/reports/currentyearfee.html',
+                                    controller: 'CurrentYearFeeController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('examfee', {
+                                    url: '/reports/examfee',
+                                    templateUrl: '/reports/currentyearexamfee.html',
+                                    controller: 'CurrentYearExamFeeController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('miscellaneousfee', {
+                                    url: '/reports/miscellaneousfee',
+                                    templateUrl: '/reports/currentyearmiscellaneousfee.html',
+                                    controller: 'CurrentYearMiscellaneousFeeController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('studentsextract', {
+                                    url: '/reports/studentsextract',
+                                    templateUrl: '/reports/studentsextract.html',
+                                    controller: 'StudentExtractController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                /** Admin controls*/
+                                .state('admin', {
+                                    url: '/admin',
+                                    templateUrl: '/admin/index.html',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                ;
                     }
                 ]);

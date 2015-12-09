@@ -4,17 +4,21 @@
 //Paying Other Miscellaneous Fee
 angular.module('StudentsDetailCtrl', [])
         .controller('StudentsDetailController',
-                function ($scope, $location, student, $routeParams, $timeout, $route, $window) {
+                function ($scope, $state, $location, student, $stateParams, $timeout, $route, $window) {
                     $scope.studentData = [];
                     $scope.errorMsg = '';
                     $scope.feePayment = {};
-                    student.studentdetailsbyid($routeParams.id).then(function (data) {
-                        if (data.success) {
+                    //console.log($stateParams);
+                    student.studentdetailsbyid($stateParams.id).then(function (data) {
+                        //console.log(data.data.length);
+                        if (data.success && data.data.length > 0) {
                             $scope.viewStudentData = data.data[0];
                             //console.log(data.data)
                         } else {
                             if (data.errors) {
                                 $scope.errorMsg = data.errors[0];
+                            }else{
+                                $scope.errorMsg = "Error while fetching the data"
                             }
                         }
                     });
@@ -32,7 +36,7 @@ angular.module('StudentsDetailCtrl', [])
                     $scope.callReLoadingData = function (data, type) {
                         //console.log(data)
                         $location.path($location.path());
-                        $route.reload();
+                        $state.go($state.current, $stateParams, {reload: true}); 
                         $timeout(function () {
                             $scope.callOpenprintDialogData(data[0], type);
                         }, 1000);
@@ -54,7 +58,7 @@ angular.module('StudentsDetailCtrl', [])
 //Adding New student
 angular.module('AddStudentCtrl', [])
         .controller('AddStudentController',
-                function ($scope, $location, student, Flash) {
+                function ($scope, $state, $location, student, Flash) {
                     $scope.formData = {};
                     // Create a new student
                     $scope.createStudent = function () {
@@ -63,6 +67,7 @@ angular.module('AddStudentCtrl', [])
                         student.addstudent($scope.formData).then(function (data) {
                             //console.log(data.data[0]);
                             $location.path('/student/' + data.data[0]);
+                            $state.go('student');
                         });
                     };
                 }
