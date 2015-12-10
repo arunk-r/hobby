@@ -131,7 +131,31 @@ angular.module('appRoutes', [])
                                     url: '/staff',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/staff.html'
+                                            templateUrl: '/admin/staff/index.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.staff.view', {
+                                    url: '/view',
+                                    views: {
+                                        'staffview': {
+                                            templateUrl: '/admin/staff/view.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.staff.add', {
+                                    url: '/add',
+                                    views: {
+                                        'staffview': {
+                                            templateUrl: '/admin/staff/add.html'
                                         }
                                     },
                                     data: {
@@ -143,7 +167,19 @@ angular.module('appRoutes', [])
                                     url: '/appusers',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/appusers.html'
+                                            templateUrl: '/admin/appusers/index.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.appusers.add', {
+                                    url: '/add',
+                                    views: {
+                                        'usersadd': {
+                                            templateUrl: '/admin/appusers/add.html'
                                         }
                                     },
                                     data: {
@@ -155,7 +191,19 @@ angular.module('appRoutes', [])
                                     url: '/currentstudents',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/currentstudents.html'
+                                            templateUrl: '/admin/student/current.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.currentstudents.edit', {
+                                    url: '/edit',
+                                    views: {
+                                        'edit': {
+                                            templateUrl: '/admin/student/edit.html'
                                         }
                                     },
                                     data: {
@@ -167,7 +215,19 @@ angular.module('appRoutes', [])
                                     url: '/oldstudents',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/oldstudents.html'
+                                            templateUrl: '/admin/student/old.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.oldstudents.edit', {
+                                    url: '/edit',
+                                    views: {
+                                        'edit': {
+                                            templateUrl: '/admin/student/edit.html'
                                         }
                                     },
                                     data: {
@@ -179,7 +239,19 @@ angular.module('appRoutes', [])
                                     url: '/transcations',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/transcations.html'
+                                            templateUrl: '/admin/transcations/index.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.transcations.add', {
+                                    url: '/transcations',
+                                    views: {
+                                        'add': {
+                                            templateUrl: '/admin/transcations/add.html'
                                         }
                                     },
                                     data: {

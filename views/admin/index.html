@@ -9,10 +9,7 @@
                         <li><a ui-sref=".appusers"><i class="glyphicon glyphicon-user"></i> App Users List</a></li>
                         <li><a ui-sref=".currentstudents"><i class="glyphicon glyphicon-user"></i> Current Students</a></li>
                         <li><a ui-sref=".oldstudents"><i class="glyphicon glyphicon-user"></i> Old Students</a></li>
-                        <li><a href=""><i class="glyphicon glyphicon-cog"></i> Options</a></li>
                         <li><a ui-sref=".transcations"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
-                        <li><a href=""><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
-                        <li><a href=""><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-header"> <a href="" data-toggle="collapse" data-target="#menu2" id='adminreportsnav'> <i class="glyphicon glyphicon-stats"></i> Reports <i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -30,6 +27,7 @@
                         </li>
                     </ul>
                 </li>
+                <li><a href=""><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
             </ul>
 
             <hr>
@@ -50,12 +48,9 @@
         </div>
         <!-- /col-3 -->
         <div class="col-sm-9">
-            <a href=""><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+            <a href=""><strong><i class="glyphicon glyphicon-dashboard"></i> Admin Dashboard</strong></a>
             <hr>
-
-            <div class="row">
-                <div ui-view="adminview"></div>
-            </div>
+            <div ui-view="adminview"></div>
         </div>
         <!--/col-span-9-->
     </div>
