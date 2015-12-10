@@ -14,7 +14,8 @@
         "bootstrap": "*",
         "html5shiv": "*",
         "respond": "*",
-        "angular-bootstrap":"*"
+        "angular-bootstrap":"*",
+        "font-awesome":"*"
     },
     "devDependencies": {
     }

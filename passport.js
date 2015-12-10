@@ -12,7 +12,6 @@ exports = module.exports = function (app, passport) {
                     if (!user) {
                         return done(null, false, {message: 'Unknown user'});
                     }
-                    console.log(user);
                     app.db.models.User.validatePassword(password, user.password, function (err, isValid) {
                         if (err) {
                             return done(err);

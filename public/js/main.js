@@ -14,6 +14,8 @@ var routerApp = angular.module('sbpuc', [
     'BaseCtrl',
     'LoginCtrl',
     'LogoutCtrl',
+    'ForgetPasswordCtrl',
+    'ResetPasswordCtrl',
     'ViewStudentsDetailCtrl',
     'AddStudentCtrl',
     'StudentsDetailCtrl',

@@ -24,7 +24,7 @@
         "passport-http": "*",
         "method-override":"*",
         "express-session": "*",
-        "bcrypt": "*",
+        "bcrypt-nodejs": "*",
         "node-uuid": "1.4.2",
         "compression": "*",
         "helmet": "*"

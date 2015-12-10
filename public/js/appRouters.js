@@ -21,6 +21,24 @@ angular.module('appRoutes', [])
                                         adminPrev: false
                                     }
                                 })
+                                .state('forgetpassword', {
+                                    url: '/forgetpassword',
+                                    templateUrl: '/user/forget.html',
+                                    controller: 'ForgetPasswordController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: false
+                                    }
+                                })
+                                .state('resetpassword', {
+                                    url: '/resetpassword/:username/:token',
+                                    templateUrl: '/user/reset.html',
+                                    controller: 'ResetPasswordController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: false
+                                    }
+                                })
                                 .state('logout', {
                                     templateUrl: '/user/login.html',
                                     controller: 'LogoutController'

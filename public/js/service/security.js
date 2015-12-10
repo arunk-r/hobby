@@ -35,6 +35,24 @@ angular.module('security.service', [])
                                         deferred.resolve(response);
                                     });
                             return deferred.promise;
+                        },
+                        // Attempt to send forget password details
+                        forgetpwd: function (data) {
+                            var deferred = $q.defer();
+                            router.trigger('/user/forgot', 'post', data).then(
+                                    function (response) {
+                                        deferred.resolve(response);
+                                    });
+                            return deferred.promise;
+                        },
+                        // Attempt to send reset password details
+                        resetpwd: function (username, token, password) {
+                            var deferred = $q.defer();
+                            router.trigger('/user/reset/' + username + '/' + token, 'post', {password: password}).then(
+                                    function (response) {
+                                        deferred.resolve(response);
+                                    });
+                            return deferred.promise;
                         }
                     };
                     return service;

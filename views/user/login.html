@@ -1,27 +1,39 @@
-<div class="container">
-    <div class="row vertical-offset-50">
+<div class="row">
+    <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Please Sign in</h3>
-                </div>
-                <div class="panel-body" >
-                    <span class="text-danger" ng-if="errorMsg">{{errorMsg}}</span>
-                    <form name="userForm" novalidate>
-                        <div class="form-group" ng-class="{'has-error': hasError(userForm.username)}">
-                            <label class="control-label" for="username">Username or Email:</label>
-                            <input type="text" name="username" id="username" class="form-control" ng-model="user.username" required server-error>
-                            <span class="text-danger" ng-if="errfor.username">{{errfor.username}}</span>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <h3><i class="fa fa-lock fa-4x"></i></h3>
+                        <h3 class="text-center">Please Sign in</h3>
+                        <div class="panel-body" >
+                            <span class="text-danger" ng-if="errorMsg">{{errorMsg}}</span>
+                            <form name="userForm" novalidate>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input type="text" name="username" id="username" placeholder="Username" class="form-control" ng-model="loginData.username" required server-error>
+                                            <span class="input-group-addon" ng-if="errfor.username"><i class="text-danger glyphicon glyphicon-star"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                            <input class="form-control" id="password" name="password" placeholder="Password" ng-model="loginData.password" type="password" required server-error>
+                                            <span class="input-group-addon" ng-if="errfor.password"><i class="text-danger glyphicon glyphicon-star"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary btn-login center-block" ng-disabled="!canSave(userForm)" ng-click="loginUser()" ng-disabled="userForm.$invalid">Sign In</button>
+                                    </div>
+                                    <a ui-sref="forgetpassword" class="forgot-password text-center">
+                                        Forgot the password?
+                                    </a>
+                                </fieldset>
+                            </form>
                         </div>
-                        <div class="form-group" ng-class="{'has-error': hasError(userForm.password)}">
-                            <label class="control-label" for="password">Password:</label>
-                            <input class="form-control" id="password" name="password" placeholder="Password" ng-model="loginData.password" type="password" required server-error>
-                            <span class="text-danger" ng-if="errfor.password">{{errfor.password}}</span>
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary btn-login center-block" ng-disabled="!canSave(userForm)" ng-click="loginUser()" ng-disabled="userForm.$invalid">Sign In</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
