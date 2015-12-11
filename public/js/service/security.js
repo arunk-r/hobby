@@ -14,18 +14,6 @@ angular.module('security.service', [])
                                     });
                             return deferred.promise;
                         },
-                        // Attempt to Sign up the new user by the given username and password
-                        signup: function (username, password) {
-                            var deferred = $q.defer();
-                            router.trigger('/user/signup', 'post', {username: username, password: password}).then(
-                                    function (response) {
-                                        if (response.success) {
-                                            securityAuthorization.setAuthenticatedUser(response.data[0]);
-                                        }
-                                        deferred.resolve(response);
-                                    });
-                            return deferred.promise;
-                        },
                         // Attempt to lOGOUT THE USER
                         signout: function () {
                             var deferred = $q.defer();

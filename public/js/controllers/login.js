@@ -9,6 +9,7 @@ angular.module('LoginCtrl', [])
                 $scope.loginData.password = 'a';
                 security.signin($scope.loginData.username, $scope.loginData.password).then(function (data) {
                     //console.log(data);
+                    $scope.loginData = {};
                     if (data.success) {
                         //console.log(data);
                         $location.path('/home');
@@ -32,6 +33,7 @@ angular.module('ForgetPasswordCtrl', [])
             $scope.resetPassword = function () {
                 //console.log($scope.user)
                 security.forgetpwd($scope.user).then(function (data) {
+                    $scope.user = {};
                     if (data.success) {
                         //console.log(data.data[0].username);
                         //console.log(data.data[1].token);
@@ -60,6 +62,7 @@ angular.module('ResetPasswordCtrl', [])
                 //console.log($stateParams.username)
                 //console.log($stateParams.token)
                 security.resetpwd($stateParams.username, $stateParams.token, $scope.signupData.password).then(function (data) {
+                    $scope.signupData = {};
                     if (data.success) {
                         //console.log(data.data);
                         $location.path('/login');
@@ -76,17 +79,7 @@ angular.module('ResetPasswordCtrl', [])
         }
         );
 
-angular.module('LogoutCtrl', [])
-        .controller('LogoutController', function ($scope, $state, $location, security, Flash) {
-            //console.log('logout invoked');
-            security.signout().then(function (data) {
-                var message = '<strong> Logout Successful!...</strong>.';
-                Flash.create('success', message, 'custom-class');
-                $location.path('/login');
-                $state.go('login');
-            });
-        }
-        );
+
 angular.module('LogoutCtrl', [])
         .controller('LogoutController', function ($scope, $state, $location, security, Flash) {
             //console.log('logout invoked');

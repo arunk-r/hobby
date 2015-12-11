@@ -5,7 +5,7 @@ exports = module.exports = function (app, passport) {
 
     passport.use(new LocalStrategy(
             function (username, password, done) {
-                app.db.models.User.findOne({username: username}, function (err, user) {
+                app.db.models.User.findOne({username: username, isActive:true}, function (err, user) {
                     if (err) {
                         return done(err);
                     }

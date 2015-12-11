@@ -9,7 +9,7 @@ exports.send = function (req, res, next) {
             return workflow.emit('response');
         }
 
-        req.app.db.models.User.findOne({username: req.body.username}, function (err, user) {
+        req.app.db.models.User.findOne({username: req.body.username, isActive:true}, function (err, user) {
             if (err) {
                 return workflow.emit('exception', err);
             }

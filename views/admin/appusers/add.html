@@ -1,46 +1,32 @@
 <div class="row">
-    <form role="form">
-        <div class="col-lg-6">
-            <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
-            <div class="form-group">
-                <label for="InputName">Enter Name</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add User here</h3>
             </div>
-            <div class="form-group">
-                <label for="InputEmail">Enter Email</label>
-                <div class="input-group">
-                    <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="InputEmail">Confirm Email</label>
-                <div class="input-group">
-                    <input type="email" class="form-control" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="InputMessage">Enter Message</label>
-                <div class="input-group">
-                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
-        </div>
-    </form>
-    <div class="col-lg-5 col-md-push-1">
-        <div class="col-md-12">
-            <div class="alert alert-success">
-                <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-            </div>
-            <div class="alert alert-danger">
-                <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+            <div class="panel-body" >
+                <p class="form-control-static" ng-if="errorMsg">{{errorMsg}}</p>
+                <p>User account provisioning is a business process for creating and managing access to SBECT resources in an information technology (IT) system. To be effective, an account provisioning process should ensure that the creation of accounts and access to software and data is consistent.</p>
+                <p class="text-danger">Once account issued by you needs to share UserName with user to create the password. Look for reset password workflow in help content</p>
+                <p class="text-danger">Access control is a security technique that can be used to regulate who or what can view or use resources in a computing environment.</p>
+                <form name="userForm" novalidate>
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="control-label" for="username">Pick a Username:</label>
+                            <input type="text" name="username" id="username" class="form-control" ng-model="signupData.username" required server-error placeholder="Username...">
+                            <span class="text-danger" ng-if="errfor.username">{{errfor.username}}</span>
+                        </div>
+                        <div>
+                            <label>
+                                <br>
+                            </label>
+                        </div>
+                        <input class="btn btn-primary btn-signup center-block" type="submit" value="Create User" ng-click="createUser()" ng-disabled="userForm.$invalid">
+                    </fieldset>
+                </form>
+
             </div>
         </div>
     </div>
 </div>
+

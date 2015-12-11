@@ -37,7 +37,7 @@
                             <li class="nav-solutions"> &nbsp;</li>
                             <li class="nav-solutions" ng-show="isAuthenticated"><a title="Students" ui-sref="studentsdetails" ><span class="glyphicon glyphicon-link"></span> Students</a></li>
                             <li class="nav-solutions" ng-show="isAuthenticated"><a title="Reports" ui-sref="reports"><span class="glyphicon glyphicon-stats"></span> Reports</a></li>
-                            <li class="nav-solutions" ng-show="isAuthenticated"><a title="Admin" ui-sref="admin"><span class="glyphicon glyphicon-user"></span> Admin</a></li>
+                            <li class="nav-solutions" ng-show="isAdminUser"><a title="Admin" ui-sref="admin"><span class="glyphicon glyphicon-user"></span> Admin</a></li>
                             <li class="nav-solutions"><a title="About" ui-sref="home"><span class="glyphicon glyphicon-eye-open"></span> About</a></li>
                         </ul>
                     </div>
@@ -130,5 +130,9 @@
         <script src="js/controllers/student/studentdetails.js"></script>
         <script src="js/controllers/reports/reports.js"></script>
         <script src="js/controllers/reports/anualfee.js"></script>
+        
+        <!-- Admin scripts-->
+        <script src="js/service/admin/user.js"></script>
+        <script src="js/controllers/admin/user/index.js"></script>
     </body>
 </html>

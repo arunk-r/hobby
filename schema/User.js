@@ -8,7 +8,14 @@ exports = module.exports = function (app, mongoose) {
             admin: {type: mongoose.Schema.Types.ObjectId, ref: 'Admin'},
             account: {type: mongoose.Schema.Types.ObjectId, ref: 'Account'}
         },
-        isActive: String,
+        isActive: {
+            type: Boolean,
+            default: true
+        },
+        canDelete: {
+            type: Boolean,
+            default: true
+        },
         timeCreated: {type: Date, default: Date.now},
         resetPasswordToken: String,
         resetPasswordExpires: Date,

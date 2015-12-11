@@ -23,7 +23,7 @@ var base = require('./server/index');
 var signin = require('./server/signin/index');
 var forgot = require('./server/signin/forgot/index');
 var reset = require('./server/signin/reset/index');
-var signup = require('./server/signup/index');
+var user = require('./server/user/index');
 var student = require('./server/student/index');
 var fee = require('./server/fee/index');
 var print = require('./server/print/index');
@@ -33,7 +33,6 @@ var extracts = require('./server/reports/casteextract/index');
 exports = module.exports = function (app, passport) {
     //app.use('/', base.init);
     app.use('/feereceipt', base.feereceipt);
-    app.post('/user/signup', signup.signup);
     app.post('/user/login', signin.login);
     app.post('/user/forgot', forgot.send);
     app.post('/user/reset/:username/:token', reset.set);
@@ -49,4 +48,9 @@ exports = module.exports = function (app, passport) {
     app.get('/api/report/anual/:years/exam/fee', feereport.examreport);
     app.get('/api/report/anual/:years/miscellaneous/fee', feereport.miscellaneousreport);
     app.get('/api/report/studentsextract', extracts.studentsextract);
+    
+    //admin features
+    app.post('/api/admin/user/create', user.create);
+    app.get('/api/admin/users', user.getall);
+    app.delete('/api/admin/user/:id', user.inactive);
 };

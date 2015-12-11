@@ -66,6 +66,7 @@ angular.module('AddStudentCtrl', [])
                         console.log($scope.formData)
                         student.addstudent($scope.formData).then(function (data) {
                             //console.log(data.data[0]);
+                            $scope.formData = {};
                             $location.path('/student/' + data.data[0]);
                             $state.go('student');
                         });

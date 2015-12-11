@@ -47,14 +47,6 @@ angular.module('appRoutes', [])
                                     url: '/settings',
                                     templateUrl: '/user/settings/settings.html'
                                 })
-                                .state('signup', {
-                                    templateUrl: '/user/signup.html',
-                                    controller: 'SignupController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                })
                                 .state('studentsdetails', {
                                     url: '/studentsdetails',
                                     templateUrl: '/student/viewstudentsdetail.html',
@@ -185,7 +177,12 @@ angular.module('appRoutes', [])
                                     url: '/appusers',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/appusers/index.html'
+                                            templateUrl: '/admin/appusers/index.html',
+                                            controller: 'UserViewController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
                                         }
                                     },
                                     data: {
