@@ -11,45 +11,20 @@
                 <th>&nbsp;</th>
                 <th>Name</th>
                 <th>Mobile</th>
-                <th>Qualification</th>
+                <th>Gender</th>
+                <th>Subject</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Qualification</td>
-                <td>9980130541</td>
-                <td>QualificationQualificationQualificationQualification</td>
-                <td class="text-center"><a ui-sref=".view" > <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Qualification</td>
-                <td>9980130541</td>
-                <td>QualificationQualificationQualificationQualification</td>
-                <td class="text-center"><a href="" > <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Qualification</td>
-                <td>9980130541</td>
-                <td>QualificationQualificationQualificationQualification</td>
-                <td class="text-center"><a ui-sref=".view" > <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>..</td>
-                <td>..</td>
-                <td>..</td>
-                <td class="text-center"><a href="" > <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>..</td>
-                <td>..</td>
-                <td>..</td>
-                <td class="text-center"><a href="" > <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
+            <tr class="text-left" ng-repeat="row in staffList" ng-class="{'text-danger strikethrough': !row.active}" ng-click="viewDetails(row._id)" ui-sref=".view">
+                <td>{{$index + 1}}</td>
+                <td>{{row.name}}</td>
+                <td>{{row.mobile}}</td>
+                <td>{{row.gender}}</td>
+                <td>{{row.subject}}</td>
+                <td class="text-center"><a href="" ng-if="row.active" ng-click="deleteStaff(row._id)"> <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
+
             </tr>
         </tbody>
     </table>

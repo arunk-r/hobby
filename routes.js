@@ -23,12 +23,15 @@ var base = require('./server/index');
 var signin = require('./server/signin/index');
 var forgot = require('./server/signin/forgot/index');
 var reset = require('./server/signin/reset/index');
-var user = require('./server/user/index');
 var student = require('./server/student/index');
 var fee = require('./server/fee/index');
 var print = require('./server/print/index');
 var feereport = require('./server/reports/fee/index');
 var extracts = require('./server/reports/casteextract/index');
+
+//Admin features
+var user = require('./server/user/index');
+var staff = require('./server/staff/index');
 
 exports = module.exports = function (app, passport) {
     //app.use('/', base.init);
@@ -50,7 +53,13 @@ exports = module.exports = function (app, passport) {
     app.get('/api/report/studentsextract', extracts.studentsextract);
     
     //admin features
+    //App Users
     app.post('/api/admin/user/create', user.create);
     app.get('/api/admin/users', user.getall);
     app.delete('/api/admin/user/:id', user.inactive);
+    //Staff
+    app.post('/api/admin/staff/create', staff.create);
+    app.get('/api/admin/staff', staff.getall);
+    app.delete('/api/admin/staff/:id', staff.inactive);
+    app.get('/api/admin/staff/:id', staff.getdetail);
 };

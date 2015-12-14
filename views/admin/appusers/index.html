@@ -18,7 +18,7 @@
         </thead>
         <tbody>
         <tbody class="searchable clickable">
-            <tr class="text-left" ng-repeat="row in appUsersList" ng-class="{'text-danger': !row.isActive}">
+            <tr class="text-left" ng-repeat="row in appUsersList" ng-class="{'text-danger strikethrough': !row.isActive}">
                 <td>{{$index + 1}}</td>
                 <td>{{row.username}}</td>
                 <td>{{row.isActive?'Yes':'No'}}</td>

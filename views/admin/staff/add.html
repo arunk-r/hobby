@@ -1,46 +1,87 @@
-<div class="row">
-    <form role="form">
-        <div class="col-lg-6">
-            <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+<div class="panel panel-primary">
+    <div class="panel-heading">Add New Staff</div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" name="staffData">
+            <input type="hidden" id="tumbimage" name="image" ng-model="formData.image" copy-value>
             <div class="form-group">
-                <label for="InputName">Enter Name</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                <label class="control-label col-sm-2" for="name">Name:</label>
+                <div class="col-md-8" ng-class="{'has-error': staffData.name.$invalid && staffData.name.$dirty, 'has-success': !staffData.name.$invalid, 'has-feedback': (staffData.name.$invalid && staffData.name.$dirty) || !staffData.name.$invalid}">
+                    <input id="name" name="name" type="text" class="form-control input-sm" placeholder="Enter Name" ng-model="formData.name" required ng-maxlength="100" ng-minlength="3">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !staffData.name.$invalid, 'glyphicon-remove': staffData.name.$invalid && staffData.name.$dirty}" ng-show="(staffData.name.$invalid && staffData.name.$dirty) || !staffData.name.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.name">{{errfor.name}}</span>
+                    <span class="glyphicon form-control-feedback" ng-if="errfor.name" ng-class="glyphicon - remove"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="InputEmail">Enter Email</label>
-                <div class="input-group">
-                    <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                <label for="dob" class="control-label col-sm-2">Date of Birth :</label>
+                <div class="col-md-3" data-provider="datepicker">
+                    <input id="dob" name="dob" type="date" class="form-control input-sm" placeholder="Enter DOB" ng-model="formData.dob" required >
+                    <span class="text-danger" ng-if="errfor.dob">{{errfor.dob}}</span>
+                </div>
+                <label for="mobile" class="control-label col-sm-2">Mobile :</label>
+                <div class="col-md-3" ng-class="{'has-error': staffData.mobile.$invalid, 'has-success': !staffData.mobile.$dirty, 'has-feedback':staffData.mobile.$invalid || !staffData.mobile.$invalid}">
+                    <input id="mobile" name="mobile" type="number" class="form-control input-sm" placeholder="Enter Mobile" ng-model="formData.mobile" required ng-maxlength="10" ng-minlength="10" ng-pattern="/^([0-9]{10,10})?$/">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !staffData.mobile.$invalid, 'glyphicon-remove': staffData.mobile.$invalid}" ng-show="staffData.mobile.$invalid || !staffData.mobile.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.mobile">{{errfor.mobile}}</span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="InputEmail">Confirm Email</label>
-                <div class="input-group">
-                    <input type="email" class="form-control" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                <label for="male" class="control-label col-sm-2">Gender :</label>
+                <div class="col-md-3" >
+                    <label class="radio-inline">
+                        <input type="radio" id="male" name="gender" value="male" ng-model="formData.gender" required/> Male 
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="female" name="gender" value="female" ng-model="formData.gender" required/> Female
+                    </label>
+                </div>
+                <label for="education" class="control-label col-sm-2">Education :</label>
+                <div class="col-md-3" ng-class="{'has-error': staffData.education.$invalid && staffData.education.$dirty, 'has-success': !staffData.education.$invalid, 'has-feedback': (staffData.education.$invalid && staffData.education.$dirty) || !staffData.education.$invalid}">
+                    <input id="education" name="education" type="text" class="form-control input-sm" placeholder="Enter Education" ng-model="formData.education" required ng-maxlength="100" ng-minlength="3">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !staffData.education.$invalid, 'glyphicon-remove': staffData.education.$invalid && staffData.education.$dirty}" ng-show="(staffData.education.$invalid && staffData.education.$dirty) || !staffData.education.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.education">{{errfor.education}}</span>
+                    <span class="glyphicon form-control-feedback" ng-if="errfor.education" ng-class="glyphicon - remove"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="InputMessage">Enter Message</label>
-                <div class="input-group">
-                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                <label class="control-label col-sm-2" for="subject">Subject:</label>
+                <div class="col-md-3" ng-class="{'has-error': staffData.subject.$invalid && staffData.subject.$dirty, 'has-success': !staffData.subject.$invalid, 'has-feedback': (staffData.subject.$invalid && staffData.subject.$dirty) || !staffData.subject.$invalid}">
+                    <input id="subject" name="subject" type="text" class="form-control input-sm" placeholder="Enter Subject" ng-model="formData.subject" required ng-maxlength="100" ng-minlength="3">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !staffData.subject.$invalid, 'glyphicon-remove': staffData.subject.$invalid && staffData.subject.$dirty}" ng-show="(staffData.subject.$invalid && staffData.subject.$dirty) || !staffData.subject.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.subject">{{errfor.subject}}</span>
+                    <span class="glyphicon form-control-feedback" ng-if="errfor.subject" ng-class="glyphicon - remove"></span>
+                </div>
+                <label for="experience" class="control-label col-sm-2">Experience :</label>
+                <div class="col-md-3" ng-class="{'has-error': staffData.experience.$invalid, 'has-success': !staffData.experience.$dirty, 'has-feedback':staffData.experience.$invalid || !staffData.experience.$invalid}">
+                    <input id="experience" name="experience" type="number" class="form-control input-sm" placeholder="Enter Experience" ng-model="formData.experience" required ng-pattern="/^([0-9]{1,2})?$/">
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !staffData.experience.$invalid, 'glyphicon-remove': staffData.experience.$invalid}" ng-show="staffData.experience.$invalid || !staffData.experience.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.experience">{{errfor.experience}}</span>
                 </div>
             </div>
-            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
-        </div>
-    </form>
-    <div class="col-lg-5 col-md-push-1">
-        <div class="col-md-12">
-            <div class="alert alert-success">
-                <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+            <div class="form-group">
+                <label for="address" class="control-label col-sm-2">Address :</label>
+                <div class="col-md-3" ng-class="{'has-error': staffData.address.$invalid && staffData.address.$dirty, 'has-success': !staffData.address.$invalid, 'has-feedback': (staffData.address.$invalid && staffData.address.$dirty) || !staffData.address.$invalid}">
+                    <textarea name="address" id="address" rows="6" class="col-sm-12" placeholder="Permanent Address" required ng-model="formData.address" ng-maxlength="200" ng-minlength="4"></textarea>
+                    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !staffData.address.$invalid, 'glyphicon-remove': staffData.address.$invalid && staffData.address.$dirty}" ng-show="(staffData.address.$invalid && staffData.address.$dirty) || !staffData.address.$invalid"></span>
+                    <span class="text-danger" ng-if="errfor.address">{{errfor.address}}</span>
+                </div>
+                <label for="address" class="control-label col-sm-2">Photo :</label>
+                <div class="col-md-3">
+                    <div class="fileupload" id="imageContainer"></div>
+                    <div class="center-block">
+                        <label class="customUpload btnUpload btnM">
+                            <span>Upload</span>
+                            <input class="upload" type='file' name='image' onchange='thumb(this.files)'>
+                        </label>
+                    </div>
+                </div>
             </div>
-            <div class="alert alert-danger">
-                <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-lg btn-success center-block" ng-disabled="staffData.$invalid" ng-click="createStaff()">Add Staff</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
+<script src="js/tumbImage.js"></script>

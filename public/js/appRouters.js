@@ -141,7 +141,12 @@ angular.module('appRoutes', [])
                                     url: '/staff',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/staff/index.html'
+                                            templateUrl: '/admin/staff/index.html',
+                                            controller: 'StaffViewController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
                                         }
                                     },
                                     data: {
