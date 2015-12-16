@@ -1,10 +1,6 @@
-<h3>
-    Current Financial Year Transaction Details
-</h3>
-<ul class="pager" >
-    <li class="next"><a ui-sref=".add" ><span class="glyphicon glyphicon-plus-sign"></span> Add Transaction →</a></li>
-</ul>
-<div >
+<br>
+<span ng-show="transactionList.length <= 0" class="text-danger">No data found for the year {{selectedItem.name}}</span>
+<div ng-show="transactionList.length > 0">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -13,7 +9,6 @@
                 <th>Date</th>
                 <th>Credit</th>
                 <th>Debit</th>
-                <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
@@ -25,13 +20,10 @@
                 <td>{{(row.type === 'Credit')? row.amount:''}}</td>
                 <td>{{(row.type === 'Debit')? row.amount:''}}</td>
                 <td class="text-center"><a href="" ng-click="loadModel(row)"> <i class="glyphicon glyphicon-eye-open" style="color: #0074c7;"></i></a></td>
-                <td class="text-center"><a href="" confirmation-needed="" ng-if="!row.deleted" ng-click="deleteTransaction(row._id)"> <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
             </tr>
         </tbody>
     </table>
 </div>
-<div ui-view="transactionview"></div>
-<br>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -62,6 +54,6 @@
 
 <style>
     .modal-dialog {
-     margin: 50px auto;
-}
+        margin: 50px auto;
+    }
 </style>

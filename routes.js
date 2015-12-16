@@ -67,7 +67,7 @@ exports = module.exports = function (app, passport) {
     app.get('/api/admin/staff/:id', staff.getdetail);
     //Transaction
     app.post('/api/admin/transaction/create', multipart(), transaction.create);
-    app.get('/api/admin/transaction', transaction.getall);
+    app.get('/api/admin/transaction/:years', transaction.getall);
     app.delete('/api/admin/transaction/:id', transaction.inactive);
     app.get('/api/admin/transaction/:id', transaction.getdetail);
 };

@@ -12,15 +12,3 @@ angular.module('ReportsCtrl', [])
                     };
                 }
         );
-
-function getFinancialYears() {
-    var d = new Date();
-    var n = d.getFullYear();
-    var years = [{name:'Pick Year'}];
-    var val = '';
-    for (i = 2015; i <= (n + 1); i++) {
-        val = i + '-' + (+i + +1);
-        years.push({name: val});
-    }
-    return years;
-}

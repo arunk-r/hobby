@@ -6,11 +6,11 @@ angular.module('TransactionViewCtrl', [])
                     $scope.transactionMember = {};
                     $scope.formData = {};
                     //console.log($scope.transactionMember)
-                    transaction.getall().then(function (data) {
+                    transaction.getall(currentFinancialYear()).then(function (data) {
                         $scope.transactionList = data.data;
                     });
-                    $scope.loadModel = function (row){
-                        console.log(row)
+                    $scope.loadModel = function (row) {
+                        //console.log(row)
                         $scope.transactionMember = row;
                         $("#myModal").modal();
                     };
@@ -67,6 +67,32 @@ angular.module('TransactionViewCtrl', [])
                             Flash.create('danger', message, 'custom-class');
                             $location.path('/login');
                             $state.go('login');
+                        });
+                    };
+                }
+        );
+
+angular.module('OldTransactionViewCtrl', [])
+        .controller('OldTransactionViewController',
+                function ($scope, $state, $location, transaction, Flash, Upload) {
+                    //console.log('In UserViewController');
+                    $scope.anualreportData = getFinancialYears();
+                    $scope.transactionList = {};
+                    $scope.transactionMember = {};
+                    $scope.selectedItem = '';
+
+                    $scope.loadModel = function (row) {
+                        //console.log(row)
+                        $scope.transactionMember = row;
+                        $("#myModal").modal();
+                    };
+                    // Get Transaction member details
+                    $scope.viewDetails = function () {
+                        //console.log($scope.selectedItem);
+                        transaction.getall($scope.selectedItem.name).then(function (data) {
+                            $scope.transactionList = data.data;
+                            $location.path('/oldtransactions/view');
+                            $state.go('admin.oldtransactions.view');
                         });
                     };
                 }

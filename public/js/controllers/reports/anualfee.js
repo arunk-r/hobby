@@ -82,17 +82,6 @@ angular.module('CurrentYearFeeCtrl', [])
                 }
         );
 
-var currentFinancialYear = function () {
-    var todayDate = new Date();
-    var year = todayDate.getFullYear();
-    var yearEndDate = new Date(year, 2, 31, 23, 59);
-    if (todayDate <= yearEndDate) {
-        return (+year - +1) + '-' + year;
-    } else {
-        return year + '-' + (+year + +1);
-    }
-};
-
 //Attempt to get current academic year student extrace report
 angular.module('StudentExtractCtrl', [])
         .controller('StudentExtractController',

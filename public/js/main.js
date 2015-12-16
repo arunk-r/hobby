@@ -33,5 +33,6 @@ var routerApp = angular.module('sbpuc', [
     'adminstaff.service',
     'StaffViewCtrl',
     'admintransaction.service',
-    'TransactionViewCtrl'
+    'TransactionViewCtrl',
+    'OldTransactionViewCtrl'
 ]);

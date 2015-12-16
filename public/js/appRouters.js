@@ -279,6 +279,31 @@ angular.module('appRoutes', [])
                                         requireLogin: true,
                                         adminPrev: true
                                     }
+                                })
+                                .state('admin.oldtransactions', {
+                                    url: '/oldtransactions',
+                                    views: {
+                                        'adminview@admin': {
+                                            templateUrl: '/admin/transaction/old.html',
+                                            controller:'OldTransactionViewController'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('admin.oldtransactions.view', {
+                                    url: '/oldtransactions/view',
+                                    views: {
+                                        'oldtransactionview': {
+                                            templateUrl: '/admin/transaction/oldview.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
                                 });
                     }
                 ]);

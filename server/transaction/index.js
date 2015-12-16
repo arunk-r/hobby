@@ -76,8 +76,18 @@ exports.getall = function (req, res) {
     var workflow = req.app.utility.workflow(req, res);
 
     workflow.on('getAll', function () {
+        var years = req.params.years;
+        var year = years.split('-');
+        
         req.app.db.models.Transaction.find(
-                {},
+                {
+                    date:
+                            {
+                                $gte: new Date(year[0] + "-03-31T23:59:00Z"),
+                                $lt: new Date(year[1] + "-04-01T00:00:00Z")
+                            }
+
+                },
                 {createddate: 0, createduser: 0, updateddate: 0, updateduser: 0},
                 function (err, staffs) {
                     if (err) {

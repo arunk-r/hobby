@@ -1,0 +1,9 @@
+
+<h3>
+    Old Transaction Details
+</h3>
+<span class="text-muted">
+    <select style="min-height: 30px; border-radius: 5px" ng-init="selectedItem = anualreportData[0]" ng-options="years.name for years in anualreportData" ng-model="selectedItem" ng-change="viewDetails()"></select>
+</span>
+<div ui-view="oldtransactionview"></div>
+<br>

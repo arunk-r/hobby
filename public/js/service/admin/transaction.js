@@ -3,9 +3,9 @@ angular.module('admintransaction.service', [])
                 function (router, $q, Flash) {
                     var users = {
                         // Attempt to get application users list
-                        getall: function () {
+                        getall: function (years) {
                             var deferred = $q.defer();
-                            router.trigger('/api/admin/transaction', 'get').then(
+                            router.trigger('/api/admin/transaction/'+years, 'get').then(
                                     function (response) {
                                         if (!response.success) {
                                             var message = '<strong> Something Wrong!...</strong> Please contact Arun Kumar(9980130541).';
