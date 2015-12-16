@@ -18,6 +18,8 @@ function ensureAdmin(req, res, next) {
     }
     res.redirect('/');
 }
+//File upload NPM
+var multipart = require('connect-multiparty');
 
 var base = require('./server/index');
 var signin = require('./server/signin/index');
@@ -32,6 +34,7 @@ var extracts = require('./server/reports/casteextract/index');
 //Admin features
 var user = require('./server/user/index');
 var staff = require('./server/staff/index');
+var transaction = require('./server/transaction/index');
 
 exports = module.exports = function (app, passport) {
     //app.use('/', base.init);
@@ -41,7 +44,7 @@ exports = module.exports = function (app, passport) {
     app.post('/user/reset/:username/:token', reset.set);
     app.get('/user/logout', signin.logout);
 
-    //app.all('/api/*', ensureAuthenticated);
+    app.all('/api/*', ensureAuthenticated);
     app.get('/api/students', student.students);
     app.get('/api/student/:id', student.studentdetails);
     app.post('/api/student/add', student.addstudent);
@@ -62,4 +65,9 @@ exports = module.exports = function (app, passport) {
     app.get('/api/admin/staff', staff.getall);
     app.delete('/api/admin/staff/:id', staff.inactive);
     app.get('/api/admin/staff/:id', staff.getdetail);
+    //Transaction
+    app.post('/api/admin/transaction/create', multipart(), transaction.create);
+    app.get('/api/admin/transaction', transaction.getall);
+    app.delete('/api/admin/transaction/:id', transaction.inactive);
+    app.get('/api/admin/transaction/:id', transaction.getdetail);
 };

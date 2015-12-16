@@ -1,32 +1,43 @@
 {
-    "name": "collegeproject",
-    "version": "0.0.0",
-    "private": true,
-    "scripts": {
-        "start": "node server"
-    },
-    "dependencies": {
-        "body-parser": "~1.13.2",
-        "cookie-parser": "~1.3.5",
-        "debug": "~2.2.0",
-        "express": "~4.13.1",
-        "jade": "~1.11.0",
-        "morgan": "~1.6.1",
-        "serve-favicon": "~2.3.0",
-        "mongodb": "*",
-        "mongoose": "*",
-        "connect-flash": "*",
-        "express-validator": "*",
-        "express-session": "*",
-        "express-messages": "*",
-        "passport": "*",
-        "passport-local": "*",
-        "passport-http": "*",
-        "method-override":"*",
-        "express-session": "*",
-        "bcrypt-nodejs": "*",
-        "node-uuid": "1.4.2",
-        "compression": "*",
-        "helmet": "*"
-    }
+  "name": "collegeproject",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0",
+    "mongodb": "*",
+    "mongoose": "*",
+    "connect-flash": "*",
+    "express-validator": "*",
+    "express-session": "*",
+    "express-messages": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "passport-http": "*",
+    "method-override": "*",
+    "bcrypt-nodejs": "*",
+    "node-uuid": "1.4.2",
+    "compression": "*",
+    "helmet": "*",
+    "connect-multiparty" : "*"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-shell":"*",
+    "grunt-newer": "*",
+    "grunt-concurrent": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-nodemon": "*",
+    "async": "~1.5.0"
+  }
 }

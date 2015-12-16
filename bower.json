@@ -15,7 +15,8 @@
         "html5shiv": "*",
         "respond": "*",
         "angular-bootstrap":"*",
-        "font-awesome":"*"
+        "font-awesome":"*",
+        "ng-file-upload":"*"
     },
     "devDependencies": {
     }

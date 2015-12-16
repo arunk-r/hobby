@@ -1,0 +1,67 @@
+<h3>
+    Transaction Details
+</h3>
+<ul class="pager" >
+    <li class="next"><a ui-sref=".add" ><span class="glyphicon glyphicon-plus-sign"></span> Add Transaction →</a></li>
+</ul>
+<div >
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Credit</th>
+                <th>Debit</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-left" ng-repeat="row in transactionList" ng-class="{'text-danger strikethrough': row.deleted}">
+                <td>{{$index + 1}}</td>
+                <td>{{row.name}}</td>
+                <td>{{row.date| date:'MMM dd, yyyy'}}</td>
+                <td>{{(row.type === 'Credit')? row.amount:''}}</td>
+                <td>{{(row.type === 'Debit')? row.amount:''}}</td>
+                <td class="text-center"><a href="" ng-click="loadModel(row)"> <i class="glyphicon glyphicon-eye-open" style="color: #0074c7;"></i></a></td>
+                <td class="text-center"><a href="" confirmation-needed="" ng-if="!row.deleted" ng-click="deleteTransaction(row._id)"> <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ui-view="transactionview"></div>
+<br>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="padding:25px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span> Scanned Copy</h4>
+            </div>
+
+            <div class="modal-body" style="padding:40px 50px;">
+                <div class="form-group">
+                    <label>Description: &nbsp;</label><span>{{transactionMember.description}}</span>
+                </div>
+                <br>
+                <div class="form-group">
+                    <img style="max-width: 300px; max-width: 500px" ng-src="{{transactionMember.image}}"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-dialog {
+     margin: 50px auto;
+}
+</style>

@@ -1,41 +1,41 @@
+<style>
+    .floatLeftDiv {
+        display: inline-block;
+        margin-top: 3px;
+    }
+    .right {
+        float: right;
+        margin-top: 3px;
+        margin-right: 1%;
+    }
+</style>
+
 <div >
-    <div class="well details">
-        <div >
-            <div class="col-xs-20 col-sm-8">
-                <h2 style="text-decoration:underline;">{{staffMember.name}}</h2>
-                <p><strong>Date of Birth: </strong>{{staffMember.dob | date:'MMM dd, yyyy'}}</p>
-                <p><strong>Contact: </strong>{{staffMember.mobile}}</p>
-                <p><strong>Education </strong>{{staffMember.education}}</p>
-                <p><strong>Address: </strong>{{staffMember.address}}</p>
-            </div>
-            <div class="col-xs-20 col-sm-4 col-lg-4 text-center">                        
-                <figure>
-                    <img src="{{staffMember.image}}" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail"> 
-                    <span class="avg">Exp: {{staffMember.experience}}</span>  
-                    <div class="skillLine"><div class="skill pull-left">{{staffMember.subject}}</div></div>
-                </figure>
-            </div>
-        </div>                
+    <div class="floatLeftDiv">
+        <h2 style="text-decoration:underline;">{{staffMember.name}}</h2>
+        <p><strong>Date of Birth: </strong>{{staffMember.dob | date:'MMM dd, yyyy'}}</p>
+        <p><strong>Contact: </strong>{{staffMember.mobile}}</p>
+        <p><strong>Education </strong>{{staffMember.education}}</p>
+        <p><strong>Address: </strong>{{staffMember.address}}</p>
+    </div>
+    <div class="right text-center">
+        <figure>
+            <img src="{{staffMember.image}}" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail"> 
+            <span class="avg">Exp: {{staffMember.experience}}</span>  
+            <div class="skillLine text-center"><div class="skill pull-left">{{staffMember.subject}}</div></div>
+        </figure>
     </div>
 </div>
+
 <style>
     .img-responsive {
         max-width: 100%;
-    }
-    .details {
-        display: inline-block;
-        height: 100%;
     }
     .avg {
         font-size:27px; 
         padding-top: 20px;
         color:#5CB85C;
     }
-
-    .rating {
-        padding-left:40px;
-    }
-
     .skillLine {    
         display:inline-block;
         width:100%;
@@ -48,6 +48,5 @@
         color: white;
         font-weight: bold;
         padding: 3px 4px;    
-        width:100%;
     }
 </style>

@@ -7,4 +7,5 @@ exports = module.exports = function (app, mongoose) {
     require('./schema/Account')(app, mongoose);
     require('./schema/Admin')(app, mongoose);
     require('./schema/Staff')(app, mongoose);
+    require('./schema/Transcation')(app, mongoose);
 };

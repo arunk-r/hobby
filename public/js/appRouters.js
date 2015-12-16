@@ -255,11 +255,12 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
-                                .state('admin.transcations', {
-                                    url: '/transcations',
+                                .state('admin.transactions', {
+                                    url: '/transactions',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/transcations/index.html'
+                                            templateUrl: '/admin/transaction/index.html',
+                                            controller:'TransactionViewController'
                                         }
                                     },
                                     data: {
@@ -267,11 +268,11 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
-                                .state('admin.transcations.add', {
-                                    url: '/transcations',
+                                .state('admin.transactions.add', {
+                                    url: '/transaction/add',
                                     views: {
-                                        'add': {
-                                            templateUrl: '/admin/transcations/add.html'
+                                        'transactionview': {
+                                            templateUrl: '/admin/transaction/add.html'
                                         }
                                     },
                                     data: {

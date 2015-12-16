@@ -24,7 +24,7 @@
                 <td>{{row.isActive?'Yes':'No'}}</td>
                 <td>{{row.roles.admin ? 'Administrator':'Application User'}}</td>
                 <td>{{row.timeCreated | date:'MMM dd, yyyy HH:MM a'}}</td>
-                <td class="text-center"><a href="" ng-if="row.canDelete && row.isActive" ng-click="deleteUser(row._id)"> <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
+                <td class="text-center"><a href="" confirmation-needed="" ng-if="row.canDelete && row.isActive" ng-click="deleteUser(row._id)"> <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
 
             </tr>
         </tbody>
