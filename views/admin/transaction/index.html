@@ -22,8 +22,8 @@
                 <td>{{$index + 1}}</td>
                 <td>{{row.name}}</td>
                 <td>{{row.date| date:'MMM dd, yyyy'}}</td>
-                <td>{{(row.type === 'Credit')? row.amount:''}}</td>
-                <td>{{(row.type === 'Debit')? row.amount:''}}</td>
+                <td><i class="fa fa-inr" ng-show="row.type === 'Credit'"></i>{{(row.type === 'Credit')? row.amount:''}}</td>
+                <td><i class="fa fa-inr" ng-show="row.type === 'Debit'"></i>{{(row.type === 'Debit')? row.amount:''}}</td>
                 <td class="text-center"><a href="" ng-click="loadModel(row)"> <i class="glyphicon glyphicon-eye-open" style="color: #0074c7;"></i></a></td>
                 <td class="text-center"><a href="" confirmation-needed="" ng-if="!row.deleted" ng-click="deleteTransaction(row._id)"> <i class="glyphicon glyphicon-remove-circle" style="color: red;"></i></a></td>
             </tr>

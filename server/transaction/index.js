@@ -78,7 +78,7 @@ exports.getall = function (req, res) {
     workflow.on('getAll', function () {
         var years = req.params.years;
         var year = years.split('-');
-        
+
         req.app.db.models.Transaction.find(
                 {
                     date:
@@ -89,6 +89,9 @@ exports.getall = function (req, res) {
 
                 },
                 {createddate: 0, createduser: 0, updateddate: 0, updateduser: 0},
+                {
+                    sort: {date: -1}
+                },
                 function (err, staffs) {
                     if (err) {
                         return workflow.emit('exception', err);
@@ -97,7 +100,6 @@ exports.getall = function (req, res) {
                     workflow.emit('response');
                 });
     });
-
     workflow.emit('getAll');
 };
 
