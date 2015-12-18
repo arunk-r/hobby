@@ -7,9 +7,14 @@
                     <ul class="nav nav-stacked collapse in" id="userMenu">
                         <li><a ui-sref=".staff"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
                         <li><a ui-sref=".appusers"><i class="glyphicon glyphicon-user"></i> App Users List</a></li>
-                        <li><a ui-sref=".currentstudents"><i class="glyphicon glyphicon-user"></i> Current Students</a></li>
-                        <li><a ui-sref=".oldstudents"><i class="glyphicon glyphicon-user"></i> Old Students</a></li>
-                        <li class="nav-header"> <a href="" ui-sref="admin" data-toggle="collapse" data-target="#menu4" id='adminreportsnav1'> <i class="glyphicon glyphicon-stats"></i> Transactions <i class="glyphicon glyphicon-chevron-right"></i></a>
+                        <li class="nav-header"> <a href="" ui-sref="admin" data-toggle="collapse" data-target="#menu5" id='adminreportsnav2'> <i class="fa fa-users"></i> Students <i class="glyphicon glyphicon-chevron-right"></i></a>
+                            <ul class="nav nav-stacked collapse" id="menu5">
+                                <li><a ui-sref=".currentstudents">&nbsp;<i class="fa fa-codiepie"></i></i>&nbsp;Current</a></li>
+                                <li><a ui-sref=".oldstudents">&nbsp;<i class="fa fa-weibo"></i>&nbsp;Old</a></li>
+                                <li><a ui-sref='.movestudents'>&nbsp;<i class="fa fa-chevron-circle-right"></i></i>&nbsp;Move</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-header"> <a href="" ui-sref="admin" data-toggle="collapse" data-target="#menu4" id='adminreportsnav1'> <i class="fa fa-gg-circle"></i> Transactions <i class="glyphicon glyphicon-chevron-right"></i></a>
 
                             <ul class="nav nav-stacked collapse" id="menu4">
                                 <li><a ui-sref=".transactions">&nbsp;<i class="fa fa-bullseye"></i>&nbsp;Current Year</a></a>
@@ -65,6 +70,9 @@
 
     <script>
         $(document).ready(function () {
+            $('#adminreportsnav2').click(function () {
+                $(this).find('i').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
+            });
             $('#adminreportsnav1').click(function () {
                 $(this).find('i').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
             });

@@ -1,0 +1,24 @@
+<h3>Migrate Data</h3>
+<div class="row">
+    <table class="lamp">
+        <tbody>
+            <tr>
+                <th style="width:34px"><img src="/img/lamp.jpg" alt="Note" style="height:32px;width:32px"></th>
+                <td><strong class="text-danger">Attention: </strong>
+                    Careful while using this module.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <ul>
+        <li >Removes all <strong>II<sup>nd</sup> PUC </strong>students from this system</li>
+        <li >Moves all <strong>I<sup>st</sup> PUC </strong> students to <strong>II<sup>nd</sup> PUC</strong></li>
+        <li >Current <strong>II<sup>nd</sup> PUC </strong> students will not visible/searchable in clerical mode</li>
+    </ul>
+    <form class="form-horizontal" role="form" name="moveData">
+        <p> <input type="checkbox" value="accepted" name="checkbox" required ng-model="checkbox"> I Agree for above condition </p>
+        <button type="submit" class="btn btn-sup btn-raised btn-primary" ng-disabled="moveData.$invalid" ng-click="moveTranscation()">Move Students</button>
+    </form>
+</div>
+<br>

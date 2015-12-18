@@ -70,4 +70,6 @@ exports = module.exports = function (app, passport) {
     app.get('/api/admin/transaction/:years', transaction.getall);
     app.delete('/api/admin/transaction/:id', transaction.inactive);
     app.get('/api/admin/transaction/:id', transaction.getdetail);
+    //Students Admin module
+    app.patch('/api/admin/student/move', student.migratestudents);
 };

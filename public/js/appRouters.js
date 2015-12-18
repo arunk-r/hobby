@@ -255,12 +255,25 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
+                                .state('admin.movestudents', {
+                                    url: '/movestudents',
+                                    views: {
+                                        'adminview@admin': {
+                                            templateUrl: '/admin/student/move.html',
+                                            controller: 'MoveStudentsViewController'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
                                 .state('admin.transactions', {
                                     url: '/transactions',
                                     views: {
                                         'adminview@admin': {
                                             templateUrl: '/admin/transaction/index.html',
-                                            controller:'TransactionViewController'
+                                            controller: 'TransactionViewController'
                                         }
                                     },
                                     data: {
@@ -285,7 +298,7 @@ angular.module('appRoutes', [])
                                     views: {
                                         'adminview@admin': {
                                             templateUrl: '/admin/transaction/old.html',
-                                            controller:'OldTransactionViewController'
+                                            controller: 'OldTransactionViewController'
                                         }
                                     },
                                     data: {

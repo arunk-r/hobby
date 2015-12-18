@@ -21,6 +21,8 @@ angular.module('router.service', [])
                                 request = $http.put(url, data);
                             } else if (type === 'OPTIONS') {
                                 request = $http.options(url, data);
+                            } else if (type === 'PATCH') {
+                                request = $http.patch(url, data);
                             } else {
                                 throw new Error('Invalid Request');
                             }

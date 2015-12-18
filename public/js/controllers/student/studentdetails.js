@@ -8,20 +8,29 @@ angular.module('StudentsDetailCtrl', [])
                     $scope.studentData = [];
                     $scope.errorMsg = '';
                     $scope.feePayment = {};
+                    $scope.paidAmount = 0;
                     //console.log($stateParams);
                     student.studentdetailsbyid($stateParams.id).then(function (data) {
                         //console.log(data.data.length);
                         if (data.success && data.data.length > 0) {
                             $scope.viewStudentData = data.data[0];
-                            //console.log(data.data)
+                            $scope.getPaidAmount();
+                            //console.log($scope.paidAmount)
+                            console.log(data.data)
                         } else {
                             if (data.errors) {
                                 $scope.errorMsg = data.errors[0];
-                            }else{
+                            } else {
                                 $scope.errorMsg = "Error while fetching the data"
                             }
                         }
                     });
+                    $scope.getPaidAmount = function () {
+                        for (i = 0; i < $scope.viewStudentData.fee.length; i++) {
+                            $scope.paidAmount = +$scope.paidAmount + +$scope.viewStudentData.fee[i].amount;
+                            //console.log($scope.viewStudentData.fee[i].amount)
+                        }
+                    };
                     $scope.addFeePayment = function (id) {
                         $('#myModal').modal('hide');
                         //console.log($scope.feePayment);
@@ -36,7 +45,7 @@ angular.module('StudentsDetailCtrl', [])
                     $scope.callReLoadingData = function (data, type) {
                         //console.log(data)
                         $location.path($location.path());
-                        $state.go($state.current, $stateParams, {reload: true}); 
+                        $state.go($state.current, $stateParams, {reload: true});
                         $timeout(function () {
                             $scope.callOpenprintDialogData(data[0], type);
                         }, 1000);
@@ -58,17 +67,17 @@ angular.module('StudentsDetailCtrl', [])
 //Adding New student
 angular.module('AddStudentCtrl', [])
         .controller('AddStudentController',
-                function ($scope, $state, $location, student, Flash) {
+                function ($scope, $state, $location, $stateParams, student, Flash) {
                     $scope.formData = {};
                     // Create a new student
                     $scope.createStudent = function () {
                         $scope.formData.image = $('#tumbimage').val();
-                        console.log($scope.formData)
+                        //console.log($scope.formData)
                         student.addstudent($scope.formData).then(function (data) {
-                            //console.log(data.data[0]);
-                            $scope.formData = {};
+                            console.log(data.data[0]);
+                            $stateParams.id = data.data[0];
                             $location.path('/student/' + data.data[0]);
-                            $state.go('student');
+                            $state.go('student', $stateParams, {reload: true});
                         });
                     };
                 }

@@ -325,5 +325,9 @@ File Upload
     content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 }
 .strikethrough{
-  text-decoration:line-through
+    text-decoration:line-through
+}
+.lamp {
+    border: 1px solid #dddddd;
+    width: 100%;
 }

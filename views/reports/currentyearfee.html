@@ -6,12 +6,23 @@
                     <a ui-sref="reports">Reports</a> <span class="divider"></span>
                 </li>
                 <li class="active">
-                    Anual Fee
+                    Current Financial Year Fee
                 </li>
             </ul>
             <h3>
                 Fee Report for the Financial year {{year}}.
             </h3>
+            <table class="lamp" style="border: 0px">
+                <tbody>
+                    <tr>
+                        <th style="width:34px"><img src="/img/lamp.jpg" alt="Note" style="height:32px;width:32px"></th>
+                        <td><strong class="text-danger">Attention: </strong>
+                            Highlighted colored row data from Passed out student .
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
             <table class="table table-condensed" ng-show="anualfeeData">
                 <thead>
                     <tr>
@@ -39,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="row in anualfeeData">
+                    <tr ng-repeat="row in anualfeeData" ng-class="{'text-danger info': !row._id.active}">
                         <td>
                             {{$index + 1}}
                         </td>
@@ -93,3 +104,9 @@
         </div>
     </div>
 </div>
+
+<style>
+    .table-hover tbody tr:hover > td.info {
+        background-color: #c4e3f3 !important;
+    }
+</style>

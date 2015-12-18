@@ -35,6 +35,15 @@ angular.module('student.service', [])
                                 deferred.resolve(response);
                             });
                             return deferred.promise;
+                        },
+                        // Admin features
+                        // Attempt to move all sutudent to next class
+                        movestudents: function () {
+                            var deferred = $q.defer();
+                            router.trigger('/api/admin/student/move', 'patch').then(function (response) {
+                                deferred.resolve(response);
+                            });
+                            return deferred.promise;
                         }
                     };
                     return student;

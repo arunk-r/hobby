@@ -24,7 +24,8 @@ exports.anualreport = function (req, res) {
                                         combination: '$combination',
                                         rollnumber: '$rollnumber',
                                         puc1fee: '$puc1fee',
-                                        puc2fee: '$puc2fee'
+                                        puc2fee: '$puc2fee',
+                                        active:'$active'
                                     },
                                     totalFeePaid: {$sum: '$fee.amount'}}
                     },

@@ -8,16 +8,17 @@ exports.students = function (req, res) {
                     active: true
                 },
                 {
-                    address: 0,
-                    sslcschooladdress: 0,
-                    sslcpercentage: 0,
-                    createddate: 0,
-                    createduser: 0,
-                    updateddate: 0,
-                    updateduser: 0,
-                    active: 0,
-                    fee: 0,
-                    __v: 0
+                    name: 1,
+                    dob: 1,
+                    rollnumber: 1,
+                    class: 1,
+                    gender: 1,
+                    caste: 1,
+                    puc1fee: 1,
+                    puc2fee: 1,
+                    mobile: 1,
+                    combination: 1,
+                    active: 1
                 },
                 function (err, students) {
                     if (err) {
@@ -101,7 +102,7 @@ exports.addstudent = function (req, res) {
             puc2fee: puc2fee,
             mobile: req.body.mobile,
             address: req.body.address,
-            fee:[],
+            fee: [],
             combination: req.body.combination,
             sslcschooladdress: req.body.sslcschooladdress,
             sslcpercentage: req.body.sslcpercentage,
@@ -130,7 +131,7 @@ exports.studentdetails = function (req, res) {
         var id = req.params.id;
         req.app.db.models.Student.findOne(
                 {_id: id},
-                {name: 1, dob: 1, rollnumber: 1, class: 1, caste: 1, gender: 1, puc1fee: 1, puc2fee: 1, mobile: 1, combination: 1, fee: 1, examfee:1, otherfee:1, image:1},
+                {name: 1, dob: 1, rollnumber: 1, class: 1, caste: 1, gender: 1, puc1fee: 1, puc2fee: 1, mobile: 1, combination: 1, fee: 1, examfee: 1, otherfee: 1, image: 1},
                 function (err, student) {
                     if (err) {
                         return workflow.emit('exception', err);
@@ -144,4 +145,50 @@ exports.studentdetails = function (req, res) {
                 });
     });
     workflow.emit('viewStudentDetails');
+};
+
+// Admin features
+
+//Service will move all 2nd PUC students to inactive mode and move 1st PUC students to 2nd PUC.
+exports.migratestudents = function (req, res) {
+    var workflow = req.app.utility.workflow(req, res);
+    workflow.on('moveStudents', function () {
+        //Move 2nd PUC students
+        req.app.db.models.Student.update(
+                {
+                    active: true,
+                    class: 'PUC2'
+                },
+                {
+                    $set: {active: false}
+                },
+                {
+                    multi: true
+                },
+                function (err, student) {
+                    if (err) {
+                        return workflow.emit('exception', err);
+                    }
+                    req.app.db.models.Student.update(
+                            {
+                                active: true,
+                                class: 'PUC1'
+                            },
+                            {
+                                $set: {class: 'PUC2'}
+                            },
+                            {
+                                multi: true
+                            },
+                            function (err, student) {
+                                if (err) {
+                                    return workflow.emit('exception', err);
+                                }
+                            }
+                    );
+                }
+        );
+        return workflow.emit('response');
+    });
+    workflow.emit('moveStudents');
 };

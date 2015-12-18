@@ -13,15 +13,18 @@
         <img src="{{(viewStudentData.image)? viewStudentData.image : (viewStudentData.gender == 'male') ? 'img/male-avatar.jpg': 'img/female-avatar.jpg'}}" class="center-block img-responsive img-circle" alt="Generic placeholder thumbnail">
     </div>
     <span class="text-primary"><h1>{{viewStudentData.name}}</h1></span>
-    <p class="text-muted">{{viewStudentData.mobile}}</p> 
-    <p class="text-muted">Promised 1st Year Fee : <label >{{viewStudentData.puc1fee}}</label></p> 
-    <p class="text-muted">Promised 2nd Year Fee : <label >{{viewStudentData.puc2fee}}</label></p>
+    <p class="text-muted">{{viewStudentData.mobile}}</p>
+    <p class="text-muted">Roll Number : <label >{{viewStudentData.rollnumber}}</label></p> 
     <div class="accordion" id="accordion2">
         <div class="accordion-group">
             <div id="collapseTwo" class="accordion-body collapse">
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quasi reiciendis harum quibusdam tempore commodi! Voluptatem recusandae incidunt accusamus expedita.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, repudiandae, asperiores atque quas deleniti odit minima fugiat obcaecati dolorum ad amet ipsum similique ea consequuntur quos dolore error veniam sed.</p>
+                <p class="text-muted">Date of Birth : <label >{{viewStudentData.dob| date:'MMM dd, yyyy'}}</label></p> 
+                <p class="text-muted">Promised 1st Year Fee : <label >{{viewStudentData.puc1fee}}</label></p> 
+                <p class="text-muted">Promised 2nd Year Fee : <label >{{viewStudentData.puc2fee}}</label></p>
+                <p class="text-muted">Total Promised Fee for both the Year's : <label >{{viewStudentData.puc1fee + viewStudentData.puc2fee}}</label></p>
+                <p class="text-muted">Combination : <label >{{viewStudentData.combination}}</label></p>
+                <p class="text-muted">Class : <label >{{viewStudentData.class}}</label></p>
+                <p class="text-muted">Category : <label >{{viewStudentData.caste}}</label></p>
             </div>
 
             <button class="SeeMore2 btn btn-link" data-toggle="collapse" href="#collapseTwo">See More</button>
@@ -34,8 +37,8 @@
 </div>
 <hr>
 <div class="row">
-    <div class="text-primary lead colors  col-lg-6 pull-left">Balance : <label class="col-bn"> {{(viewStudentData.puc1fee + viewStudentData.puc2fee) - viewBalanceData.paidamount}} </label></div>
-    <div class="text-primary lead colors  col-lg-6 pull-right text-right">Total Paid Amount : <label class="col-bn"> {{viewBalanceData.paidamount}} </label></div>
+    <div class="text-primary lead colors  col-lg-6 pull-left">Balance : <label class="col-bn"> {{(viewStudentData.puc1fee + viewStudentData.puc2fee) - paidAmount}} </label></div>
+    <div class="text-primary lead colors  col-lg-6 pull-right text-right">Total Paid Amount : <label class="col-bn"> {{paidAmount}} </label></div>
 </div>
 <label class="text-primary lead colors">Payment History</label>
 
@@ -65,9 +68,15 @@
                             <td>{{row.amount}}</td>
                             <td>{{row.description}}</td>
                             <td>
-                                <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'academicfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
+                                <a style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'academicfee')"><span class="glyphicon glyphicon-print"></span></a>
 
                             </td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <th>{{paidAmount}}</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </tbody>
                 </table>
@@ -99,7 +108,7 @@
                             <td>{{row.amount}}</td>
                             <td>{{row.description}}</td>
                             <td>
-                                <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'examfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
+                                <a style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'examfee')"><span class="glyphicon glyphicon-print"></span></a>
 
                             </td>
                         </tr>
@@ -133,7 +142,7 @@
                             <td>{{row.amount}}</td>
                             <td>{{row.description}}</td>
                             <td>
-                                <button class="btn btn-primary " style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'otherfee')"><span class="glyphicon glyphicon-print"></span> Print</button>
+                                <a style="align-self: flex-end" ng-click="print(viewStudentData._id, row.id, 'otherfee')"><span class="glyphicon glyphicon-print"></span></a>
 
                             </td>
                         </tr>

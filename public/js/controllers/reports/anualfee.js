@@ -5,6 +5,7 @@ angular.module('AnualFeeCtrl', [])
                     $scope.year = $stateParams.years;
                     $scope.anualfeeData = {};
                     report.anualfee($scope.year).then(function (data) {
+                        console.log(data)
                         if (data.length > 0)
                             $scope.anualfeeData = data;
                         else {
