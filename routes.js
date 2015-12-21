@@ -50,7 +50,9 @@ exports = module.exports = function (app, passport) {
     app.post('/api/student/add', student.addstudent);
     app.post('/api/student/:id/fee/add', fee.addstudentfee);
     app.get('/api/student/:id/:type/fee/:feeid/print', print.feeprintbyfeeid);
+    //Reports
     app.get('/api/report/anual/:years/fee', feereport.anualreport);
+    app.get('/api/report/month/:year/:month/fee', feereport.monthlyreport);
     app.get('/api/report/anual/:years/exam/fee', feereport.examreport);
     app.get('/api/report/anual/:years/miscellaneous/fee', feereport.miscellaneousreport);
     app.get('/api/report/studentsextract', extracts.studentsextract);

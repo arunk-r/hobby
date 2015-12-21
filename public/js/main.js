@@ -21,9 +21,11 @@ var routerApp = angular.module('sbpuc', [
     'ViewStudentsDetailCtrl',
     'AddStudentCtrl',
     'StudentsDetailCtrl',
+    //Reports
     'ReportsCtrl',
     'AnualFeeCtrl',
     'CurrentYearFeeCtrl',
+    'MonthlyFeeCtrl',
     'CurrentYearExamFeeCtrl',
     'CurrentYearMiscellaneousFeeCtrl',
     'StudentExtractCtrl',

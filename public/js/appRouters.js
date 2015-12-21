@@ -101,6 +101,15 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
+                                .state('monthlyfee', {
+                                    url: '/reports/monthlyfee',
+                                    templateUrl: '/reports/monthlyfee.html',
+                                    controller: 'MonthlyFeeController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
                                 .state('examfee', {
                                     url: '/reports/examfee',
                                     templateUrl: '/reports/currentyearexamfee.html',

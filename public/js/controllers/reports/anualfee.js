@@ -64,10 +64,8 @@ angular.module('CurrentYearFeeCtrl', [])
                     });
                     $scope.getPromisedFeeToBeCollected = function () {
                         var total = 0;
-                        var fee = 0;
                         for (i = 0; i < $scope.anualfeeData.length; i++) {
-                            fee = ($scope.anualfeeData[i]._id.class === 'PUC1') ? $scope.anualfeeData[i]._id.puc1fee : $scope.anualfeeData[i]._id.puc2fee
-                            total += fee;
+                            total += ($scope.anualfeeData[i]._id.puc1fee + $scope.anualfeeData[i]._id.puc2fee);
                         }
                         if (total > 0)
                             return total;
@@ -168,6 +166,66 @@ angular.module('CurrentYearExamFeeCtrl', [])
                         var total = 0;
                         for (i = 0; i < $scope.examfeeData.length; i++) {
                             total += $scope.examfeeData[i].totalFeePaid;
+                        }
+                        if (total > 0)
+                            return total;
+                    };
+                }
+        );
+
+//Attempt to get monthly fee collection report
+angular.module('MonthlyFeeCtrl', [])
+        .controller('MonthlyFeeController',
+                function ($scope, report, Flash) {
+                    $scope.monthlyfeeData = {};
+                    $scope.years = getFinancialYearsList();
+                    //console.log($scope.years)
+                    $scope.year = new Date().getFullYear();
+                    $scope.month = new Date().getMonth() + 1;
+
+                    $scope.getSelectDataReport = function () {
+                        //console.log($scope.smonth);
+                        //console.log($scope.syear);
+                        report.monthlyfee($scope.syear, $scope.smonth).then(function (data) {
+                            $scope.year = $scope.syear;
+                            $scope.month = $scope.smonth;
+                            if (data.length > 0)
+                                $scope.monthlyfeeData = data;
+                            else {
+                                $scope.monthlyfeeData = '';
+                                var message = '<strong> Information!</strong>  No data found for the month ' + $scope.month + ', ' + $scope.year + '. ';
+                                Flash.create('info', message, 'custom-class');
+                            }
+                        }, function (e) {
+                            var message = '<strong> Error!</strong>  Something went wrong, Please relogin to system. ' + e;
+                            Flash.create('danger', message, 'custom-class');
+                        });
+                    };
+
+                    report.monthlyfee($scope.year, $scope.month).then(function (data) {
+                        if (data.length > 0)
+                            $scope.monthlyfeeData = data;
+                        else {
+                            $scope.monthlyfeeData = '';
+                            var message = '<strong> Information!</strong>  No data found for the month ' + $scope.month + ', ' + $scope.year + '. ';
+                            Flash.create('info', message, 'custom-class');
+                        }
+                    }, function (e) {
+                        var message = '<strong> Error!</strong>  Something went wrong, Please relogin to system. ' + e;
+                        Flash.create('danger', message, 'custom-class');
+                    });
+                    $scope.getPromisedFeeToBeCollected = function () {
+                        var total = 0;
+                        for (i = 0; i < $scope.monthlyfeeData.length; i++) {
+                            total += ($scope.monthlyfeeData[i]._id.puc1fee + $scope.monthlyfeeData[i]._id.puc2fee);
+                        }
+                        if (total > 0)
+                            return total;
+                    };
+                    $scope.getTotalPaidAmount = function () {
+                        var total = 0;
+                        for (i = 0; i < $scope.monthlyfeeData.length; i++) {
+                            total += $scope.monthlyfeeData[i].totalFeePaid;
                         }
                         if (total > 0)
                             return total;

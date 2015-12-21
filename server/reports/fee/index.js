@@ -25,7 +25,7 @@ exports.anualreport = function (req, res) {
                                         rollnumber: '$rollnumber',
                                         puc1fee: '$puc1fee',
                                         puc2fee: '$puc2fee',
-                                        active:'$active'
+                                        active: '$active'
                                     },
                                     totalFeePaid: {$sum: '$fee.amount'}}
                     },
@@ -49,6 +49,58 @@ exports.anualreport = function (req, res) {
                 });
     });
     workflow.emit('anualReport');
+};
+ 
+exports.monthlyreport = function (req, res) {
+    var workflow = req.app.utility.workflow(req, res);
+    workflow.on('monthlyReport', function () {
+
+        var year = req.params.year;
+        var month = req.params.month;
+        req.app.db.models.Student.aggregate(
+                [
+                    {$match:
+                                {'fee.paiddate':
+                                            {
+                                                $gte: new Date(year + '-' + month + '-01T00:00:00Z'),
+                                                $lt: new Date(year + '-' + month + '-31T23:59:59Z')
+                                            }
+                                }
+                    },
+                    {$unwind: '$fee'},
+                    {$group:
+                                {
+                                    _id: {
+                                        name: '$name',
+                                        class: '$class',
+                                        combination: '$combination',
+                                        rollnumber: '$rollnumber',
+                                        puc1fee: '$puc1fee',
+                                        puc2fee: '$puc2fee',
+                                        active: '$active'
+                                    },
+                                    totalFeePaid: {$sum: '$fee.amount'}}
+                    },
+                    {$sort:
+                                {
+                                    '_id.name': 1,
+                                    '_id.class': 1,
+                                    '_id.combination': 1
+                                }
+                    }
+                ],
+                function (err, data) {
+                    if (err) {
+                        return workflow.emit('exception', err);
+                    }
+                    if (!data) {
+                        return workflow.emit('exception', err);
+                    }
+                    workflow.outcome.data = data;
+                    workflow.emit('response');
+                });
+    });
+    workflow.emit('monthlyReport');
 };
 
 exports.examreport = function (req, res) {

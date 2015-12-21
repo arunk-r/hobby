@@ -20,3 +20,18 @@ var getFinancialYears = function () {
     }
     return years;
 };
+
+var getFinancialYearsList = function () {
+    var d = new Date();
+    var n = d.getFullYear();
+    var years = [];
+    var val = '';
+    for (i = 2015; i <= (n + 1); i++) {
+        val = i;
+        if (i === n)
+            years.push({name: val, selected: true});
+        else
+            years.push({name: val, selected: false});
+    }
+    return years;
+};
