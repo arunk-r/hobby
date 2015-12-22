@@ -216,11 +216,12 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
-                                .state('admin.currentstudents', {
-                                    url: '/currentstudents',
+                                .state('admin.studentsearch', {
+                                    url: '/studentsearch',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/student/current.html'
+                                            templateUrl: '/admin/student/search.html',
+                                            controller: 'SearchStudentController'
                                         }
                                     },
                                     data: {
@@ -228,31 +229,7 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
-                                .state('admin.currentstudents.edit', {
-                                    url: '/edit',
-                                    views: {
-                                        'edit': {
-                                            templateUrl: '/admin/student/edit.html'
-                                        }
-                                    },
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                })
-                                .state('admin.oldstudents', {
-                                    url: '/oldstudents',
-                                    views: {
-                                        'adminview@admin': {
-                                            templateUrl: '/admin/student/old.html'
-                                        }
-                                    },
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                })
-                                .state('admin.oldstudents.edit', {
+                                .state('admin.studentsearch.edit', {
                                     url: '/edit',
                                     views: {
                                         'edit': {

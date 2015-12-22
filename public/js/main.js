@@ -4,6 +4,7 @@ var routerApp = angular.module('sbpuc', [
     'appRoutes',
     'flash',
     'ngFileUpload',
+    'sbpuc.titleCaseFilter',
     'router.service',
     'security.authorization',
     'sbpuc.passwordcheck',
@@ -37,5 +38,6 @@ var routerApp = angular.module('sbpuc', [
     'admintransaction.service',
     'TransactionViewCtrl',
     'OldTransactionViewCtrl',
-    'MoveStudentsViewCtrl'
+    'MoveStudentsViewCtrl',
+    'SearchStudentCtrl'
 ]);

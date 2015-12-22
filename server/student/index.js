@@ -110,7 +110,7 @@ exports.addstudent = function (req, res) {
             updateduser: req.user.username,
             image: req.body.image,
             updateddate: Date.now(),
-            search :[req.body.name, req.body.rollnumber, req.body.mobile]
+            search: [req.body.name, req.body.rollnumber, req.body.mobile]
         };
         console.log(data);
         req.app.db.models.Student.create(data, function (err, student) {
@@ -192,4 +192,29 @@ exports.migratestudents = function (req, res) {
         return workflow.emit('response');
     });
     workflow.emit('moveStudents');
+};
+
+//Admin features
+exports.search = function (req, res) {
+    var workflow = req.app.utility.workflow(req, res);
+    workflow.on('searchStudentDetails', function () {
+        req.body.query = req.body.query ? req.body.query : '';
+        var regexQuery = new RegExp('^.*?' + req.body.query + '.*$', 'i');
+        //console.log(regexQuery);
+        req.app.db.models.Student.find(
+                {search: regexQuery},
+                {name: 1, dob: 1, rollnumber: 1, class: 1, caste: 1, gender: 1, mobile: 1, combination: 1, active: 1},
+                function (err, students) {
+                    if (err) {
+                        return workflow.emit('exception', err);
+                    }
+                    if (!students) {
+                        workflow.outcome.errors.push('No data found in systmem, Please try again or Contact Arun Kumar(+919980130541).');
+                        return workflow.emit('response');
+                    }
+                    workflow.outcome.data = students;
+                    return workflow.emit('response');
+                });
+    });
+    workflow.emit('searchStudentDetails');
 };

@@ -44,6 +44,14 @@ angular.module('student.service', [])
                                 deferred.resolve(response);
                             });
                             return deferred.promise;
+                        },
+                        // Attempt to search all sutudents
+                        search: function (data) {
+                            var deferred = $q.defer();
+                            router.trigger('/api/admin/student/search', 'post', data).then(function (response) {
+                                deferred.resolve(response);
+                            });
+                            return deferred.promise;
                         }
                     };
                     return student;

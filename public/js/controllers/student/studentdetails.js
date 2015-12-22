@@ -82,3 +82,22 @@ angular.module('AddStudentCtrl', [])
                     };
                 }
         );
+
+//Student Search Adminfeature
+angular.module('SearchStudentCtrl', [])
+        .controller('SearchStudentController',
+                function ($scope, $state, $location, $stateParams, student, Flash) {
+                    $scope.formData = {};
+                    // Create a new student
+                    $scope.searchStudent = function () {
+                        //console.log($scope.formData)
+                        student.search($scope.formData).then(function (data) {
+                            //console.log(data);
+                            $scope.studentData = data.data;
+                            //$stateParams.id = data.data[0];
+                            //$location.path('/student/' + data.data[0]);
+                            //$state.go('student', $stateParams, {reload: true});
+                        });
+                    };
+                }
+        );

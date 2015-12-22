@@ -44,7 +44,7 @@ exports = module.exports = function (app, passport) {
     app.post('/user/reset/:username/:token', reset.set);
     app.get('/user/logout', signin.logout);
 
-    app.all('/api/*', ensureAuthenticated);
+    //app.all('/api/*', ensureAuthenticated);
     app.get('/api/students', student.students);
     app.get('/api/student/:id', student.studentdetails);
     app.post('/api/student/add', student.addstudent);
@@ -74,4 +74,5 @@ exports = module.exports = function (app, passport) {
     app.get('/api/admin/transaction/:id', transaction.getdetail);
     //Students Admin module
     app.patch('/api/admin/student/move', student.migratestudents);
+    app.post('/api/admin/student/search', student.search);
 };
