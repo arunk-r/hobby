@@ -109,7 +109,8 @@ exports.addstudent = function (req, res) {
             createduser: req.user.username,
             updateduser: req.user.username,
             image: req.body.image,
-            updateddate: Date.now()
+            updateddate: Date.now(),
+            search :[req.body.name, req.body.rollnumber, req.body.mobile]
         };
         console.log(data);
         req.app.db.models.Student.create(data, function (err, student) {

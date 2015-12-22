@@ -16,12 +16,12 @@ angular.module('StudentsDetailCtrl', [])
                             $scope.viewStudentData = data.data[0];
                             $scope.getPaidAmount();
                             //console.log($scope.paidAmount)
-                            console.log(data.data)
+                            //console.log(data.data)
                         } else {
                             if (data.errors) {
                                 $scope.errorMsg = data.errors[0];
                             } else {
-                                $scope.errorMsg = "Error while fetching the data"
+                                $scope.errorMsg = "Error while fetching the data";
                             }
                         }
                     });

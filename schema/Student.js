@@ -66,9 +66,11 @@ exports = module.exports = function (app, mongoose) {
         },
         updateduser: {
             type: String
-        }
+        },
+        search: [String]
     });
     studentSchema.index({name: 1, dob: 1, rollnumber: 1, combination: 1, caste: 1, gender: 1, mobile: 1, fee: 1});
+    studentSchema.index({ search: 1 });
     studentSchema.set('autoIndex', (app.get('env') === 'development'));
     app.db.model('Student', studentSchema);
 };
