@@ -35,8 +35,9 @@ angular.module('TransactionViewCtrl', [])
                             $scope.formData = {};
                             console.log(data);
                             if (data.data.success) {
-                                $location.path('/admin/transactions');
-                                $state.go('admin.transactions', {}, {reload: true});
+                                $location.path('/transactions');
+                                var res = $state.current.name.split(".");
+                                $state.go(res[0] + '.' + res[1], {}, {reload: true});
                             } else {
                                 //error due to server side validation
                                 $scope.errfor = data.data.errfor;
@@ -55,8 +56,9 @@ angular.module('TransactionViewCtrl', [])
                         transaction.inactive(id).then(function (data) {
                             //console.log(data);
                             if (data.success) {
-                                $location.path('/admin/transactions');
-                                $state.go('admin.transactions', {}, {reload: true});
+                                $location.path('/transactions');
+                                var res = $state.current.name.split(".");
+                                $state.go(res[0] + '.' + res[1], {}, {reload: true});
                             } else {
                                 //error due to server side validation
                                 $scope.errfor = data.errfor;

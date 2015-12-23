@@ -5,9 +5,9 @@
             <div class="input-group col-md-12">
 
                 <input type="hidden" ng-model="formData.active" value="truase" copy-value/>
-                <input type="text" class="form-control input-lg" placeholder="Student" ng-model="formData.query"/>
+                <input type="text" class="form-control input-sm" placeholder="search by name or mobile number or roll number" ng-model="formData.query"/>
                 <span class="input-group-btn">
-                    <button class="btn btn-info btn-lg" type="button" ng-click="searchStudent()" ng-disabled="searchData.$invalid">
+                    <button class="btn btn-info btn-sm" type="button" ng-click="searchStudent()" ng-disabled="searchData.$invalid">
                         <i class="glyphicon glyphicon-search"></i>
                     </button>
                 </span>
@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody class="searchable clickable">
-                <tr class="text-left" ng-repeat="row in studentData" ng-click="edit(row._id)" ng-class="{'text-danger info': !row.active}">
+                <tr class="text-left" ng-repeat="row in studentData" ui-sref='.edit' ng-click="edit(row._id)" ng-class="{'text-danger info': !row.active}">
                     <td>{{$index + 1}}</td>
                     <td>{{row.name}}</td>
                     <td>{{row.gender | titleCase }}</td>

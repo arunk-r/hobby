@@ -72,13 +72,18 @@ angular.module('AddStudentCtrl', [])
                     // Create a new student
                     $scope.createStudent = function () {
                         $scope.formData.image = $('#tumbimage').val();
-                        console.log($scope.formData)
+                        //console.log($scope.formData)
                         student.addstudent($scope.formData).then(function (data) {
                             //console.log(data.data[0]);
-                            //TODO Add falsh
-                            $stateParams.id = data.data[0];
-                            $location.path('/student/' + data.data[0]);
-                            $state.go('user.student', $stateParams, {reload: true});
+                            if (data.success) {
+                                $stateParams.id = data.data[0];
+                                $scope.formData = '';
+                                $location.path('/student/' + data.data[0]);
+                                $state.go('user.student', $stateParams, {reload: true});
+                            } else {
+                                var message = '<strong>Error</strong> ' + $scope.formData.name + ' Something wrong in system!...Please logout and re-login.';
+                                Flash.create('error', message, 'custom-class');
+                            }
                         });
                     };
                 }
@@ -93,14 +98,11 @@ angular.module('SearchStudentCtrl', [])
                     $scope.searchStudent = function () {
                         student.search($scope.formData).then(function (data) {
                             $scope.studentData = data.data;
-                            $scope.viewStudentData = '';
-                            $scope.formData = '';
                             //console.log(data.data)
                         });
                     };
                     $scope.edit = function (id) {
-                        console.log(id);
-                        $state.go('admin.studentsearch.edit');
+                        //console.log(id);
                         student.studentdetailsbyid(id).then(function (data) {
                             //console.log(data.data.length);
                             if (data.success && data.data.length > 0) {

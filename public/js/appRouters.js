@@ -55,6 +55,56 @@ angular.module('appRoutes', [])
                                         }
                                     }
                                 })
+                                .state('user.allstudents', {
+                                    url: '/studentsearch',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/student/search.html',
+                                            controller: 'SearchStudentController'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('user.allstudents.edit', {
+                                    url: '/edit',
+                                    views: {
+                                        'edit': {
+                                            templateUrl: '/student/edit.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('user.transactions', {
+                                    url: '/transactions',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/transaction/index.html',
+                                            controller: 'TransactionViewController'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('user.transactions.add', {
+                                    url: '/add',
+                                    views: {
+                                        'transactionview': {
+                                            templateUrl: '/transaction/add.html'
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
                                 .state('login', {
                                     url: '/login',
                                     templateUrl: '/user/login.html',
@@ -236,7 +286,7 @@ angular.module('appRoutes', [])
                                     url: '/studentsearch',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/student/search.html',
+                                            templateUrl: '/student/search.html',
                                             controller: 'SearchStudentController'
                                         }
                                     },
@@ -249,7 +299,7 @@ angular.module('appRoutes', [])
                                     url: '/edit',
                                     views: {
                                         'edit': {
-                                            templateUrl: '/admin/student/edit.html'
+                                            templateUrl: '/student/edit.html'
                                         }
                                     },
                                     data: {
@@ -274,7 +324,7 @@ angular.module('appRoutes', [])
                                     url: '/transactions',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/transaction/index.html',
+                                            templateUrl: '/transaction/index.html',
                                             controller: 'TransactionViewController'
                                         }
                                     },
@@ -284,10 +334,10 @@ angular.module('appRoutes', [])
                                     }
                                 })
                                 .state('admin.transactions.add', {
-                                    url: '/transaction/add',
+                                    url: '/add',
                                     views: {
                                         'transactionview': {
-                                            templateUrl: '/admin/transaction/add.html'
+                                            templateUrl: '/transaction/add.html'
                                         }
                                     },
                                     data: {
