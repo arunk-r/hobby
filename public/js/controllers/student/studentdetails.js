@@ -74,10 +74,11 @@ angular.module('AddStudentCtrl', [])
                         $scope.formData.image = $('#tumbimage').val();
                         console.log($scope.formData)
                         student.addstudent($scope.formData).then(function (data) {
-                            console.log(data.data[0]);
+                            //console.log(data.data[0]);
+                            //TODO Add falsh
                             $stateParams.id = data.data[0];
                             $location.path('/student/' + data.data[0]);
-                            $state.go('student', $stateParams, {reload: true});
+                            $state.go('user.student', $stateParams, {reload: true});
                         });
                     };
                 }

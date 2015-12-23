@@ -7,7 +7,7 @@ angular.module('ViewStudentsDetailCtrl', [])
                         //console.log('/student/' + id)
                         $location.path('/student/' + id);
                         $stateParams.id = id;
-                        $state.go('student', $stateParams);
+                        $state.go('user.student', $stateParams);
                     };
                     student.viewstudents().then(function (data) {
                         //console.log(data)

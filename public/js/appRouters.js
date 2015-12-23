@@ -12,6 +12,49 @@ angular.module('appRoutes', [])
                                     url: '/',
                                     templateUrl: 'welcome.html'
                                 })
+                                .state('user', {
+                                    url: '/user',
+                                    templateUrl: '/user/index.html'
+                                })
+                                .state('user.addstudent', {
+                                    url: '/user/addstudent',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/student/addstudent.html',
+                                            controller: 'AddStudentController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
+                                        }
+                                    }
+                                })
+                                .state('user.studentsdetails', {
+                                    url: '/user/studentsdetails',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/student/viewstudentsdetail.html',
+                                            controller: 'ViewStudentsDetailController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
+                                        }
+                                    }
+                                })
+                                .state('user.student', {
+                                    url: '/user/student/:id',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/student/studentdetails.html',
+                                            controller: 'StudentsDetailController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
+                                        }
+                                    }
+                                })
                                 .state('login', {
                                     url: '/login',
                                     templateUrl: '/user/login.html',
@@ -46,33 +89,6 @@ angular.module('appRoutes', [])
                                 .state('settings', {
                                     url: '/settings',
                                     templateUrl: '/user/settings/settings.html'
-                                })
-                                .state('studentsdetails', {
-                                    url: '/studentsdetails',
-                                    templateUrl: '/student/viewstudentsdetail.html',
-                                    controller: 'ViewStudentsDetailController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: false
-                                    }
-                                })
-                                .state('addstudent', {
-                                    url: '/addstudent',
-                                    templateUrl: '/student/addstudent.html',
-                                    controller: 'AddStudentController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
-                                })
-                                .state('student', {
-                                    url: '/student/:id',
-                                    templateUrl: '/student/studentdetails.html',
-                                    controller: 'StudentsDetailController',
-                                    data: {
-                                        requireLogin: true,
-                                        adminPrev: true
-                                    }
                                 })
                                 .state('reports', {
                                     url: '/reports',
