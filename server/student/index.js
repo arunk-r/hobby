@@ -132,7 +132,26 @@ exports.studentdetails = function (req, res) {
         var id = req.params.id;
         req.app.db.models.Student.findOne(
                 {_id: id},
-                {name: 1, dob: 1, rollnumber: 1, class: 1, caste: 1, gender: 1, puc1fee: 1, puc2fee: 1, mobile: 1, combination: 1, fee: 1, examfee: 1, otherfee: 1, image: 1},
+                {
+                    name: 1,
+                    dob: 1,
+                    rollnumber: 1,
+                    class: 1,
+                    caste: 1,
+                    gender: 1,
+                    puc1fee: 1,
+                    puc2fee: 1,
+                    mobile: 1,
+                    combination: 1,
+                    fee: 1,
+                    examfee: 1,
+                    otherfee: 1,
+                    image: 1,
+                    address: 1,
+                    sslcschooladdress: 1,
+                    sslcpercentage: 1,
+                    active: 1
+                },
                 function (err, student) {
                     if (err) {
                         return workflow.emit('exception', err);
@@ -217,4 +236,105 @@ exports.search = function (req, res) {
                 });
     });
     workflow.emit('searchStudentDetails');
+};
+
+exports.update = function (req, res) {
+    var workflow = req.app.utility.workflow(req, res);
+    workflow.on('validate', function () {
+
+        // TODO: Needs complete validation
+        if (!req.body._id) {
+            workflow.outcome.errfor.id = 'required';
+        }
+        if (!req.body.name) {
+            workflow.outcome.errfor.name = 'required';
+        }
+        if (!req.body.dob) {
+            workflow.outcome.errfor.dob = 'required';
+        }
+        if (!req.body.rollnumber) {
+            workflow.outcome.errfor.rollnumber = 'required';
+        }
+        if (!req.body.class) {
+            workflow.outcome.errfor.class = 'required';
+        }
+        if (!req.body.combination) {
+            workflow.outcome.errfor.combination = 'required';
+        }
+        if (!req.body.initialfee) {
+            workflow.outcome.errfor.initialfee = 'required';
+        }
+        if (!req.body.caste) {
+            workflow.outcome.errfor.caste = 'required';
+        }
+        if (!req.body.gender) {
+            workflow.outcome.errfor.gender = 'required';
+        }
+        if (!req.body.mobile) {
+            workflow.outcome.errfor.mobile = 'required';
+        }
+        if (!req.body.address) {
+            workflow.outcome.errfor.address = 'required';
+        }
+        if (!req.body.sslcschooladdress) {
+            workflow.outcome.errfor.sslcschooladdress = 'required';
+        }
+        if (!req.body.sslcpercentage) {
+            workflow.outcome.errfor.sslcpercentage = 'required';
+        }
+        if (workflow.hasErrors()) {
+            console.log('error');
+            return workflow.emit('response');
+        }
+        workflow.emit('createStudent');
+    });
+
+    workflow.on('createStudent', function () {
+        var puc1fee = 0;
+        var puc2fee = 0;
+        // Grab data from http request
+        if (req.body.class === 'PUC1')
+            puc1fee = req.body.initialfee;
+        else
+            puc2fee = req.body.initialfee;
+        var data = {
+            active: req.body.active,
+            address: req.body.address,
+            caste: req.body.caste,
+            class: req.body.class,
+            combination: req.body.combination,
+            dob: new Date(req.body.dob),
+            gender: req.body.gender,
+            image: req.body.image,
+            mobile: req.body.mobile,
+            name: req.body.name,
+            puc1fee: puc1fee,
+            puc2fee: puc2fee,
+            rollnumber: req.body.rollnumber,
+            sslcpercentage: req.body.sslcpercentage,
+            sslcschooladdress: req.body.sslcschooladdress,
+            updateduser: req.user.username,
+            updateddate: Date.now(),
+            search: [req.body.name, req.body.rollnumber, req.body.mobile]
+        };
+
+        console.log(data);
+        req.app.db.models.Student.update(
+                {
+                    _id: req.params.id
+                },
+                {
+                    $set: data
+                },
+                function (err, student) {
+                    if (err) {
+                        console.log(err);
+                        return workflow.emit('exception', err);
+                    }
+                    console.log(student)
+                    workflow.emit('response');
+                });
+    });
+
+    workflow.emit('validate');
 };

@@ -72,7 +72,7 @@ angular.module('AddStudentCtrl', [])
                     // Create a new student
                     $scope.createStudent = function () {
                         $scope.formData.image = $('#tumbimage').val();
-                        //console.log($scope.formData)
+                        console.log($scope.formData)
                         student.addstudent($scope.formData).then(function (data) {
                             console.log(data.data[0]);
                             $stateParams.id = data.data[0];
@@ -90,13 +90,56 @@ angular.module('SearchStudentCtrl', [])
                     $scope.formData = {};
                     // Create a new student
                     $scope.searchStudent = function () {
-                        //console.log($scope.formData)
                         student.search($scope.formData).then(function (data) {
-                            //console.log(data);
                             $scope.studentData = data.data;
-                            //$stateParams.id = data.data[0];
-                            //$location.path('/student/' + data.data[0]);
-                            //$state.go('student', $stateParams, {reload: true});
+                            $scope.viewStudentData = '';
+                            $scope.formData = '';
+                            //console.log(data.data)
+                        });
+                    };
+                    $scope.edit = function (id) {
+                        console.log(id);
+                        $state.go('admin.studentsearch.edit');
+                        student.studentdetailsbyid(id).then(function (data) {
+                            //console.log(data.data.length);
+                            if (data.success && data.data.length > 0) {
+                                $scope.viewStudentData = data.data[0];
+                                $scope.formData = data.data[0];
+                                $scope.formData.dob = new Date($scope.formData.dob);
+                                $scope.formData.initialfee = ($scope.formData.class === 'PUC1') ? $scope.formData.puc1fee : $scope.formData.puc2fee;
+                                $scope.formData.sslcpercentage = parseInt($scope.formData.sslcpercentage);
+                                $scope.getPaidAmount();
+                                //console.log($scope.paidAmount)
+                                //console.log(data.data[0])
+                            } else {
+                                if (data.errors) {
+                                    $scope.errorMsg = data.errors[0];
+                                } else {
+                                    $scope.errorMsg = "Error while fetching the data";
+                                }
+                            }
+                        });
+                    };
+                    $scope.getPaidAmount = function () {
+                        for (i = 0; i < $scope.viewStudentData.fee.length; i++) {
+                            $scope.paidAmount = +$scope.paidAmount + +$scope.viewStudentData.fee[i].amount;
+                            //console.log($scope.viewStudentData.fee[i].amount)
+                        }
+                    };
+                    $scope.editStudent = function () {
+                        console.log($scope.formData);
+                        student.updatestudent($scope.formData._id, $scope.formData).then(function (data) {
+                            console.log(data);
+                            if (data.success) {
+                                var message = '<strong>Info :  ' + $scope.formData.name + ' </strong> Record Updete was Successful!...';
+                                Flash.create('success', message, 'custom-class');
+                            } else {
+                                var message = '<strong>Error</strong> ' + $scope.formData.name + ' Something wrong in system!...Please logout and re-login.';
+                                Flash.create('error', message, 'custom-class');
+                            }
+                            $scope.studentData = '';
+                            $scope.viewStudentData = '';
+                            $scope.formData = '';
                         });
                     };
                 }

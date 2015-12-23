@@ -52,6 +52,13 @@ angular.module('student.service', [])
                                 deferred.resolve(response);
                             });
                             return deferred.promise;
+                        },
+                        updatestudent: function (id, data) {
+                            var deferred = $q.defer();
+                            router.trigger('/api/admin/student/' + id + '/update', 'put', data).then(function (response) {
+                                deferred.resolve(response);
+                            });
+                            return deferred.promise;
                         }
                     };
                     return student;

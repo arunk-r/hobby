@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody class="searchable clickable">
-                <tr class="text-left" ng-repeat="row in studentData" ng-click="go(row._id)" ng-class="{'text-danger info': !row.active}">
+                <tr class="text-left" ng-repeat="row in studentData" ng-click="edit(row._id)" ng-class="{'text-danger info': !row.active}">
                     <td>{{$index + 1}}</td>
                     <td>{{row.name}}</td>
                     <td>{{row.gender | titleCase }}</td>

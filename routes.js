@@ -56,7 +56,7 @@ exports = module.exports = function (app, passport) {
     app.get('/api/report/anual/:years/exam/fee', feereport.examreport);
     app.get('/api/report/anual/:years/miscellaneous/fee', feereport.miscellaneousreport);
     app.get('/api/report/studentsextract', extracts.studentsextract);
-    
+
     //admin features
     //App Users
     app.post('/api/admin/user/create', user.create);
@@ -75,4 +75,5 @@ exports = module.exports = function (app, passport) {
     //Students Admin module
     app.patch('/api/admin/student/move', student.migratestudents);
     app.post('/api/admin/student/search', student.search);
+    app.put('/api/admin/student/:id/update', student.update);
 };
