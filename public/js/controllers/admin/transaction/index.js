@@ -29,7 +29,7 @@ angular.module('TransactionViewCtrl', [])
                     $scope.createTransaction = function () {
                         //console.log($scope.formData);
                         Upload.upload({
-                            url: '/api/admin/transaction/create',
+                            url: '/api/transaction/create',
                             data: $scope.formData
                         }).then(function (data) {
                             $scope.formData = {};

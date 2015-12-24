@@ -5,7 +5,7 @@ angular.module('admintransaction.service', [])
                         // Attempt to get application users list
                         getall: function (years) {
                             var deferred = $q.defer();
-                            router.trigger('/api/admin/transaction/'+years, 'get').then(
+                            router.trigger('/api/transaction/'+years, 'get').then(
                                     function (response) {
                                         if (!response.success) {
                                             var message = '<strong> Something Wrong!...</strong> Please contact Arun Kumar(9980130541).';
@@ -18,7 +18,7 @@ angular.module('admintransaction.service', [])
                         // Attempt to get application users list
                         getdetail: function (id) {
                             var deferred = $q.defer();
-                            router.trigger('/api/admin/transaction/' + id, 'get').then(
+                            router.trigger('/api/transaction/' + id, 'get').then(
                                     function (response) {
                                         if (!response.success) {
                                             var message = '<strong> Something Wrong!...</strong> Please contact Arun Kumar(9980130541).';
@@ -31,7 +31,7 @@ angular.module('admintransaction.service', [])
                         // Attempt to crate application user
                         create: function (data) {
                             var deferred = $q.defer();
-                            router.trigger('/api/admin/transaction/create', 'post', data).then(
+                            router.trigger('/api/transaction/create', 'post', data).then(
                                     function (response) {
                                         deferred.resolve(response);
                                     });

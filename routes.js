@@ -68,10 +68,10 @@ exports = module.exports = function (app, passport) {
     app.delete('/api/admin/staff/:id', staff.inactive);
     app.get('/api/admin/staff/:id', staff.getdetail);
     //Transaction
-    app.post('/api/admin/transaction/create', multipart(), transaction.create);
-    app.get('/api/admin/transaction/:years', transaction.getall);
+    app.post('/api/transaction/create', multipart(), transaction.create);
+    app.get('/api/transaction/:years', transaction.getall);
     app.delete('/api/admin/transaction/:id', transaction.inactive);
-    app.get('/api/admin/transaction/:id', transaction.getdetail);
+    app.get('/api/transaction/:id', transaction.getdetail);
     //Students Admin module
     app.patch('/api/admin/student/move', student.migratestudents);
     app.post('/api/admin/student/search', student.search);
