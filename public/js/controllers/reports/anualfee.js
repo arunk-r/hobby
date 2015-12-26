@@ -177,7 +177,6 @@ angular.module('CurrentYearExamFeeCtrl', [])
 angular.module('MonthlyFeeCtrl', [])
         .controller('MonthlyFeeController',
                 function ($scope, report, Flash) {
-                    $scope.monthlyfeeData = {};
                     $scope.years = getFinancialYearsList();
                     //console.log($scope.years)
                     $scope.year = new Date().getFullYear();
@@ -203,9 +202,12 @@ angular.module('MonthlyFeeCtrl', [])
                     };
 
                     report.monthlyfee($scope.year, $scope.month).then(function (data) {
-                        if (data.length > 0)
+                        if (data.length > 0) {
+                            //console.log(data)
                             $scope.monthlyfeeData = data;
-                        else {
+                            $scope.getPromisedFee = getPromisedFeeToBeCollected();
+                            $scope.getTotalPaid = getTotalPaidAmount();
+                        } else {
                             $scope.monthlyfeeData = '';
                             var message = '<strong> Information!</strong>  No data found for the month ' + $scope.month + ', ' + $scope.year + '. ';
                             Flash.create('info', message, 'custom-class');
@@ -214,7 +216,7 @@ angular.module('MonthlyFeeCtrl', [])
                         var message = '<strong> Error!</strong>  Something went wrong, Please relogin to system. ' + e;
                         Flash.create('danger', message, 'custom-class');
                     });
-                    $scope.getPromisedFeeToBeCollected = function () {
+                    var getPromisedFeeToBeCollected = function () {
                         var total = 0;
                         for (i = 0; i < $scope.monthlyfeeData.length; i++) {
                             total += ($scope.monthlyfeeData[i]._id.puc1fee + $scope.monthlyfeeData[i]._id.puc2fee);
@@ -222,7 +224,7 @@ angular.module('MonthlyFeeCtrl', [])
                         if (total > 0)
                             return total;
                     };
-                    $scope.getTotalPaidAmount = function () {
+                    var getTotalPaidAmount = function () {
                         var total = 0;
                         for (i = 0; i < $scope.monthlyfeeData.length; i++) {
                             total += $scope.monthlyfeeData[i].totalFeePaid;
@@ -238,11 +240,11 @@ angular.module('CurrentYearMiscellaneousFeeCtrl', [])
         .controller('CurrentYearMiscellaneousFeeController',
                 function ($scope, report, Flash) {
                     $scope.year = currentFinancialYear();
-                    $scope.miscellaneousfeeData = {};
                     report.miscellaneousfee($scope.year).then(function (data) {
-                        if (data.length > 0)
+                        if (data.length > 0) {
                             $scope.miscellaneousfeeData = data;
-                        else {
+                            $scope.getTotalPaid = getTotalPaidAmount();
+                        } else {
                             $scope.anualfeeData = '';
                             var message = '<strong> Information!</strong>  No data found for the financial year ' + $scope.year + '. ';
                             Flash.create('info', message, 'custom-class');
@@ -251,7 +253,7 @@ angular.module('CurrentYearMiscellaneousFeeCtrl', [])
                         var message = '<strong> Error!</strong>  Something went wrong, Please relogin to system. ' + e;
                         Flash.create('danger', message, 'custom-class');
                     });
-                    $scope.getTotalPaidAmount = function () {
+                    var getTotalPaidAmount = function () {
                         var total = 0;
                         for (i = 0; i < $scope.miscellaneousfeeData.length; i++) {
                             total += $scope.miscellaneousfeeData[i].totalFeePaid;

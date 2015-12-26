@@ -48,14 +48,14 @@ angular.module('student.service', [])
                         // Attempt to search all sutudents
                         search: function (data) {
                             var deferred = $q.defer();
-                            router.trigger('/api/admin/student/search', 'post', data).then(function (response) {
+                            router.trigger('/api/student/search', 'post', data).then(function (response) {
                                 deferred.resolve(response);
                             });
                             return deferred.promise;
                         },
                         updatestudent: function (id, data) {
                             var deferred = $q.defer();
-                            router.trigger('/api/admin/student/' + id + '/update', 'put', data).then(function (response) {
+                            router.trigger('/api/student/' + id + '/update', 'put', data).then(function (response) {
                                 deferred.resolve(response);
                             });
                             return deferred.promise;

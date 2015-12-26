@@ -13,18 +13,20 @@
                 <li class="nav-header"> <a href="" ui-sref="user" data-toggle="collapse" data-target="#menu2" id='userreportsnav'> <i class="glyphicon glyphicon-stats"></i> Reports <i class="glyphicon glyphicon-chevron-right"></i></a>
 
                     <ul class="nav nav-stacked collapse" id="menu2">
-                        <li><a href="">&nbsp;&nbsp;Students Extract</a>
+                        <li><a ui-sref='.studentsextract'>&nbsp;&nbsp;<i class="fa fa-google-wallet"></i>&nbsp;Students Extract</a>
                         </li>
-                        <li><a href="">&nbsp;&nbsp;Monthly Report</a>
+                        <li><a ui-sref='.monthlyfee'>&nbsp;&nbsp;<i class="fa fa-calendar-o"></i>&nbsp;Monthly Report</a>
                         </li>
-                        <li><a href="">&nbsp;&nbsp;Financial Year Report</a>
+                        <li><a ui-sref='.academicyearfee'>&nbsp;&nbsp;<i class="fa fa-database"></i>&nbsp;Financial Year Report</a>
                         </li>
-                        <li><a href="">&nbsp;&nbsp;Balance Sheet</a>
+                        <li><a ui-sref='.examfee'>&nbsp;&nbsp;<i class="fa fa-book"></i>&nbsp;Exam Fee Report</a>
+                        </li>
+                        <li><a ui-sref='.miscellaneousfee'>&nbsp;&nbsp;<i class="fa fa-ils"></i>&nbsp;Miscellaneous Report</a>
                         </li>
                     </ul>
                 </li>
                 <li><a ui-sref=".transactions"><i class="fa fa-bullseye"></i>Transactions</a></a></li>
-                <li><a href=""><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                <li><a title="Logout" ui-sref="logout"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
             </ul>
 
             <hr>
@@ -64,4 +66,9 @@
     </script>
 
 </div>
+<style>
+    .col-sm-3 {
+        width: 23%;
+    }
+</style>
 <!-- /Main -->

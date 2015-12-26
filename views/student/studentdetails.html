@@ -24,7 +24,7 @@
                 <p class="text-muted">Total Promised Fee for both the Year's : <label >{{viewStudentData.puc1fee + viewStudentData.puc2fee}}</label></p>
                 <p class="text-muted">Combination : <label >{{viewStudentData.combination}}</label></p>
                 <p class="text-muted">Class : <label >{{viewStudentData.class}}</label></p>
-                <p class="text-muted">Category : <label >{{viewStudentData.caste | uppercase}}</label></p>
+                <p class="text-muted">Category : <label >{{viewStudentData.caste| uppercase}}</label></p>
             </div>
 
             <button class="SeeMore2 btn btn-link" data-toggle="collapse" href="#collapseTwo">See More...</button>
@@ -178,29 +178,32 @@
 
                 <div class="modal-body" style="padding:40px 50px;">
                     <div class="form-group">
-                        <label for="type" class="control-label col-sm-4"><span class="glyphicon glyphicon-user"> </span> Fee Type :</label>
-                        <div class="col-md-4">
-                            <select name="type" id="type" ng-model="feePayment.type" required>
-                                <option value="">Select Fee Type</option>
-                                <option value="academicfee" selected>Academic Fee</option>
-                                <option value="examfee">Exam Fee</option>
-                                <option value="otherfee">Miscellaneous Fee</option>
-                            </select>
+                        <label for="type" class="control-label col-sm-4"><i class="fa fa-bullseye"></i> Fee Type :</label>
+                        <div class="col-md-8">
+                            <label class="radio-inline">
+                                <input type="radio" id="type" name="gender" value="academicfee" ng-model="feePayment.type" required/> Academic 
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" id="type" name="gender" value="examfee" ng-model="feePayment.type" required/> Exam
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" id="type" name="gender" value="otherfee" ng-model="feePayment.type" required/> Miscellaneous
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="amount" class="control-label col-sm-4"><span class="glyphicon glyphicon-user"> </span> Amount :</label>
+                        <label for="amount" class="control-label col-sm-4"><i class="fa fa-inr"></i> Amount :</label>
                         <div class="col-md-4" ng-class="{
                                 'has-error'
                                         : feeData.amount.$invalid, 'has-success': !feeData.amount.$dirty, 'has-feedback':feeData.amount.$invalid || !feeData.amount.$invalid}">
-                            <input id="amount" name="amount" type="number" class="form-control input-sm" placeholder="Enter Initial Fee" ng-model="feePayment.amount" required ng-pattern="/^([0-9]{3,6})?$/">
+                                        <input id="amount" name="amount" type="number" class="form-control input-sm" placeholder="Enter Initial Fee" ng-model="feePayment.amount" required ng-pattern="/^([0-9]{3,6})?$/" min="0">
                             <span class="glyphicon form-control-feedback" ng-class="{
                                     'glyphicon-ok'
                                             : !feeData.amount.$invalid, 'glyphicon-remove': feeData.amount.$invalid}" ng-show="feeData.amount.$invalid || !feeData.amount.$invalid"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="description"><span class="glyphicon glyphicon-eye-open"> </span> Description :</label>
+                        <label class="control-label col-sm-4" for="description"><i class="fa fa-pencil"></i> Description :</label>
                         <div class="col-md-8" ng-class="{
                                 'has-error'
                                         : feeData.description.$invalid && feeData.description.$dirty, 'has-success': !feeData.description.$invalid, 'has-feedback': (feeData.description.$invalid && feeData.description.$dirty) || !feeData.description.$invalid}">

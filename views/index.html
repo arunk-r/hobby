@@ -15,7 +15,9 @@
           <script src="../vendor/html5shiv/dist/html5shiv.js"></script>
           <script src="../vendor/respond/dest/respond.min.js"></script>
         <![endif]-->
+        <link href="fonts/ffe176a3.css" rel="stylesheet" type="text/css" />
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <link href="css/agency.css" rel="stylesheet" type="text/css" />
         <link href="css/flash/angular-flash.css" rel="stylesheet" type="text/css" />
     </head>
 
@@ -40,22 +42,19 @@
                             <li class="nav-solutions" ng-show="isAdminUser"><a title="Reports" ui-sref="reports"><span class="glyphicon glyphicon-stats"></span> Reports</a></li>
                             <li class="nav-solutions" ng-show="isAdminUser"><a title="Admin" ui-sref="admin"><span class="glyphicon glyphicon-user"></span> Admin</a></li>
                             <li class="nav-solutions"><a title="About" ui-sref="home"><span class="glyphicon glyphicon-eye-open"></span> About</a></li>
+                            <li class="nav-solutions"><a title="Team" ui-sref="team"><span class="glyphicon glyphicon-eye-open"></span> Team</a></li>
                         </ul>
                     </div>
                 </div>
                 <div>
                     <ul id="util-nav" class="mod">
 
-                        <li class="util-nav-global"><a title="Login" ui-sref="login" ng-show="!isAuthenticated"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <li class="util-nav-global last"><a title="Profile" ui-sref="#" ng-show="isAuthenticated" > <span class="glyphicon glyphicon-user"></span> Profile</a> <ul>
-                                <li><a title="Profile" ui-sref="settings"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                                <li class="last"><a title="Logout" ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                            </ul>
-                        </li>
+                        <li class="last"><a title="Login" ui-sref="login" ng-show="!isAuthenticated"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li class="last" ng-show="isAuthenticated"><a title="Logout" ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </div>
 
-                <h2 class="title">SBECT</h2>
+                <h2 class="title" style="text-shadow: 4px 3px 0px #1d9d74, 9px 8px 0px rgba(0, 0, 0, 0.10); font-family: museo-slab, Georgia, 'Times New Roman', Times, serif; font-weight: 500; margin-left: -115px;">SB PU College</h2>
 
             </div>
         </header>
@@ -87,8 +86,8 @@
                     <ul id="foot-nav">
                         <li class="foot-nav-terms"><a ui-sref="home">Terms of Use</a></li>
                         <li class="foot-nav-privacy"><a ui-sref="home">Privacy Policy</a></li>
-                        <li class="foot-nav-support"><a ui-sref="home">Support</a></li>
-                        <li class="foot-nav-contact"><a ui-sref="home">Contact Us</a></li>
+                        <li class="foot-nav-support"><a ui-sref="home">Help</a></li>
+                        <li class="foot-nav-contact"><a ui-sref="contact">Contact Us</a></li>
                     </ul>
                     <!-- /end #foot-nav --><div id="social-nav"><h2>Connect with SBECT(R)</h2>
                         <ul>

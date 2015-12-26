@@ -13,10 +13,16 @@ function ensureAuthenticated(req, res, next) {
 }
 
 function ensureAdmin(req, res, next) {
-    if (req.user.canPlayRoleOf('admin')) {
+    var workflow = req.app.utility.workflow(req, res);
+    if (req.isAuthenticated() && req.user.canPlayRoleOf('admin')) {
         return next();
+    } else {
+        res.set('X-Auth-Required', 'true');
+        workflow.outcome.success = false;
+        workflow.outcome.authError = true;
+        workflow.outcome.errors.push('Credential issue, Please try with admin credentials!..');
+        return workflow.emit('response');
     }
-    res.redirect('/');
 }
 //File upload NPM
 var multipart = require('connect-multiparty');
@@ -44,11 +50,14 @@ exports = module.exports = function (app, passport) {
     app.post('/user/reset/:username/:token', reset.set);
     app.get('/user/logout', signin.logout);
 
-    //app.all('/api/*', ensureAuthenticated);
+    app.all('/api/*', ensureAuthenticated);
+    //Students
     app.get('/api/students', student.students);
+    app.post('/api/student/search', student.search);
     app.get('/api/student/:id', student.studentdetails);
     app.post('/api/student/add', student.addstudent);
     app.post('/api/student/:id/fee/add', fee.addstudentfee);
+    app.put('/api/student/:id/update', student.update);
     app.get('/api/student/:id/:type/fee/:feeid/print', print.feeprintbyfeeid);
     //Reports
     app.get('/api/report/anual/:years/fee', feereport.anualreport);
@@ -57,7 +66,13 @@ exports = module.exports = function (app, passport) {
     app.get('/api/report/anual/:years/miscellaneous/fee', feereport.miscellaneousreport);
     app.get('/api/report/studentsextract', extracts.studentsextract);
 
+    //Transaction
+    app.post('/api/transaction/create', multipart(), transaction.create);
+    app.get('/api/transaction/:years', transaction.getall);
+    app.get('/api/transaction/:id', transaction.getdetail);
+
     //admin features
+    app.all('/api/admin/*', ensureAdmin);
     //App Users
     app.post('/api/admin/user/create', user.create);
     app.get('/api/admin/users', user.getall);
@@ -68,12 +83,7 @@ exports = module.exports = function (app, passport) {
     app.delete('/api/admin/staff/:id', staff.inactive);
     app.get('/api/admin/staff/:id', staff.getdetail);
     //Transaction
-    app.post('/api/transaction/create', multipart(), transaction.create);
-    app.get('/api/transaction/:years', transaction.getall);
     app.delete('/api/admin/transaction/:id', transaction.inactive);
-    app.get('/api/transaction/:id', transaction.getdetail);
     //Students Admin module
     app.patch('/api/admin/student/move', student.migratestudents);
-    app.post('/api/admin/student/search', student.search);
-    app.put('/api/admin/student/:id/update', student.update);
 };

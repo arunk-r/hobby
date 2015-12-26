@@ -120,10 +120,12 @@
                             </label>
                         </div>
                     </div>
-                    <label for="address" class="control-label col-sm-2">Active :</label>
-                    <div class="col-md-3">
-                        <div class="center-block" style="padding: 5px 0px 0px 0px">
-                            <input type="checkbox" ng-model="formData.active" >
+                    <div ng-show="isAdminUser">
+                        <label for="address" class="control-label col-sm-2">Active :</label>
+                        <div class="col-md-3">
+                            <div class="center-block" style="padding: 5px 0px 0px 0px">
+                                <input type="checkbox" ng-model="formData.active" >
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,36 +135,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <div ng-show="paidAmount">
-            <div class="panel-body">
-                <label class="text-primary lead colors">Fee Payment History</label>
-                <div class="row">
-                    <div class="text-primary lead colors  col-lg-6 pull-left">Balance : <label class="col-bn"> {{(viewStudentData.puc1fee + viewStudentData.puc2fee) - paidAmount}} </label></div>
-                    <div class="text-primary lead colors  col-lg-6 pull-right text-right">Total Paid Amount : <label class="col-bn"> {{paidAmount}} </label></div>
-                </div>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="row in viewStudentData.fee">
-                        <td>{{row.paiddate| date:'MMM dd, yyyy HH:MM a'}}</td>
-                        <td>{{row.amount}}</td>
-                        <td>{{row.description}}</td>
-                    </tr>
-                    <tr>
-                        <th>Total</th>
-                        <th>{{paidAmount}}</th>
-                        <th></th>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 

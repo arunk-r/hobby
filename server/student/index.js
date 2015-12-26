@@ -297,8 +297,12 @@ exports.update = function (req, res) {
             puc1fee = req.body.initialfee;
         else
             puc2fee = req.body.initialfee;
+        var active = true;
+        if(req.user.canPlayRoleOf('admin')){
+            active= req.body.active;
+        }
         var data = {
-            active: req.body.active,
+            active: active,
             address: req.body.address,
             caste: req.body.caste,
             class: req.body.class,

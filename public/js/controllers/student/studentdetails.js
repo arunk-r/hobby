@@ -43,7 +43,7 @@ angular.module('StudentsDetailCtrl', [])
                         });
                     };
                     $scope.callReLoadingData = function (data, type) {
-                        //console.log(data)
+                        console.log(data)
                         $location.path($location.path());
                         $state.go($state.current, $stateParams, {reload: true});
                         $timeout(function () {
@@ -124,15 +124,16 @@ angular.module('SearchStudentCtrl', [])
                         });
                     };
                     $scope.getPaidAmount = function () {
+                        $scope.paidAmount = 0;
                         for (i = 0; i < $scope.viewStudentData.fee.length; i++) {
                             $scope.paidAmount = +$scope.paidAmount + +$scope.viewStudentData.fee[i].amount;
                             //console.log($scope.viewStudentData.fee[i].amount)
                         }
                     };
                     $scope.editStudent = function () {
-                        console.log($scope.formData);
+                        //console.log($scope.formData);
                         student.updatestudent($scope.formData._id, $scope.formData).then(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.success) {
                                 var message = '<strong>Info :  ' + $scope.formData.name + ' </strong> Record Updete was Successful!...';
                                 Flash.create('success', message, 'custom-class');
@@ -144,6 +145,11 @@ angular.module('SearchStudentCtrl', [])
                             $scope.viewStudentData = '';
                             $scope.formData = '';
                         });
+                    };
+                    $scope.view = function (id) {
+                        $stateParams.id = id;
+                        $location.url('student/'+id);
+                        $state.go('user.student', $stateParams, {reload: true});
                     };
                 }
         );

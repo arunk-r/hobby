@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <ul class="breadcrumb">
+            <ul class="breadcrumb" ng-show="isAdminUser">
                 <li>
                     <a ui-sref="reports">Reports</a> <span class="divider"></span>
                 </li>
@@ -87,7 +87,7 @@
                             <label>Total</label>
                         </td>
                         <td>
-                            <label>{{getTotalPaidAmount()}}</label>
+                            <label>{{getTotalPaid}}</label>
                         </td>
                     </tr>
                 </tfoot>

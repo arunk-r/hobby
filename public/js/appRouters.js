@@ -8,6 +8,14 @@ angular.module('appRoutes', [])
                                     url: '/home',
                                     templateUrl: 'welcome.html'
                                 })
+                                .state('team', {
+                                    url: '/team',
+                                    templateUrl: 'team.html'
+                                })
+                                .state('contact', {
+                                    url: '/contact',
+                                    templateUrl: 'contact.html'
+                                })
                                 .state('default', {
                                     url: '/',
                                     templateUrl: 'welcome.html'
@@ -17,7 +25,7 @@ angular.module('appRoutes', [])
                                     templateUrl: '/user/index.html'
                                 })
                                 .state('user.addstudent', {
-                                    url: '/user/addstudent',
+                                    url: '/addstudent',
                                     views: {
                                         'userview@user': {
                                             templateUrl: '/student/addstudent.html',
@@ -30,7 +38,7 @@ angular.module('appRoutes', [])
                                     }
                                 })
                                 .state('user.studentsdetails', {
-                                    url: '/user/studentsdetails',
+                                    url: '/studentsdetails',
                                     views: {
                                         'userview@user': {
                                             templateUrl: '/student/viewstudentsdetail.html',
@@ -43,7 +51,7 @@ angular.module('appRoutes', [])
                                     }
                                 })
                                 .state('user.student', {
-                                    url: '/user/student/:id',
+                                    url: '/student/:id',
                                     views: {
                                         'userview@user': {
                                             templateUrl: '/student/studentdetails.html',
@@ -79,7 +87,7 @@ angular.module('appRoutes', [])
                                         requireLogin: true,
                                         adminPrev: true
                                     }
-                                })
+                                })                                
                                 .state('user.transactions', {
                                     url: '/transactions',
                                     views: {
@@ -105,6 +113,96 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
+
+
+                                .state('user.academicyearfee', {
+                                    url: '/reports/academicfee',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/reports/currentyearfee.html',
+                                            controller: 'CurrentYearFeeController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+
+                                })
+                                .state('user.monthlyfee', {
+                                    url: '/reports/monthlyfee',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/reports/monthlyfee.html',
+                                            controller: 'MonthlyFeeController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('user.examfee', {
+                                    url: '/reports/examfee',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/reports/currentyearexamfee.html',
+                                            controller: 'CurrentYearExamFeeController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('user.miscellaneousfee', {
+                                    url: '/reports/miscellaneousfee',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/reports/currentyearmiscellaneousfee.html',
+                                            controller: 'CurrentYearMiscellaneousFeeController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('user.studentsextract', {
+                                    url: '/reports/studentsextract',
+                                    views: {
+                                        'userview@user': {
+                                            templateUrl: '/reports/studentsextract.html',
+                                            controller: 'StudentExtractController',
+                                            data: {
+                                                requireLogin: true,
+                                                adminPrev: true
+                                            }
+                                        }
+                                    },
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+
+
                                 .state('login', {
                                     url: '/login',
                                     templateUrl: '/user/login.html',

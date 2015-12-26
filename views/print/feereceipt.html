@@ -33,7 +33,7 @@
             </div>
             <div class="w3-row-padding">
                 <div class="w3-third" ng-if="type === 'academicfee'">
-                    <h2>Fee Receipt</h2>
+                    <h2>Academic Fee Receipt</h2>
                     <p>Student Copy</p>
                     <p>Student Name : {{printData.name}}</p> 
                     <p>Class : {{printData.class}}</p> 
@@ -42,7 +42,7 @@
                     <p>Balance Amount to College: {{ (printData.puc1fee + printData.puc2fee) - paidAmount.totalPaidAmount}}</p> 
                 </div>
                 <div class="w3-third" ng-if="type === 'examfee'">
-                    <h2>Fee Receipt</h2>
+                    <h2>Exam Fee Receipt</h2>
                     <p>Student Copy</p>
                     <p>Student Name : {{printData.name}}</p> 
                     <p>Class : {{printData.class}}</p> 
@@ -51,7 +51,7 @@
                     <p>Description : {{printData.examfee[0].description}}</p> 
                 </div>
                 <div class="w3-third" ng-if="type === 'otherfee'">
-                    <h2>Fee Receipt</h2>
+                    <h2>Miscellaneous Fee Receipt</h2>
                     <p>Student Copy</p>
                     <p>Student Name : {{printData.name}}</p> 
                     <p>Class : {{printData.class}}</p> 
@@ -61,7 +61,7 @@
                 </div>
                 <hr style="border-style: thin dotted;">
                 <div class="w3-third" ng-if="type === 'academicfee'">
-                    <h2>Fee Receipt</h2>
+                    <h2>Academic Fee Receipt</h2>
                     <p>College Copy</p>
                     <p>Student Name : {{printData.name}}</p> 
                     <p>Class : {{printData.class}}</p> 
@@ -71,7 +71,7 @@
                     <p>Balance Amount to College: {{ (printData.puc1fee + printData.puc2fee) - paidAmount.totalPaidAmount}}</p> 
                 </div>
                 <div class="w3-third" ng-if="type === 'examfee'">
-                    <h2>Fee Receipt</h2>
+                    <h2>Exam Fee Receipt</h2>
                     <p>College Copy</p>
                     <p>Student Name : {{printData.name}}</p> 
                     <p>Class : {{printData.class}}</p> 
@@ -80,7 +80,7 @@
                     <p>Description : {{printData.examfee[0].description}}</p> 
                 </div>
                 <div class="w3-third" ng-if="type === 'otherfee'">
-                    <h2>Fee Receipt</h2>
+                    <h2>Miscellaneous Fee Receipt</h2>
                     <p>College Copy</p>
                     <p>Student Name : {{printData.name}}</p> 
                     <p>Class : {{printData.class}}</p> 

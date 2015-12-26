@@ -39,10 +39,12 @@
                     <th>Class</th>
                     <th>Combination</th>
                     <th>Category</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody class="searchable clickable">
-                <tr class="text-left" ng-repeat="row in studentData" ui-sref='.edit' ng-click="edit(row._id)" ng-class="{'text-danger info': !row.active}">
+            <tbody class="">
+                <tr class="text-left" ng-repeat="row in studentData" ng-class="{'text-danger info': !row.active}">
                     <td>{{$index + 1}}</td>
                     <td>{{row.name}}</td>
                     <td>{{row.gender | titleCase }}</td>
@@ -52,6 +54,8 @@
                     <td>{{row.class}}</td>
                     <td>{{row.combination}}</td>
                     <td>{{row.caste| uppercase}}</td>
+                    <td><a ng-click="view(row._id)"><i class="glyphicon glyphicon-eye-open" style="color: #0074c7;"></i></a></td>
+                    <td><a ui-sref='.edit' ng-click="edit(row._id)"><i class="fa fa-pencil-square-o" style="color: #0074c7;"></i></a></td>
                 </tr>
             </tbody>
         </table>

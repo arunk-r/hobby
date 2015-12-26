@@ -5,8 +5,8 @@ angular.module('LoginCtrl', [])
             // Login Staff
             $scope.loginUser = function () {
                 //console.log($scope.loginData)
-                $scope.loginData.username = 'root';
-                $scope.loginData.password = 'a';
+                //$scope.loginData.username = 'root';
+                //$scope.loginData.password = 'a';
                 security.signin($scope.loginData.username, $scope.loginData.password).then(function (data) {
                     //console.log(data);
                     $scope.loginData = {};

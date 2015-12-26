@@ -212,7 +212,7 @@ p.copyright {
     font-size: 30px;
 }
 .modal-dialog{
-    width: 600px;
+    width: 650px;
     margin: 250px auto;
 }
 /* END LAYOUT ELEMENTS */
@@ -331,3 +331,13 @@ File Upload
     border: 1px solid #dddddd;
     width: 100%;
 }
+.intro-header {
+        background-color: #808080;
+        background: no-repeat center center;
+        background-attachment: scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        margin-bottom: 8px;
+    }
