@@ -1,14 +1,18 @@
-<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb" ng-show="isAdminUser">
+            <li>
+                <a ui-sref="reports">Reports</a> <span class="divider"></span>
+            </li>
+            <li class="active">
+                Month Report
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid" id="pdfprint">
     <div class="row">
         <div class="col-md-12">
-            <ul class="breadcrumb" ng-show="isAdminUser">
-                <li>
-                    <a ui-sref="reports">Reports</a> <span class="divider"></span>
-                </li>
-                <li class="active">
-                    Month Report
-                </li>
-            </ul>
             <div>
                 <form name="monthReport">
                     <div><span class="text-info">Select month and year for to know more on selected month fee collection report</span> 
@@ -96,7 +100,7 @@
                                 {{row._id.rollnumber}}
                             </td>
                             <td>
-                                {{row._id.puc1fee + row._id.puc2fee }}
+                                {{row._id.puc1fee + row._id.puc2fee}}
                             </td>
                             <td>
                                 {{row.totalFeePaid}}
@@ -134,7 +138,9 @@
         </div>
     </div>
 </div>
-
+<ul class="pager" >
+    <li class="next"><a onclick="createPDF($('#pdfprint'), 'MonthlyFee.pdf')" title="download as pdf" style="border: none;">Download <i class="fa fa-cloud-download"></i></a></li>
+</ul>
 <style>
     .table-hover tbody tr:hover > td.info {
         background-color: #c4e3f3 !important;

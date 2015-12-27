@@ -1,10 +1,10 @@
-<h3>
-    Current Financial Year Transaction Details
-</h3>
 <ul class="pager" >
     <li class="next"><a ui-sref=".add" ><span class="glyphicon glyphicon-plus-sign"></span> Add Transaction →</a></li>
 </ul>
-<div >
+<div id="pdfprint">
+    <h3>
+        Current Financial Year Transaction Details
+    </h3>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -30,6 +30,9 @@
         </tbody>
     </table>
 </div>
+<ul class="pager" >
+    <li class="next"><a onclick="createPDF($('#pdfprint'), 'Transcations.pdf')" title="download as pdf" style="border: none;">Download <i class="fa fa-cloud-download"></i></a></li>
+</ul>
 <div ui-view="transactionview"></div>
 <br>
 
@@ -62,6 +65,6 @@
 
 <style>
     .modal-dialog {
-     margin: 50px auto;
-}
+        margin: 50px auto;
+    }
 </style>

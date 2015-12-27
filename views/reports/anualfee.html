@@ -1,14 +1,18 @@
-<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb" ng-show="isAdminUser">
+            <li>
+                <a ui-sref="reports">Reports</a> <span class="divider"></span>
+            </li>
+            <li class="active">
+                Anual Fee
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid" id="pdfprint">
     <div class="row">
         <div class="col-md-12">
-                <ul class="breadcrumb" ng-show="isAdminUser">
-                    <li>
-                        <a ui-sref="reports">Reports</a> <span class="divider"></span>
-                    </li>
-                    <li class="active">
-                        Anual Fee
-                    </li>
-                </ul>
             <h3>
                 Fee Report for the Financial year {{year}}.
             </h3>
@@ -102,3 +106,6 @@
         </div>
     </div>
 </div>
+<ul class="pager" >
+    <li class="next"><a onclick="createPDF($('#pdfprint'), 'AnualFee.pdf')" title="download as pdf" style="border: none;">Download <i class="fa fa-cloud-download"></i></a></li>
+</ul>

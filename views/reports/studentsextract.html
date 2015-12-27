@@ -1,5 +1,4 @@
-<div class="container-fluid">
-    <div class="row">
+<div class="row">
         <div class="col-md-12">
             <ul class="breadcrumb" ng-show="isAdminUser">
                 <li>
@@ -9,6 +8,11 @@
                     Students Extract
                 </li>
             </ul>
+        </div>
+</div>
+<div class="container-fluid" id="pdfprint">
+    <div class="row">
+        <div class="col-md-12">
             <h3>Students Extract for the Academic Year {{year}}</h3>
             <p>I<sup>st</sup> Year PUC</p>            
             <table class="table">
@@ -135,3 +139,6 @@
         </div>
     </div>
 </div>
+<ul class="pager" >
+    <li class="next"><a onclick="createPDF($('#pdfprint'), 'StudentsExtract.pdf')" title="download as pdf" style="border: none;">Download <i class="fa fa-cloud-download"></i></a></li>
+</ul>
