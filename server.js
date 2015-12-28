@@ -42,11 +42,14 @@ app.use(require('method-override')());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser(config.cryptoKey));
-app.use(session({
-    resave: true,
+
+var sess = {
+    resave: false,
     saveUninitialized: true,
-    secret: config.cryptoKey
-}));
+    secret: config.cryptoKey,
+    cookie: {}
+};
+app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 //Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!

@@ -19,86 +19,44 @@
             <table class="table table-condensed" ng-show="miscellaneousfeeData">
                 <thead>
                     <tr>
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Gender
-                        </th>
-                        <th>
-                            Class
-                        </th>
-                        <th>
-                            Combination
-                        </th>
-                        <th>
-                            Roll Number
-                        </th>
-                        <th>
-                            Caste
-                        </th>
-                        <th>
-                            Total Paid Amount
-                        </th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Class</th>
+                        <th>Combination</th>
+                        <th>Roll Number</th>
+                        <th>Caste</th>
+                        <th>Paid Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="row in miscellaneousfeeData">
-                        <td>
-                            {{$index + 1}}
-                        </td>
-                        <td>
-                            {{row._id.name}}
-                        </td>
-                        <td>
-                            {{row._id.gender}}
-                        </td>
-                        <td>
-                            {{row._id.class}}
-                        </td>
-                        <td>
-                            {{row._id.combination}}
-                        </td>
-                        <td>
-                            {{row._id.rollnumber}}
-                        </td>
-                        <td>
-                            {{row._id.caste}}
-                        </td>
-                        <td>
-                            {{row.totalFeePaid}}
-                        </td>
+                        <td>{{$index + 1}}</td>
+                        <td>{{row._id.name}}</td>
+                        <td>{{row._id.gender | titleCase}}</td>
+                        <td>{{row._id.class}}</td>
+                        <td>{{row._id.combination}}</td>
+                        <td>{{row._id.rollnumber}}</td>
+                        <td>{{row._id.caste | uppercase}}</td>
+                        <td>{{row.totalFeePaid}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <label>Total</label>
-                        </td>
-                        <td>
-                            <label>{{getTotalPaid}}</label>
-                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th>Total</th>
+                        <th>{{getTotalPaid}}</th>
                     </tr>
                 </tfoot>
             </table>
             <h2>
             </h2>
-            <p>
+            <p class="text-justify">
                 This report has been designed to provide a clear an concise summary of every student fee collected for the financial year {{year}}. The layout is also designed to provide comparative information between the financial year {{year}} of the academic.
             </p>
         </div>

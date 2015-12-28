@@ -19,88 +19,42 @@
             <table class="table table-condensed" ng-show="anualfeeData">
                 <thead>
                     <tr>
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Class
-                        </th>
-                        <th>
-                            Combination
-                        </th>
-                        <th>
-                            Roll Number
-                        </th>
-                        <th>
-                            Promised 1st Year Fee
-                        </th>
-                        <th>
-                            Promised 2nd Year Fee
-                        </th>
-                        <th>
-                            Total Paid Amount
-                        </th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Combination</th>
+                        <th>Roll Number</th>
+                        <th>1st Year</th>
+                        <th>2nd Year</th>
+                        <th>Paid Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="row in anualfeeData">
-                        <td>
-                            {{$index + 1}}
-                        </td>
-                        <td>
-                            {{row._id.name}}
-                        </td>
-                        <td>
-                            {{row._id.class}}
-                        </td>
-                        <td>
-                            {{row._id.combination}}
-                        </td>
-                        <td>
-                            {{row._id.rollnumber}}
-                        </td>
-                        <td>
-                            {{row._id.puc1fee > 0 ? row._id.puc1fee : '0' }}
-                        </td>
-                        <td>
-                            {{row._id.puc2fee > 0 ? row._id.puc2fee : '0' }}
-                        </td>
-                        <td>
-                            {{row.totalFeePaid}}
-                        </td>
+                        <td>{{$index + 1}}</td>
+                        <td>{{row._id.name}}</td>
+                        <td>{{row._id.class}}</td>
+                        <td>{{row._id.combination}}</td>
+                        <td>{{row._id.rollnumber}}</td>
+                        <td>{{row._id.puc1fee > 0 ? row._id.puc1fee : '0' }}</td>
+                        <td>{{row._id.puc2fee > 0 ? row._id.puc2fee : '0' }}</td>
+                        <td>{{row.totalFeePaid}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <label>Total</label>
-                        </td>
-                        <td>
-                            <label>{{getPUC1Fee()}}</label>
-                        </td>
-                        <td>
-                            <label>{{getPUC2Fee()}}</label>
-                        </td>
-                        <td>
-                            <label>{{getTotalPaidAmount()}}</label>
-                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th>Total</th>
+                        <th>{{getPUC1Fee()}}</th>
+                        <th>{{getPUC2Fee()}}</th>
+                        <th>{{getTotalPaidAmount()}}</th>
                     </tr>
                 </tfoot>
             </table>
-            <h2>
-            </h2>
-            <p>
+            <p class="text-justify">
                 This report has been designed to provide a clear an concise summary of every student fee collected for the financial year {{year}}. The layout is also designed to provide comparative information between the financial year {{year}} of the academic.
             </p>
         </div>

@@ -7,8 +7,8 @@ function ensureAuthenticated(req, res, next) {
     }
     res.set('X-Auth-Required', 'true');
     workflow.outcome.success = false;
-    workflow.outcome.authError = true;
-    workflow.outcome.errors.push('Credential issue, Please try with admin credentials!..');
+    workflow.outcome.authenticationError = true;
+    workflow.outcome.errors.push('Credential issue, Session expired, Please relogin!..');
     return workflow.emit('response');
 }
 
@@ -19,7 +19,7 @@ function ensureAdmin(req, res, next) {
     } else {
         res.set('X-Auth-Required', 'true');
         workflow.outcome.success = false;
-        workflow.outcome.authError = true;
+        workflow.outcome.authorizationError = true;
         workflow.outcome.errors.push('Credential issue, Please try with admin credentials!..');
         return workflow.emit('response');
     }

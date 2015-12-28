@@ -30,10 +30,15 @@ angular.module('router.service', [])
                                 //console.log(response.data)
                                 //console.log(!!response.data.errors)
                                 //console.log(!!response.data.errfor)
-                                if (response.data && response.data.authError) {
+                                if (response.data && response.data.authenticationError) {
                                     securityAuthorization.setAuthenticatedUser('');
-                                    var message = '<strong> Error!..</strong>  Authentication Error, Please login to System. ';
+                                    var message = '<strong> Error!..</strong>' + data.errors[0];
                                     Flash.create('danger', message, 'custom-class');
+                                    return $location.path('/login');
+                                } else if (response.data && response.data.authorizationError) {
+                                    securityAuthorization.setAuthenticatedUser('');
+                                    var message = '<strong> Warning!..</strong> ' + data.errors[0];
+                                    Flash.create('warning', message, 'custom-class');
                                     return $location.path('/login');
                                 } else if (response.data && !response.data.success) {
                                     var message = '<strong> Warning!..</strong>  Problem in processing your current request. ';

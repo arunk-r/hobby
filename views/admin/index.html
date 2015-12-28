@@ -24,21 +24,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-header"> <a href="" ui-sref="admin" data-toggle="collapse" data-target="#menu2" id='adminreportsnav'> <i class="glyphicon glyphicon-stats"></i> Reports <i class="glyphicon glyphicon-chevron-right"></i></a>
-
-                    <ul class="nav nav-stacked collapse" id="menu2">
-                        <li><a href="">Information &amp; Stats</a>
-                        </li>
-                        <li><a href="">Views</a>
-                        </li>
-                        <li><a href="">Requests</a>
-                        </li>
-                        <li><a href="">Timetable</a>
-                        </li>
-                        <li><a href="">Alerts</a>
-                        </li>
-                    </ul>
-                </li>
                 <li><a title="Logout" ui-sref="logout"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
             </ul>
 
@@ -73,9 +58,6 @@
                 $(this).find('i').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
             });
             $('#adminreportsnav1').click(function () {
-                $(this).find('i').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
-            });
-            $('#adminreportsnav').click(function () {
                 $(this).find('i').toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
             });
             $('#adminidsnav').click(function () {

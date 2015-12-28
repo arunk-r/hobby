@@ -10,7 +10,7 @@
         </ul>
     </div>
 </div>
-<div class="container-fluid" id="pdfprint">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div>
@@ -40,101 +40,60 @@
                     </div>
                 </form>
             </div>
-
-            <div ng-show="monthlyfeeData">
+            <div ng-show="monthlyfeeData" id="pdfprint">
                 <h3>
                     Fee Report for the month {{month}}, {{year}}.
                 </h3>
-                <table class="lamp" style="border: 0px">
-                    <tbody>
-                        <tr>
-                            <th style="width:34px"><img src="/img/lamp.jpg" alt="Note" style="height:32px;width:32px"></th>
-                            <td><strong class="text-danger">Attention: </strong>
-                                Highlighted colored row data from Passed out student .
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
                 <br>
-                <table class="table table-condensed" ng-show="monthlyfeeData">
+                <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Class
-                            </th>
-                            <th>
-                                Combination
-                            </th>
-                            <th>
-                                Roll Number
-                            </th>
-                            <th>
-                                Promised Fee
-                            </th>
-                            <th>
-                                Total Paid Amount
-                            </th>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Combination</th>
+                            <th>Roll Number</th>
+                            <th>Promised Fee</th>
+                            <th>Paid Amount</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="row in monthlyfeeData" ng-class="{'text-danger info': !row._id.active}">
-                            <td>
-                                {{$index + 1}}
-                            </td>
-                            <td>
-                                {{row._id.name}}
-                            </td>
-                            <td>
-                                {{row._id.class}}
-                            </td>
-                            <td>
-                                {{row._id.combination}}
-                            </td>
-                            <td>
-                                {{row._id.rollnumber}}
-                            </td>
-                            <td>
-                                {{row._id.puc1fee + row._id.puc2fee}}
-                            </td>
-                            <td>
-                                {{row.totalFeePaid}}
-                            </td>
+                            <td>{{$index + 1}}</td>
+                            <td>{{row._id.name}}</td>
+                            <td>{{row._id.class}}</td>
+                            <td>{{row._id.combination}}</td>
+                            <td>{{row._id.rollnumber}}</td>
+                            <td>{{row._id.puc1fee + row._id.puc2fee}}</td>
+                            <td>{{row.totalFeePaid}}</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <label>Total</label>
-                            </td>
-                            <td>
-                                <label>{{getPromisedFee}}</label>
-                            </td>
-                            <td>
-                                <label>{{getTotalPaid}}</label>
-                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><label>Total</label></td>
+                            <td><label>{{getPromisedFee}}</label></td>
+                            <td><label>{{getTotalPaid}}</label></td>
                         </tr>
                     </tfoot>
                 </table>
-                <h2>
-                </h2>
-                <p>
+                <p class="text-justify">
                     This report has been designed to provide a clear an concise summary of every student fee collected for the month {{month}}, {{year}}. The layout is also designed to provide comparative information between the month {{month}}, {{year}} of the academic.
                 </p>
             </div>
+            <table class="lamp" style="border: 0px">
+                <tbody>
+                    <tr>
+                        <th style="width:34px"><img src="/img/lamp.jpg" alt="Note" style="height:32px;width:32px"></th>
+                        <td><strong class="text-danger">Attention: </strong>
+                            Highlighted colored row data from Passed out student .
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

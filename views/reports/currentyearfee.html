@@ -10,12 +10,53 @@
         </ul>
     </div>
 </div>
-<div class="container-fluid" id="pdfprint">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <h3>
-                Fee Report for the Financial year {{year}}.
-            </h3>
+            <div ng-show="anualfeeData" id="pdfprint">
+                <h3>
+                    Fee Report for the Financial year {{year}}.
+                </h3>
+                <br>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Combination</th>
+                            <th>Roll Number</th>
+                            <th>Promised Fee</th>
+                            <th>Total Paid Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in anualfeeData" ng-class="{'text-danger info': !row._id.active}">
+                            <td>{{$index + 1}}</td>
+                            <td>{{row._id.name}}</td>
+                            <td>{{row._id.class}}</td>
+                            <td>{{row._id.combination}}</td>
+                            <td>{{row._id.rollnumber}}</td>
+                            <td>{{row._id.puc1fee + row._id.puc2fee}}</td>
+                            <td>{{row.totalFeePaid}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <th>Total</th>
+                            <th>{{getPromisedFeeToBeCollected()}}</th>
+                            <th>{{getTotalPaidAmount()}}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p class="text-justify">
+                    This report has been designed to provide a clear an concise summary of every student fee collected for the financial year {{year}}. The layout is also designed to provide comparative information between the financial year {{year}} of the academic.
+                </p>
+            </div>
             <table class="lamp" style="border: 0px">
                 <tbody>
                     <tr>
@@ -26,85 +67,6 @@
                     </tr>
                 </tbody>
             </table>
-            <br>
-            <table class="table table-condensed" ng-show="anualfeeData">
-                <thead>
-                    <tr>
-                        <th>
-                            #
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Class
-                        </th>
-                        <th>
-                            Combination
-                        </th>
-                        <th>
-                            Roll Number
-                        </th>
-                        <th>
-                            Promised Fee
-                        </th>
-                        <th>
-                            Total Paid Amount
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="row in anualfeeData" ng-class="{'text-danger info': !row._id.active}">
-                        <td>
-                            {{$index + 1}}
-                        </td>
-                        <td>
-                            {{row._id.name}}
-                        </td>
-                        <td>
-                            {{row._id.class}}
-                        </td>
-                        <td>
-                            {{row._id.combination}}
-                        </td>
-                        <td>
-                            {{row._id.rollnumber}}
-                        </td>
-                        <td>
-                            {{row._id.puc1fee + row._id.puc2fee}}
-                        </td>
-                        <td>
-                            {{row.totalFeePaid}}
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            <label>Total</label>
-                        </td>
-                        <td>
-                            <label>{{getPromisedFeeToBeCollected()}}</label>
-                        </td>
-                        <td>
-                            <label>{{getTotalPaidAmount()}}</label>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-            <h2>
-            </h2>
-            <p>
-                This report has been designed to provide a clear an concise summary of every student fee collected for the financial year {{year}}. The layout is also designed to provide comparative information between the financial year {{year}} of the academic.
-            </p>
         </div>
     </div>
 </div>

@@ -447,7 +447,7 @@ angular.module('appRoutes', [])
                                     url: '/oldtransactions',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/transaction/old.html',
+                                            templateUrl: '/transaction/old.html',
                                             controller: 'OldTransactionViewController'
                                         }
                                     },
