@@ -3,7 +3,6 @@ angular.module('StaffViewCtrl', [])
                 function ($scope, $state, $location, staff, Flash) {
                     //console.log('In UserViewController');
                     $scope.staffList = {};
-                    $scope.staffMember = {};
                     $scope.formData = {};
                     //console.log($scope.staffMember)
                     staff.getall().then(function (data) {
@@ -11,6 +10,7 @@ angular.module('StaffViewCtrl', [])
                     });
                     // Get Staff member details
                     $scope.viewDetails = function (id) {
+                        $scope.staffMember = ''
                         staff.getdetail(id).then(function (data) {
                             //console.log(data);
                             $scope.staffMember = data.data[0];

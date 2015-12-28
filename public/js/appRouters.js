@@ -409,7 +409,7 @@ angular.module('appRoutes', [])
                                     url: '/movestudents',
                                     views: {
                                         'adminview@admin': {
-                                            templateUrl: '/admin/student/move.html',
+                                            templateUrl: '/student/move.html',
                                             controller: 'MoveStudentsViewController'
                                         }
                                     },
@@ -460,7 +460,7 @@ angular.module('appRoutes', [])
                                     url: '/oldtransactions/view',
                                     views: {
                                         'oldtransactionview': {
-                                            templateUrl: '/admin/transaction/oldview.html'
+                                            templateUrl: '/transaction/oldview.html'
                                         }
                                     },
                                     data: {

@@ -332,12 +332,17 @@ File Upload
     width: 100%;
 }
 .intro-header {
-        background-color: #808080;
-        background: no-repeat center center;
-        background-attachment: scroll;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;
-        margin-bottom: 8px;
-    }
+    background-color: #808080;
+    background: no-repeat center center;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    margin-bottom: 8px;
+}
+
+.special-animation {
+    transform: translatez(0);
+    -webkit-animation: jelly-answer 1s ease-in both;
+}
