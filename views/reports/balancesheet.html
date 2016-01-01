@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb" ng-show="isAdminUser">
+            <li>
+                <a ui-sref="reports">Reports</a> <span class="divider"></span>
+            </li>
+            <li class="active">
+                Balance Sheet
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid" id="pdfprint">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Balance Sheet for the Financial year {{year}}.
+            </h3>
+            <table class="table table-condensed" ng-show="transactionList">
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Credit</th>
+                        <th>Debit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-left" ng-repeat="row in transactionList" ng-class="{'text-danger strikethrough': row.deleted}">
+                        <td>{{$index + 1}}</td>
+                        <td>{{row.name}}</td>
+                        <td>{{row.date| date:'MMM dd, yyyy'}}</td>
+                        <td><i class="fa fa-inr" ng-show="row.type === 'Credit'"></i>{{(row.type === 'Credit')? row.amount:''}}</td>
+                        <td><i class="fa fa-inr" ng-show="row.type === 'Debit'"></i>{{(row.type === 'Debit')? row.amount:''}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <th></th>
+                        <th>{{credits}}</th>
+                        <th>{{debits}}</th>
+                    </tr>
+                    <tr><td colspan="5">&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="4">Expected money to be collected from the students for this financial year <strong> {{year}}</strong></td>
+                        <th>{{sheetData[0].puc1fee + sheetData[0].puc2fee}}</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Fee collected from the students as on date</td>
+                        <th>{{getTotalPaid}}</th>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <th>Balance</th>
+                        <th>{{(sheetData[0].puc1fee + sheetData[0].puc2fee) - getTotalPaid}}</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <p class="text-justify">
+                This report has been designed to provide a clear an concise summary of every student fee collected for the financial year {{year}}. The layout is also designed to provide comparative information between the financial year {{year}} of the academic.
+            </p>
+        </div>
+    </div>
+</div>

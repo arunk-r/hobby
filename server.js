@@ -1,3 +1,4 @@
+/* global __dirname */
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -23,8 +24,9 @@ app.server = http.createServer(app);
 app.db = mongoose.createConnection(config.mongodb.uri);
 app.db.on('error', console.error.bind(console, 'mongoose connection error: '));
 app.db.once('open', function () {
-    console.log('Mongo connection enabled!...');
+    console.log('Mongo connection established!...');
 });
+
 //config data models
 require('./models')(app, mongoose);
 
@@ -52,6 +54,7 @@ var sess = {
 app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
+
 //Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
 helmet(app);
 
@@ -72,10 +75,25 @@ app.use(require('./server/http/index').http500);
 app.utility = {};
 app.utility.workflow = require('./util/workflow');
 
-//listen up
-app.server.listen(app.config.port, function () {
-    //and... we're live
-    console.log('Server is running on port ' + config.port);
-});
+var boot = function () {
+    //listen up
+    app.server.listen(app.config.port, function () {
+        //and... we're live
+        console.log('Server is running on port ' + config.port);
+    });
+};
+var shutdown = function () {
+    console.log('Server is shuting down on the port ' + config.port);
+    app.server.close();
+};
+
+if (require.main === module) {
+    boot();
+} else {
+    console.info('Running app as a module');
+    app.boot = boot;
+    app.shutdown = shutdown;
+    app.port = app.config.port;
+}
 
 module.exports = app;

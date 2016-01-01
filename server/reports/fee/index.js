@@ -50,7 +50,7 @@ exports.anualreport = function (req, res) {
     });
     workflow.emit('anualReport');
 };
- 
+
 exports.monthlyreport = function (req, res) {
     var workflow = req.app.utility.workflow(req, res);
     workflow.on('monthlyReport', function () {
@@ -207,4 +207,38 @@ exports.miscellaneousreport = function (req, res) {
                 });
     });
     workflow.emit('miscellaneousReport');
+};
+
+exports.balancesheet = function (req, res) {
+    var workflow = req.app.utility.workflow(req, res);
+    workflow.on('balancesheet', function () {
+        req.app.db.models.Student.aggregate(
+                [
+                    {$match:
+                                {
+                                    active: true
+                                }
+                    },
+                    {$group:
+                                {
+                                    _id: {
+                                        class: '$class'
+                                    },
+                                    puc1fee: {$sum: '$puc1fee'},
+                                    puc2fee: {$sum: '$puc2fee'}
+                                }
+                    }
+                ],
+                function (err, data) {
+                    if (err) {
+                        return workflow.emit('exception', err);
+                    }
+                    if (!data) {
+                        return workflow.emit('exception', err);
+                    }
+                    workflow.outcome.data = data;
+                    workflow.emit('response');
+                });
+    });
+    workflow.emit('balancesheet');
 };

@@ -87,7 +87,7 @@ angular.module('appRoutes', [])
                                         requireLogin: true,
                                         adminPrev: true
                                     }
-                                })                                
+                                })
                                 .state('user.transactions', {
                                     url: '/transactions',
                                     views: {
@@ -201,8 +201,6 @@ angular.module('appRoutes', [])
                                         adminPrev: true
                                     }
                                 })
-
-
                                 .state('login', {
                                     url: '/login',
                                     templateUrl: '/user/login.html',
@@ -296,6 +294,15 @@ angular.module('appRoutes', [])
                                     url: '/reports/studentsextract',
                                     templateUrl: '/reports/studentsextract.html',
                                     controller: 'StudentExtractController',
+                                    data: {
+                                        requireLogin: true,
+                                        adminPrev: true
+                                    }
+                                })
+                                .state('balancesheet', {
+                                    url: '/reports/balancesheet',
+                                    templateUrl: '/reports/balancesheet.html',
+                                    controller: 'BalanceSheetController',
                                     data: {
                                         requireLogin: true,
                                         adminPrev: true

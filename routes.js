@@ -73,6 +73,8 @@ exports = module.exports = function (app, passport) {
 
     //admin features
     app.all('/api/admin/*', ensureAdmin);
+    //Report
+    app.get('/api/admin/report/balancesheet', feereport.balancesheet);
     //App Users
     app.post('/api/admin/user/create', user.create);
     app.get('/api/admin/users', user.getall);

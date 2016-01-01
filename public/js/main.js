@@ -30,6 +30,7 @@ var routerApp = angular.module('sbpuc', [
     'CurrentYearExamFeeCtrl',
     'CurrentYearMiscellaneousFeeCtrl',
     'StudentExtractCtrl',
+    'BalanceSheetCtrl',
     // Admin Controllers
     'adminuser.service',
     'UserViewCtrl',

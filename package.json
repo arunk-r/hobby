@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "test" : "mocha tests"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -38,6 +39,9 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-watch": "*",
     "grunt-nodemon": "*",
-    "async": "~1.5.0"
+    "async": "~1.5.0",
+    "mocha": "1.16.2",
+    "superagent": "0.15.7",
+    "expect.js": "0.2.0"
   }
 }

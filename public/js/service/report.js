@@ -61,6 +61,18 @@ angular.module('report.service', [])
                                         deferred.resolve(response);
                                     });
                             return deferred.promise;
+                        },
+                        // Attempt to current academic year balance sheet
+                        balancesheet: function () {
+                            var deferred = $q.defer();
+                            router.trigger('/api/admin/report/balancesheet', 'get').then(
+                                    function (response) {
+                                        if (response.success) {
+                                            deferred.resolve(response.data);
+                                        }
+                                        deferred.resolve(response);
+                                    });
+                            return deferred.promise;
                         }
                     };
                     return reports;
